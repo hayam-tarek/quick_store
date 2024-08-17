@@ -31,45 +31,45 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(),
-      child: BlocConsumer<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state is RegisterSuccessState) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const HomeScreen();
-                },
-              ),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(
-              customSnackBar(text: 'Hello ${nameController.text}'),
-            );
-          }
-          if (state is RegisterErrorState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              customSnackBar(text: state.error),
-            );
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Sign Up',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: kPrimaryColor),
-                  ),
-                  Form(
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Sign Up',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: kPrimaryColor),
+            ),
+            BlocConsumer<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is RegisterSuccessState) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const HomeScreen();
+                      },
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    customSnackBar(text: 'Hello ${nameController.text}'),
+                  );
+                }
+                if (state is RegisterErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    customSnackBar(text: state.error),
+                  );
+                }
+              },
+              builder: (context, state) {
+                return AbsorbPointer(
+                  absorbing: state is RegisterLoadingState,
+                  child: Form(
                     key: formKey,
                     autovalidateMode: autovalidateMode,
                     child: Column(
@@ -110,62 +110,64 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const SizedBox(
                           height: 20,
                         ),
+                        CustomMaterialButton(
+                          color: kPrimaryColor,
+                          text: state is RegisterLoadingState
+                              ? 'Loading...'
+                              : 'Register',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              formKey.currentState!.save();
+                              BlocProvider.of<AuthCubit>(context).register(
+                                name: nameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                phone: phoneController.text,
+                              );
+                            } else {
+                              setState(() {
+                                autovalidateMode = AutovalidateMode.always;
+                              });
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),
-                  CustomMaterialButton(
-                    color: kPrimaryColor,
-                    text: state is AuthLoadingState ? 'Loading...' : 'Register',
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        BlocProvider.of<AuthCubit>(context).register(
-                          name: nameController.text,
-                          email: emailController.text,
-                          password: passwordController.text,
-                          phone: phoneController.text,
-                        );
-                      } else {
-                        setState(() {
-                          autovalidateMode = AutovalidateMode.always;
-                        });
-                      }
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Already have an account?',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return const LoginScreen();
-                            },
-                          ));
-                        },
-                        child: const Text(
-                          'Login',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: kSecondaryColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+                );
+              },
             ),
-          );
-        },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Already have an account?',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return const LoginScreen();
+                      },
+                    ));
+                  },
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: kSecondaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

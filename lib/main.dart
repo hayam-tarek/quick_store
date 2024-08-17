@@ -1,5 +1,7 @@
+import 'package:e_commerce_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_app/modules/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const ECommerceApp());
@@ -11,10 +13,17 @@ class ECommerceApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'E Commerce App',
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthCubit(),
+        ),
+      ],
+      child: const MaterialApp(
+        title: 'E Commerce App',
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+      ),
     );
   }
 }

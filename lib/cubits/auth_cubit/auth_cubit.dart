@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce_app/helper/api.dart';
 import 'package:e_commerce_app/helper/constant.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 
 part 'auth_state.dart';
 
@@ -14,8 +14,8 @@ class AuthCubit extends Cubit<AuthState> {
     required String password,
     required String phone,
   }) async {
-    emit(AuthLoadingState());
-    var responseBody = await API().post(
+    emit(RegisterLoadingState());
+    var registerData = await API().post(
       url: '$kBaseURL/register',
       body: {
         'name': name,
@@ -23,13 +23,38 @@ class AuthCubit extends Cubit<AuthState> {
         'password': password,
         'phone': phone,
       },
+      token: '',
     );
-    if (responseBody['status'] == true) {
+    if (registerData['status'] == true) {
       emit(RegisterSuccessState());
     } else {
       emit(
         RegisterErrorState(
-          error: responseBody['message'],
+          error: registerData['message'],
+        ),
+      );
+    }
+  }
+
+  void login({
+    required String email,
+    required String password,
+  }) async {
+    emit(LoginLoadingState());
+    var loginData = await API().post(
+      url: '$kBaseURL/login',
+      body: {
+        'email': email,
+        'password': password,
+      },
+      token: '',
+    );
+    if (loginData['status'] == true) {
+      emit(LoginSuccessState());
+    } else {
+      emit(
+        LoginErrorState(
+          error: loginData['message'],
         ),
       );
     }
