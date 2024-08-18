@@ -1,5 +1,4 @@
-import 'package:e_commerce_app/helper/constant.dart';
-import 'package:e_commerce_app/modules/screens/register_screen.dart';
+import 'package:e_commerce_app/modules/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const RegisterScreen(),
+          builder: (context) => const WelcomeScreen(),
         ),
       );
     });
@@ -37,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 child: Center(
                   child: Image.asset(
-                    kLogoURL,
+                    'assets/images/png/logo-no-background.png',
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/cubits/auth_cubit/auth_cubit.dart';
+import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/modules/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,10 +20,11 @@ class ECommerceApp extends StatelessWidget {
           create: (context) => AuthCubit(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
+        theme: ThemeData(fontFamily: kMainFont),
         title: 'E Commerce App',
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

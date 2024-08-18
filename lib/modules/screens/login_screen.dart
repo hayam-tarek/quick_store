@@ -42,14 +42,6 @@ class _LoginScreenState extends State<LoginScreen> {
               flex: 1,
               child: Container(
                 alignment: AlignmentDirectional.bottomCenter,
-                // child: const Text(
-                //   'Login to continue...',
-                //   style: TextStyle(
-                //     fontSize: 25,
-                //     fontWeight: FontWeight.bold,
-                //     color: Colors.white,
-                //   ),
-                // ),
               ),
             ),
             const SizedBox(
@@ -69,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: kPrimaryColor,
+                          fontFamily: kTitleFont,
                         ),
                       ),
                     ),
@@ -101,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             autovalidateMode: autovalidateMode,
                             child: Column(
                               children: [
-                                const SizedBox(height: 100),
+                                const SizedBox(height: 50),
                                 CustomTextFormField(
                                   keyboardType: TextInputType.emailAddress,
                                   labelText: 'Email',
