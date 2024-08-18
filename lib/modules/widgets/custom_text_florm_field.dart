@@ -41,7 +41,7 @@ class CustomTextFormField extends StatelessWidget {
         labelText: labelText,
         labelStyle: const TextStyle(
           color: kPrimaryColor,
-          fontSize: 12,
+          fontSize: 18,
         ),
         enabledBorder: customOutlineInputBorder(),
         focusedBorder: customOutlineInputBorder(),

@@ -1,12 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce_app/helper/api.dart';
 import 'package:e_commerce_app/helper/constant.dart';
+import 'package:e_commerce_app/shared/network/local_network.dart';
 import 'package:flutter/material.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitialState());
+
   //Register
   void register({
     required String name,
@@ -23,9 +25,12 @@ class AuthCubit extends Cubit<AuthState> {
         'password': password,
         'phone': phone,
       },
-      token: '',
     );
     if (registerData['status'] == true) {
+      await CacheNetwork().setToCache(
+        key: 'token',
+        value: registerData['data']['token'],
+      );
       emit(RegisterSuccessState());
     } else {
       emit(
@@ -47,9 +52,12 @@ class AuthCubit extends Cubit<AuthState> {
         'email': email,
         'password': password,
       },
-      token: '',
     );
     if (loginData['status'] == true) {
+      await CacheNetwork().setToCache(
+        key: 'token',
+        value: loginData['data']['token'],
+      );
       emit(LoginSuccessState());
     } else {
       emit(

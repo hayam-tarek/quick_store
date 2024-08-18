@@ -38,6 +38,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   bloc: ^8.1.4
   http: ^1.2.2
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -81,12 +82,12 @@ flutter:
   fonts:
     - family: PoetsenOne
       fonts:
-        - asset: assets\\/fonts/PoetsenOne-Regular.ttf
+        - asset: assets/fonts/PoetsenOne.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
     - family: SignikaNegative
       fonts:
-        - asset: assets/fonts/SignikaNegative-VariableFont_wght.ttf
+        - asset: assets/fonts/SignikaNegative.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

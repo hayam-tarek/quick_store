@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/helper/constant.dart';
+import 'package:e_commerce_app/modules/screens/home_screen.dart';
 import 'package:e_commerce_app/modules/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +17,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const WelcomeScreen(),
+          builder: (context) =>
+              kToken != null ? const HomeScreen() : const WelcomeScreen(),
         ),
       );
     });
