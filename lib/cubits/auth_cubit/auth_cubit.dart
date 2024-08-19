@@ -1,3 +1,5 @@
+// ignore_for_file: missing_required_param
+
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce_app/helper/api.dart';
 import 'package:e_commerce_app/helper/constant.dart';

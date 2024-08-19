@@ -20,14 +20,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const SizedBox(
-              height: 100,
-            ),
+            const Spacer(),
             Center(
               child: Image.asset(
                 fit: BoxFit.cover,
                 kLogoURL,
-                height: 300,
               ),
             ),
             const Spacer(
@@ -40,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Text(
                   'Welcome to our ',
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: kPrimaryColor,
                   ),
@@ -48,10 +45,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Text(
                   'store!',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 35,
                     fontWeight: FontWeight.bold,
                     color: kSecondaryColor,
-                    fontFamily: kTitleFont,
+                    fontFamily: kPrimaryFont,
                   ),
                 ),
               ],

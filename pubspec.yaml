@@ -64,7 +64,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/png/
+    - assets/images/logo/
+    - assets/images/icons/
     - assets/images/
   #   - images/a_dot_ham.jpeg
 
@@ -83,13 +84,15 @@ flutter:
     - family: PoetsenOne
       fonts:
         - asset: assets/fonts/PoetsenOne.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
     - family: SignikaNegative
       fonts:
         - asset: assets/fonts/SignikaNegative.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+    - family: Jolly Lodger
+      fonts:
+        - asset: assets/fonts/Jolly Lodger.ttf
+    - family: JetBrains Mono
+      fonts:
+        - asset: assets/fonts/JetBrains Mono.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

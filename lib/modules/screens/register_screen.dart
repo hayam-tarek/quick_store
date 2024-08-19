@@ -63,10 +63,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 45,
                           fontWeight: FontWeight.bold,
                           color: kPrimaryColor,
-                          fontFamily: kTitleFont,
+                          fontFamily: kPrimaryFont,
                         ),
                       ),
                     ),
@@ -169,7 +169,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const Text(
                           'Already have an account?',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             color: Colors.grey,
                           ),
                         ),
@@ -184,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: const Text(
                             'Login',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: kSecondaryColor,
                             ),

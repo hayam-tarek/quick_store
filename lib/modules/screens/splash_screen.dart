@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 child: Center(
                   child: Image.asset(
-                    'assets/images/png/logo-no-background.png',
+                    kLogoURL,
                   ),
                 ),
               ),

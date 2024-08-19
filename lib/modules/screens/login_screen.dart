@@ -58,10 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         "Login",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 45,
                           fontWeight: FontWeight.bold,
                           color: kPrimaryColor,
-                          fontFamily: kTitleFont,
+                          fontFamily: kPrimaryFont,
                         ),
                       ),
                     ),
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const Text(
                           'Forger your password?',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             color: Colors.grey,
                           ),
                         ),
@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: const Text(
                             'Click here',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: kSecondaryColor,
                             ),
