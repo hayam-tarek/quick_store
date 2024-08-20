@@ -9,9 +9,9 @@ final class RegisterLoadingState extends AuthState {}
 
 final class RegisterSuccessState extends AuthState {}
 
-final class RegisterErrorState extends AuthState {
+final class RegisterFailureState extends AuthState {
   final String error;
-  RegisterErrorState({
+  RegisterFailureState({
     required this.error,
   });
 }

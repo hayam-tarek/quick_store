@@ -86,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 text: 'Hello ${nameController.text}'),
                           );
                         }
-                        if (state is RegisterErrorState) {
+                        if (state is RegisterFailureState) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             customSnackBar(text: state.error),
                           );

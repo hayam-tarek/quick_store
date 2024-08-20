@@ -1,8 +1,7 @@
-// ignore_for_file: missing_required_param
-
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce_app/helper/api.dart';
 import 'package:e_commerce_app/helper/constant.dart';
+import 'package:e_commerce_app/models/user_data_model.dart';
 import 'package:e_commerce_app/shared/network/local_network.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +9,7 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitialState());
+  UserDataModel? userDataModel;
 
   //Register
   void register({
@@ -27,16 +27,20 @@ class AuthCubit extends Cubit<AuthState> {
         'password': password,
         'phone': phone,
       },
+      headers: {
+        'lang': 'en',
+      },
     );
     if (registerData['status'] == true) {
       await CacheNetwork().setToCache(
         key: 'token',
         value: registerData['data']['token'],
       );
+      userDataModel = UserDataModel.fromJSON(json: registerData['data']);
       emit(RegisterSuccessState());
     } else {
       emit(
-        RegisterErrorState(
+        RegisterFailureState(
           error: registerData['message'],
         ),
       );
@@ -54,12 +58,16 @@ class AuthCubit extends Cubit<AuthState> {
         'email': email,
         'password': password,
       },
+      headers: {
+        'lang': 'en',
+      },
     );
     if (loginData['status'] == true) {
       await CacheNetwork().setToCache(
         key: 'token',
         value: loginData['data']['token'],
       );
+      userDataModel = UserDataModel.fromJSON(json: loginData['data']);
       emit(LoginSuccessState());
     } else {
       emit(

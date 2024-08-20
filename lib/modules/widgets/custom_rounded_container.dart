@@ -8,7 +8,7 @@ class CustomRoundedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white.withOpacity(.85),
+          color: Colors.white.withOpacity(.75),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(50),
             topRight: Radius.circular(50),

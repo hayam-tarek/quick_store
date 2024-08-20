@@ -1,26 +1,30 @@
 class UserDataModel {
+  final int id;
   final String name;
-  final String phone;
   final String email;
-  final String id;
+  final String phone;
   final String image;
-  final String token;
+  final int points;
+  final int credit;
 
   UserDataModel({
-    required this.name,
-    required this.phone,
-    required this.email,
     required this.id,
+    required this.name,
+    required this.email,
+    required this.phone,
     required this.image,
-    required this.token,
+    required this.points,
+    required this.credit,
   });
-  factory UserDataModel.fromJSON(json) {
+  factory UserDataModel.fromJSON({required Map<String, dynamic> json}) {
     return UserDataModel(
-        name: json['name'],
-        phone: json['phone'],
-        email: json['email'],
-        id: json['id'],
-        image: json['image'],
-        token: json['token']);
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
+      phone: json['phone'],
+      image: json['image'],
+      points: json['points'],
+      credit: json['credit'],
+    );
   }
 }
