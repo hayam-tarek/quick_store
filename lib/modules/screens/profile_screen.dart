@@ -38,8 +38,10 @@ class ProfileScreen extends StatelessWidget {
                 ),
               );
             } else {
-              return const Center(
-                child: Text("Try again later..."),
+              return Center(
+                child: state is GetProfileFailure
+                    ? Text(state.message)
+                    : const Text("Try again later..."),
               );
             }
           },

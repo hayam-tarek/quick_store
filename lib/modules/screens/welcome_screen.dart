@@ -84,12 +84,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             const SizedBox(
               height: 50,
             ),
-            const Text(
-              'Developed by Hayam Tarek',
-              style: TextStyle(
-                color: Colors.grey,
-              ),
-            ),
           ],
         ),
       ),

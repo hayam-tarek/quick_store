@@ -1,12 +1,11 @@
 import 'package:e_commerce_app/cubits/auth_cubit/auth_cubit.dart';
-import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/modules/screens/forget_password_screen.dart';
 import 'package:e_commerce_app/modules/screens/home_screen.dart';
-import 'package:e_commerce_app/modules/widgets/custom_material_button.dart';
-import 'package:e_commerce_app/modules/widgets/custom_password_text_form_field.dart';
 import 'package:e_commerce_app/modules/widgets/custom_rounded_container.dart';
 import 'package:e_commerce_app/modules/widgets/custom_snake_bar.dart';
-import 'package:e_commerce_app/modules/widgets/custom_text_florm_field.dart';
+import 'package:e_commerce_app/modules/widgets/helper_text.dart';
+import 'package:e_commerce_app/modules/widgets/login_sheet_body.dart';
+import 'package:e_commerce_app/modules/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,13 +17,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController emailController = TextEditingController();
-
-  final TextEditingController passwordController = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey();
-
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,14 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     const SizedBox(height: 50),
                     const Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: 45,
-                          fontWeight: FontWeight.bold,
-                          color: kPrimaryColor,
-                          fontFamily: kPrimaryFont,
-                        ),
+                      child: TitleText(
+                        text: 'Login',
                       ),
                     ),
                     BlocConsumer<AuthCubit, AuthState>(
@@ -87,80 +73,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       },
                       builder: (context, state) {
-                        return AbsorbPointer(
-                          absorbing: state is LoginLoadingState,
-                          child: Form(
-                            key: formKey,
-                            autovalidateMode: autovalidateMode,
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 50),
-                                CustomTextFormField(
-                                  keyboardType: TextInputType.emailAddress,
-                                  labelText: 'Email',
-                                  controller: emailController,
-                                  validatorText: 'Please enter your email',
-                                ),
-                                const SizedBox(height: 10),
-                                CustomPasswordTextFormField(
-                                  passwordController: passwordController,
-                                ),
-                                const SizedBox(height: 20),
-                                CustomMaterialButton(
-                                  color: kPrimaryColor,
-                                  text: state is LoginLoadingState
-                                      ? 'Loading...'
-                                      : 'Login',
-                                  onPressed: () {
-                                    if (formKey.currentState!.validate()) {
-                                      formKey.currentState!.save();
-                                      BlocProvider.of<AuthCubit>(context).login(
-                                        email: emailController.text,
-                                        password: passwordController.text,
-                                      );
-                                    } else {
-                                      setState(() {
-                                        autovalidateMode =
-                                            AutovalidateMode.always;
-                                      });
-                                    }
-                                  },
-                                )
-                              ],
-                            ),
-                          ),
+                        return LoginSheetBody(
+                          state: state,
                         );
                       },
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Forger your password?',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const ForgetPasswordScreen();
-                              },
-                            ));
+                    HelperText(
+                      firstText: 'Forger your password?',
+                      secondText: 'Click here',
+                      onSecondTextPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return const ForgetPasswordScreen();
                           },
-                          child: const Text(
-                            'Click here',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: kSecondaryColor,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
+                        ));
+                      },
+                    ),
                   ],
                 ),
               ),

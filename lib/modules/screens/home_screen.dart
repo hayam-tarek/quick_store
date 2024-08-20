@@ -8,30 +8,29 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            CustomMaterialButton(
-              color: Colors.black,
-              text: 'clear token',
-              onPressed: () {
-                CacheNetwork.sharedPref.clear();
-              },
-            ),
-            CustomMaterialButton(
-              color: Colors.black,
-              text: "go to profile",
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return const ProfileScreen();
-                  },
-                ));
-              },
-            )
-          ],
-        ),
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CustomMaterialButton(
+            color: Colors.black,
+            text: 'clear token',
+            onPressed: () {
+              CacheNetwork.sharedPref.clear();
+            },
+          ),
+          CustomMaterialButton(
+            color: Colors.black,
+            text: "go to profile",
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return const ProfileScreen();
+                },
+              ));
+            },
+          )
+        ],
       ),
     );
   }

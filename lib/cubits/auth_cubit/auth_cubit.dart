@@ -36,6 +36,7 @@ class AuthCubit extends Cubit<AuthState> {
         key: 'token',
         value: registerData['data']['token'],
       );
+      kToken = CacheNetwork().getFromCache(key: 'token');
       userDataModel = UserDataModel.fromJSON(json: registerData['data']);
       emit(RegisterSuccessState());
     } else {
@@ -67,6 +68,7 @@ class AuthCubit extends Cubit<AuthState> {
         key: 'token',
         value: loginData['data']['token'],
       );
+      kToken = CacheNetwork().getFromCache(key: 'token');
       userDataModel = UserDataModel.fromJSON(json: loginData['data']);
       emit(LoginSuccessState());
     } else {

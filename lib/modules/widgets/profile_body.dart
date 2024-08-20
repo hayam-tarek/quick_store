@@ -2,6 +2,7 @@ import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/models/user_data_model.dart';
 import 'package:e_commerce_app/modules/widgets/display_item.dart';
 import 'package:e_commerce_app/modules/widgets/tapped_card.dart';
+import 'package:e_commerce_app/modules/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
 class ProfileBody extends StatelessWidget {
@@ -26,15 +27,7 @@ class ProfileBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        Text(
-          userDataModel.name,
-          style: const TextStyle(
-            fontSize: 50,
-            color: kPrimaryColor,
-            fontWeight: FontWeight.bold,
-            fontFamily: kPrimaryFont,
-          ),
-        ),
+        TitleText(text: userDataModel.name),
         const SizedBox(height: 10),
         DisplayItem(
           title: userDataModel.email,
