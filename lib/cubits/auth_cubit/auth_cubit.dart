@@ -1,17 +1,16 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
-import 'package:e_commerce_app/helper/api.dart';
 import 'package:e_commerce_app/helper/constant.dart';
-import 'package:e_commerce_app/models/user_data_model.dart';
-import 'package:e_commerce_app/shared/network/local_network.dart';
+import 'package:e_commerce_app/helper/save_token.dart';
+import 'package:e_commerce_app/shared/services/api.dart';
 import 'package:flutter/material.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitialState());
-  UserDataModel? userDataModel;
 
-  //Register
   void register({
     required String name,
     required String email,
@@ -19,30 +18,31 @@ class AuthCubit extends Cubit<AuthState> {
     required String phone,
   }) async {
     emit(RegisterLoadingState());
-    var registerData = await API().post(
-      url: '$kBaseURL/register',
-      body: {
-        'name': name,
-        'email': email,
-        'password': password,
-        'phone': phone,
-      },
-      headers: {
-        'lang': 'en',
-      },
-    );
-    if (registerData['status'] == true) {
-      await CacheNetwork().setToCache(
-        key: 'token',
-        value: registerData['data']['token'],
+    try {
+      var json = await API().post(
+        url: '$kBaseURL/register',
+        body: {
+          'name': name,
+          'email': email,
+          'password': password,
+          'phone': phone,
+        },
+        headers: {
+          'lang': 'en',
+        },
       );
-      kToken = CacheNetwork().getFromCache(key: 'token');
-      userDataModel = UserDataModel.fromJSON(json: registerData['data']);
-      emit(RegisterSuccessState());
-    } else {
+      if (json['status'] == true) {
+        await saveToken(token: json['data']['token']);
+        emit(RegisterSuccessState());
+      } else {
+        throw Exception(json['message']);
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      String message = e.toString().replaceFirst('Exception: ', '');
       emit(
         RegisterFailureState(
-          error: registerData['message'],
+          error: message,
         ),
       );
     }
@@ -53,28 +53,29 @@ class AuthCubit extends Cubit<AuthState> {
     required String password,
   }) async {
     emit(LoginLoadingState());
-    var loginData = await API().post(
-      url: '$kBaseURL/login',
-      body: {
-        'email': email,
-        'password': password,
-      },
-      headers: {
-        'lang': 'en',
-      },
-    );
-    if (loginData['status'] == true) {
-      await CacheNetwork().setToCache(
-        key: 'token',
-        value: loginData['data']['token'],
+    try {
+      var json = await API().post(
+        url: '$kBaseURL/login',
+        body: {
+          'email': email,
+          'password': password,
+        },
+        headers: {
+          'lang': 'en',
+        },
       );
-      kToken = CacheNetwork().getFromCache(key: 'token');
-      userDataModel = UserDataModel.fromJSON(json: loginData['data']);
-      emit(LoginSuccessState());
-    } else {
+      if (json['status'] == true) {
+        await saveToken(token: json['data']['token']);
+        emit(LoginSuccessState());
+      } else {
+        throw Exception(json['message']);
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      String message = e.toString().replaceFirst('Exception: ', '');
       emit(
-        LoginErrorState(
-          error: loginData['message'],
+        LoginFailureState(
+          error: message,
         ),
       );
     }

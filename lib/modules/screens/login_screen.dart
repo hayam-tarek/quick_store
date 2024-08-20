@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             customSnackBar(text: 'Welcome dear ...'),
                           );
                         }
-                        if (state is LoginErrorState) {
+                        if (state is LoginFailureState) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             customSnackBar(text: state.error),
                           );

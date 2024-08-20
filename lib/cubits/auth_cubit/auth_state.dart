@@ -20,9 +20,9 @@ final class LoginLoadingState extends AuthState {}
 
 final class LoginSuccessState extends AuthState {}
 
-final class LoginErrorState extends AuthState {
+final class LoginFailureState extends AuthState {
   final String error;
-  LoginErrorState({
+  LoginFailureState({
     required this.error,
   });
 }
