@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/cubits/auth_cubit/auth_cubit.dart';
+import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/modules/screens/forget_password_screen.dart';
 import 'package:e_commerce_app/modules/screens/home_screen.dart';
 import 'package:e_commerce_app/modules/widgets/custom_rounded_container.dart';
@@ -23,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/login_background - editing.jpg'),
+            image: AssetImage(kBackgroundPath),
             fit: BoxFit.cover,
             opacity: .7,
           ),

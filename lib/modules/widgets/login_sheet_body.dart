@@ -32,6 +32,7 @@ class _LoginSheetBodyState extends State<LoginSheetBody> {
           children: [
             const SizedBox(height: 50),
             CustomTextFormField(
+              prefixIcon: const Icon(Icons.email),
               keyboardType: TextInputType.emailAddress,
               labelText: 'Email',
               controller: emailController,

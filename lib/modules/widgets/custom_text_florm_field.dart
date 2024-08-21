@@ -11,6 +11,7 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.obscureText,
     this.suffixIcon,
+    this.prefixIcon,
   });
   final String labelText;
   final TextEditingController? controller;
@@ -19,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? obscureText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +38,12 @@ class CustomTextFormField extends StatelessWidget {
             return null;
           },
       decoration: InputDecoration(
+        // filled: true,
+        // fillColor: kSecondaryColor.withOpacity(.1),
         suffixIcon: suffixIcon,
         suffixIconColor: Colors.grey,
+        prefixIcon: prefixIcon,
+        prefixIconColor: kSecondaryColor.withOpacity(.75),
         labelText: labelText,
         labelStyle: const TextStyle(
           color: kPrimaryColor,

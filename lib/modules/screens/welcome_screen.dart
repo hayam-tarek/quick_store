@@ -20,11 +20,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Spacer(),
-            Center(
+            const Spacer(
+              flex: 1,
+            ),
+            Expanded(
+              flex: 4,
               child: Image.asset(
-                fit: BoxFit.cover,
-                kLogoURL,
+                fit: BoxFit.contain,
+                kLogoPath,
               ),
             ),
             const Spacer(

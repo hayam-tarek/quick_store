@@ -33,6 +33,7 @@ class _RegisterSheetBodyState extends State<RegisterSheetBody> {
           children: [
             const SizedBox(height: 50),
             CustomTextFormField(
+              prefixIcon: const Icon(Icons.person),
               keyboardType: TextInputType.name,
               labelText: 'User Name',
               controller: nameController,
@@ -42,6 +43,7 @@ class _RegisterSheetBodyState extends State<RegisterSheetBody> {
               height: 10,
             ),
             CustomTextFormField(
+              prefixIcon: const Icon(Icons.email),
               keyboardType: TextInputType.emailAddress,
               labelText: 'Email',
               controller: emailController,
@@ -51,6 +53,7 @@ class _RegisterSheetBodyState extends State<RegisterSheetBody> {
               height: 10,
             ),
             CustomTextFormField(
+              prefixIcon: const Icon(Icons.phone),
               keyboardType: TextInputType.phone,
               labelText: 'Phone',
               controller: phoneController,

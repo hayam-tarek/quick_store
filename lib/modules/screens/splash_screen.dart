@@ -32,17 +32,20 @@ class _SplashScreenState extends State<SplashScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            const Spacer(
+              flex: 1,
+            ),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(
-                  60,
-                ),
-                child: Center(
-                  child: Image.asset(
-                    kLogoURL,
-                  ),
+              flex: 3,
+              child: Center(
+                child: Image.asset(
+                  kLogoPath,
+                  fit: BoxFit.contain,
                 ),
               ),
+            ),
+            const Spacer(
+              flex: 2,
             ),
             const Text(
               'Developed by Hayam Tarek',

@@ -20,6 +20,7 @@ class _CustomPasswordTextFormFieldState
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
+      prefixIcon: const Icon(Icons.password),
       suffixIcon: IconButton(
         onPressed: () {
           setState(() {

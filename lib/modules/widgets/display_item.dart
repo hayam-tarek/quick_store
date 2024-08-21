@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/helper/constant.dart';
 import 'package:flutter/material.dart';
 
 class DisplayItem extends StatelessWidget {
@@ -19,16 +20,16 @@ class DisplayItem extends StatelessWidget {
         Expanded(
           child: Icon(
             iconData,
-            color: Colors.grey,
+            color: kSecondaryColor.withOpacity(.65),
           ),
         ),
         Expanded(
           flex: 2,
           child: Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
-              color: Colors.grey,
+              color: kSecondaryColor.withOpacity(.65),
               fontWeight: FontWeight.bold,
             ),
           ),

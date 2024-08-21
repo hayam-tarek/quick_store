@@ -1,5 +1,5 @@
-import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/models/user_data_model.dart';
+import 'package:e_commerce_app/modules/widgets/custom_circle_avatar.dart';
 import 'package:e_commerce_app/modules/widgets/display_item.dart';
 import 'package:e_commerce_app/modules/widgets/tapped_card.dart';
 import 'package:e_commerce_app/modules/widgets/title_text.dart';
@@ -19,12 +19,8 @@ class ProfileBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(height: 20),
-        CircleAvatar(
-          radius: 100,
-          backgroundColor: kSecondaryColor,
-          backgroundImage: NetworkImage(
-            userDataModel.image,
-          ),
+        CustomCircleAvatar(
+          networkImageUrl: userDataModel.image,
         ),
         const SizedBox(height: 20),
         TitleText(text: userDataModel.name),
