@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_app/helper/constant.dart';
-import 'package:e_commerce_app/modules/screens/home_screen.dart';
+import 'package:e_commerce_app/modules/layout/layout_screen.dart';
 import 'package:e_commerce_app/modules/screens/login_screen.dart';
 import 'package:e_commerce_app/modules/widgets/custom_rounded_container.dart';
 import 'package:e_commerce_app/modules/widgets/custom_snake_bar.dart';
@@ -58,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const HomeScreen();
+                                return const LayoutScreen();
                               },
                             ),
                           );
@@ -82,7 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       firstText: 'Already have an account?',
                       secondText: 'Login',
                       onSecondTextPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
+                        Navigator.pushReplacement(context, MaterialPageRoute(
                           builder: (context) {
                             return const LoginScreen();
                           },

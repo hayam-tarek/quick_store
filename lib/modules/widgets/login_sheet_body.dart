@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_app/helper/constant.dart';
+import 'package:e_commerce_app/modules/screens/forget_password_screen.dart';
 import 'package:e_commerce_app/modules/widgets/custom_material_button.dart';
 import 'package:e_commerce_app/modules/widgets/custom_password_text_form_field.dart';
 import 'package:e_commerce_app/modules/widgets/custom_text_florm_field.dart';
@@ -42,7 +43,21 @@ class _LoginSheetBodyState extends State<LoginSheetBody> {
             CustomPasswordTextFormField(
               passwordController: passwordController,
             ),
-            const SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return const ForgetPasswordScreen();
+                    },
+                  ));
+                },
+                child: const Text(
+                  'Forget Password?',
+                ),
+              ),
+            ),
             CustomMaterialButton(
               color: kPrimaryColor,
               text: widget.state is LoginLoadingState ? 'Loading...' : 'Login',

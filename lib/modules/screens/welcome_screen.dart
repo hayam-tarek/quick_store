@@ -63,7 +63,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               color: kPrimaryColor,
               text: 'LOGIN',
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
+                Navigator.pushReplacement(context, MaterialPageRoute(
                   builder: (context) {
                     return const LoginScreen();
                   },
@@ -77,7 +77,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               color: kPrimaryColor,
               text: 'REGISTER',
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
+                Navigator.pushReplacement(context, MaterialPageRoute(
                   builder: (context) {
                     return const RegisterScreen();
                   },

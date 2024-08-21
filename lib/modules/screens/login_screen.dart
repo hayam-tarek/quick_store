@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_app/helper/constant.dart';
-import 'package:e_commerce_app/modules/screens/forget_password_screen.dart';
-import 'package:e_commerce_app/modules/screens/home_screen.dart';
+import 'package:e_commerce_app/modules/layout/layout_screen.dart';
+import 'package:e_commerce_app/modules/screens/register_screen.dart';
 import 'package:e_commerce_app/modules/widgets/custom_rounded_container.dart';
 import 'package:e_commerce_app/modules/widgets/custom_snake_bar.dart';
 import 'package:e_commerce_app/modules/widgets/helper_text.dart';
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const HomeScreen();
+                                return const LayoutScreen();
                               },
                             ),
                           );
@@ -80,12 +80,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     HelperText(
-                      firstText: 'Forger your password?',
-                      secondText: 'Click here',
+                      firstText: 'Dont have an account?',
+                      secondText: 'Register',
                       onSecondTextPressed: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return const ForgetPasswordScreen();
+                            return const RegisterScreen();
                           },
                         ));
                       },
