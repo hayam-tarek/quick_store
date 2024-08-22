@@ -13,3 +13,12 @@ final class GetBannersFailure extends LayoutState {
   final String message;
   GetBannersFailure({required this.message});
 }
+
+final class GetCategoriesSuccess extends LayoutState {}
+
+final class GetCategoriesLoading extends LayoutState {}
+
+final class GetCategoriesFailure extends LayoutState {
+  final String message;
+  GetCategoriesFailure({required this.message});
+}

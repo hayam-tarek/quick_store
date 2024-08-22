@@ -4,7 +4,7 @@ import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/models/banner_model.dart';
 import 'package:e_commerce_app/shared/services/api.dart';
 
-class BannerServices {
+class BannerService {
   Future<List<BannerModel>> getBanners() async {
     try {
       var json = await API().get(
@@ -19,7 +19,7 @@ class BannerServices {
         }
         return banners;
       } else {
-        throw Exception(json['status']);
+        throw Exception(json['message']);
       }
     } on Exception catch (e) {
       log(e.toString());

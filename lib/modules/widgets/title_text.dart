@@ -5,15 +5,17 @@ class TitleText extends StatelessWidget {
   const TitleText({
     super.key,
     required this.text,
+    this.fontSize = 40,
   });
   final String text;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-        fontSize: 40,
+      style: TextStyle(
+        fontSize: fontSize,
         fontWeight: FontWeight.bold,
         color: kPrimaryColor,
         fontFamily: kPrimaryFont,

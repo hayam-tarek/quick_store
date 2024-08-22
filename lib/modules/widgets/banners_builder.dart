@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/cubits/layout_cubit/layout_cubit.dart';
 import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/models/banner_model.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class BannersBuilder extends StatelessWidget {
   const BannersBuilder({
@@ -17,9 +17,8 @@ class BannersBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (state is GetBannersLoading) {
-      return const Align(
-        alignment: Alignment.topCenter,
-        child: LinearProgressIndicator(
+      return const Center(
+        child: CupertinoActivityIndicator(
           color: kSecondaryColor,
         ),
       );
