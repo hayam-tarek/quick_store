@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/modules/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -6,10 +5,9 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: customAppBar(
-        context: context,
-        title: "Categories",
+    return const Scaffold(
+      body: Center(
+        child: Text("categories"),
       ),
     );
   }

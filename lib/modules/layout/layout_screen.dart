@@ -6,6 +6,7 @@ import 'package:e_commerce_app/modules/screens/categories_screen.dart';
 import 'package:e_commerce_app/modules/screens/favorite_screen.dart';
 import 'package:e_commerce_app/modules/screens/home_screen.dart';
 import 'package:e_commerce_app/modules/screens/profile_screen.dart';
+import 'package:e_commerce_app/modules/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class LayoutScreen extends StatefulWidget {
@@ -24,12 +25,13 @@ class _LayoutScreenState extends State<LayoutScreen> {
     const CartScreen(),
     const ProfileScreen(),
   ];
+  PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: customAppBar(),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: kPrimaryColor,
         showUnselectedLabels: true,
         selectedItemColor: kSecondaryColor,
         unselectedItemColor: kPrimaryColor,
@@ -38,14 +40,13 @@ class _LayoutScreenState extends State<LayoutScreen> {
           log('$value');
           setState(() {
             currentIndex = value;
+            pageController.jumpToPage(value);
           });
         },
         currentIndex: currentIndex,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-            ),
+            icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
@@ -66,7 +67,19 @@ class _LayoutScreenState extends State<LayoutScreen> {
           ),
         ],
       ),
-      body: screens[currentIndex],
+      // body: screens[currentIndex],
+      body: PageView(
+        // physics: NeverScrollableScrollPhysics(),
+        controller: pageController,
+        onPageChanged: (index) {
+          log('page index $index');
+          setState(() {
+            currentIndex = index;
+            pageController.jumpToPage(index);
+          });
+        },
+        children: screens,
+      ),
     );
   }
 }

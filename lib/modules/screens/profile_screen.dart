@@ -1,7 +1,6 @@
 import 'package:e_commerce_app/cubits/layout_cubit/layout_cubit.dart';
 import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/models/user_data_model.dart';
-import 'package:e_commerce_app/modules/widgets/custom_app_bar.dart';
 import 'package:e_commerce_app/modules/widgets/profile_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,10 +11,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
-        context: context,
-        title: "Profile",
-      ),
       body: BlocProvider(
         create: (context) => LayoutCubit()..getProfile(token: '$kToken'),
         child: BlocConsumer<LayoutCubit, LayoutState>(
