@@ -61,7 +61,7 @@ class CustomTextFormField extends StatelessWidget {
     return const OutlineInputBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(
-          5,
+          10,
         ),
       ),
       borderSide: BorderSide(
@@ -74,7 +74,7 @@ class CustomTextFormField extends StatelessWidget {
     return const OutlineInputBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(
-          10,
+          15,
         ),
       ),
       borderSide: BorderSide(

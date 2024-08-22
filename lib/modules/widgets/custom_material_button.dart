@@ -17,7 +17,7 @@ class CustomMaterialButton extends StatelessWidget {
       minWidth: double.infinity,
       height: 30,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(15),
       ),
       textColor: Colors.white,
       padding: const EdgeInsets.symmetric(

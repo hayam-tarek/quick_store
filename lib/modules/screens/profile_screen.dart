@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/cubits/layout_cubit/layout_cubit.dart';
+import 'package:e_commerce_app/cubits/profile_cubit/profile_cubit.dart';
 import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/models/user_data_model.dart';
 import 'package:e_commerce_app/modules/widgets/profile_body.dart';
@@ -12,12 +12,12 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => LayoutCubit()..getProfile(token: '$kToken'),
-        child: BlocConsumer<LayoutCubit, LayoutState>(
+        create: (context) => ProfileCubit()..getProfile(token: '$kToken'),
+        child: BlocConsumer<ProfileCubit, ProfileState>(
           listener: (context, state) {},
           builder: (context, state) {
             final UserDataModel? userDataModel =
-                BlocProvider.of<LayoutCubit>(context).userDataModel;
+                BlocProvider.of<ProfileCubit>(context).userDataModel;
 
             if (state is GetProfileLoading) {
               return const Center(
