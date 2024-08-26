@@ -38,7 +38,6 @@ class CustomCircleAvatar extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: CircleAvatar(
           radius: 50,
-          backgroundColor: kSecondaryColor,
           backgroundImage: NetworkImage(
             networkImageUrl,
           ),

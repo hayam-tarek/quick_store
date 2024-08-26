@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:e_commerce_app/helper/api.dart';
 import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/models/banner_model.dart';
-import 'package:e_commerce_app/shared/services/api.dart';
 
 class BannerService {
   Future<List<BannerModel>> getBanners() async {

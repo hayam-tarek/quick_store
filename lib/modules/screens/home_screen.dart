@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/cubits/layout_cubit/layout_cubit.dart';
+import 'package:e_commerce_app/models/product_model.dart';
 import 'package:e_commerce_app/modules/widgets/banners_builder.dart';
 import 'package:e_commerce_app/modules/widgets/categories_list_view.dart';
 import 'package:e_commerce_app/modules/widgets/custom_search_text_form_field.dart';
+import 'package:e_commerce_app/modules/widgets/product_body.dart';
 import 'package:e_commerce_app/modules/widgets/title_with_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // BlocProvider.of<LayoutCubit>(context).getBanners();
     // BlocProvider.of<LayoutCubit>(context).getCategories();
+    BlocProvider.of<LayoutCubit>(context).getProducts();
     super.initState();
   }
 
@@ -25,6 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // List<BannerModel> banners = BlocProvider.of<LayoutCubit>(context).banners;
     // List<CategoryModel> categories = BlocProvider.of<LayoutCubit>(context).categories;
+    List<ProductModel> products =
+        BlocProvider.of<LayoutCubit>(context).products;
     return BlocConsumer<LayoutCubit, LayoutState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -61,6 +66,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         // state: state,
                         ),
                   ),
+                ),
+                SliverToBoxAdapter(
+                  child: TitleWithButton(
+                    title: 'Products',
+                    buttonTitle: 'View All',
+                    onPressed: () {},
+                  ),
+                ),
+                ProductsBody(
+                  products: products,
+                  state: state,
                 )
               ],
             ),

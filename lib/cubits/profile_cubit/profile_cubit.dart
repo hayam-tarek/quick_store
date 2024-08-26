@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:e_commerce_app/helper/api.dart';
 import 'package:e_commerce_app/helper/constant.dart';
 import 'package:e_commerce_app/models/user_data_model.dart';
-import 'package:e_commerce_app/shared/services/api.dart';
 import 'package:meta/meta.dart';
 
 part 'profile_state.dart';

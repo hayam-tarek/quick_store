@@ -55,10 +55,13 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(
-                      snapshot.data![index].image,
+                  InkWell(
+                    onTap: () {},
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(
+                        snapshot.data![index].image,
+                      ),
                     ),
                   ),
                   // Text(
