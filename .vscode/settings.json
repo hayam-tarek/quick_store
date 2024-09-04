@@ -3,5 +3,7 @@
     "cSpell.words": [
         "Hayam",
         "Tarek"
-    ]
+    ],
+    "pieces.cloudCapabilities": "Blended",
+    "pieces.telemetry": true
 }
