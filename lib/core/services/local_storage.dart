@@ -1,12 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class LocalNetwork {
+abstract class LocalStorage {
   Future<bool> setToCache({required String key, required String value});
   String? getFromCache({required String key});
   Future<bool> removeFromCache({required String key});
 }
 
-class CacheNetwork extends LocalNetwork {
+class LocalData extends LocalStorage {
   static late SharedPreferences sharedPref;
 
   static Future cacheInitialization() async {

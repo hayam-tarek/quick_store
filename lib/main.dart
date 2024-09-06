@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:e_commerce_app/core/networks/local/local_network.dart';
+import 'package:e_commerce_app/core/services/local_storage.dart';
 import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:e_commerce_app/core/utils/simple_bloc_observer.dart';
 import 'package:e_commerce_app/view_models/auth_cubit/auth_cubit.dart';
@@ -12,8 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
-  await CacheNetwork.cacheInitialization();
-  kToken = CacheNetwork().getFromCache(key: 'token');
+  await LocalData.cacheInitialization();
+  kToken = LocalData().getFromCache(key: 'token');
   log('$kToken');
   runApp(const ECommerceApp());
 }

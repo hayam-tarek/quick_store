@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:e_commerce_app/core/networks/remote/api.dart';
+import 'package:e_commerce_app/core/api/api.dart';
+import 'package:e_commerce_app/core/api/end_points.dart';
 import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:e_commerce_app/models/product_model.dart';
 import 'package:meta/meta.dart';
@@ -15,20 +16,20 @@ class LayoutCubit extends Cubit<LayoutState> {
     emit(GetProductsLoading());
     try {
       var json = await API().get(
-        url: '$kBaseURL/home',
+        url: EndPoints.home,
         headers: {
-          'lang': 'en',
-          'Authorization': kToken!,
+          ApiKey.lang: ApiKey.english,
+          ApiKey.authorization: kToken!,
         },
       );
-      if (json['status'] == true) {
-        List<dynamic> productsData = json['data']['products'];
+      if (json[ApiKey.status] == true) {
+        List<dynamic> productsData = json[ApiKey.data][ApiKey.products];
         for (var item in productsData) {
           products.add(ProductModel.fromJson(item));
         }
         emit(GetProductsSuccess());
       } else {
-        throw Exception(json['message']);
+        throw Exception(json[ApiKey.message]);
       }
     } catch (e) {
       log(e.toString());
@@ -63,14 +64,14 @@ class LayoutCubit extends Cubit<LayoutState> {
   //       url: '$kBaseURL/banners',
   //       headers: {},
   //     );
-  //     if (json['status'] == true) {
-  //       List<dynamic> data = json['data'];
+  //     if (json[ApiKey.status] == true) {
+  //       List<dynamic> data = json[ApiKey.data];
   //       for (var item in data) {
   //         banners.add(BannerModel.fromJSON(json: item));
   //       }
   //       emit(GetBannersSuccess());
   //     } else {
-  //       throw Exception(json['message']);
+  //       throw Exception(json[ApiKey.message]);
   //     }
   //   } on Exception catch (e) {
   //     log(e.toString());
@@ -91,17 +92,17 @@ class LayoutCubit extends Cubit<LayoutState> {
   //     var json = await API().get(
   //       url: '$kBaseURL/categories',
   //       headers: {
-  //         'lang': 'en',
+  //         ApiKey.lang: ApiKey.english,
   //       },
   //     );
-  //     if (json['status'] == true) {
-  //       List<dynamic> data = json['data']['data'];
+  //     if (json[ApiKey.status] == true) {
+  //       List<dynamic> data = json[ApiKey.data][ApiKey.data];
   //       for (var item in data) {
   //         categories.add(CategoryModel.fromJSON(json: item));
   //       }
   //       emit(GetCategoriesSuccess());
   //     } else {
-  //       throw Exception(json['message']);
+  //       throw Exception(json[ApiKey.message]);
   //     }
   //   } on Exception catch (e) {
   //     log(e.toString());

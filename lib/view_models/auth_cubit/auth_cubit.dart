@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:e_commerce_app/core/networks/remote/api.dart';
-import 'package:e_commerce_app/core/utils/constant.dart';
+import 'package:e_commerce_app/core/api/api.dart';
+import 'package:e_commerce_app/core/api/end_points.dart';
 import 'package:e_commerce_app/core/utils/save_token.dart';
 import 'package:flutter/material.dart';
 
@@ -20,22 +20,22 @@ class AuthCubit extends Cubit<AuthState> {
     emit(RegisterLoadingState());
     try {
       var json = await API().post(
-        url: '$kBaseURL/register',
+        url: EndPoints.register,
         body: {
-          'name': name,
-          'email': email,
-          'password': password,
-          'phone': phone,
+          ApiKey.name: name,
+          ApiKey.email: email,
+          ApiKey.password: password,
+          ApiKey.phone: phone,
         },
         headers: {
-          'lang': 'en',
+          ApiKey.lang: ApiKey.english,
         },
       );
-      if (json['status'] == true) {
-        await saveToken(token: json['data']['token']);
+      if (json[ApiKey.status] == true) {
+        await saveToken(token: json[ApiKey.data][ApiKey.token]);
         emit(RegisterSuccessState());
       } else {
-        throw Exception(json['message']);
+        throw Exception(json[ApiKey.message]);
       }
     } on Exception catch (e) {
       log(e.toString());
@@ -55,20 +55,20 @@ class AuthCubit extends Cubit<AuthState> {
     emit(LoginLoadingState());
     try {
       var json = await API().post(
-        url: '$kBaseURL/login',
+        url: EndPoints.login,
         body: {
-          'email': email,
-          'password': password,
+          ApiKey.email: email,
+          ApiKey.password: password,
         },
         headers: {
-          'lang': 'en',
+          ApiKey.lang: ApiKey.english,
         },
       );
-      if (json['status'] == true) {
-        await saveToken(token: json['data']['token']);
+      if (json[ApiKey.status] == true) {
+        await saveToken(token: json[ApiKey.data][ApiKey.token]);
         emit(LoginSuccessState());
       } else {
-        throw Exception(json['message']);
+        throw Exception(json[ApiKey.message]);
       }
     } on Exception catch (e) {
       log(e.toString());

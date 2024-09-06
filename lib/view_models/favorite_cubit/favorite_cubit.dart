@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:e_commerce_app/core/networks/remote/api.dart';
+import 'package:e_commerce_app/core/api/api.dart';
+import 'package:e_commerce_app/core/api/end_points.dart';
 import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:meta/meta.dart';
 
@@ -13,19 +14,19 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     emit(FavoriteLoading());
     try {
       var json = await API().post(
-        url: '$kBaseURL/favorites',
+        url: EndPoints.favorites,
         body: {
-          'product_id': '$productId',
+          ApiKey.productId: '$productId',
         },
         headers: {
-          'lang': 'en',
-          'Authorization': kToken!,
+          ApiKey.lang: ApiKey.english,
+          ApiKey.authorization: kToken!,
         },
       );
-      if (json['status'] == true) {
-        emit(FavoriteSuccess(message: json['message']));
+      if (json[ApiKey.status] == true) {
+        emit(FavoriteSuccess(message: json[ApiKey.message]));
       } else {
-        throw Exception(json['message']);
+        throw Exception(json[ApiKey.message]);
       }
     } catch (e) {
       log(e.toString());
