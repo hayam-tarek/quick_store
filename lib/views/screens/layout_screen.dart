@@ -46,22 +46,27 @@ class _LayoutScreenState extends State<LayoutScreen> {
         currentIndex: currentIndex,
         items: const [
           BottomNavigationBarItem(
+            backgroundColor: Colors.white,
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            backgroundColor: Colors.white,
             icon: Icon(Icons.category),
             label: 'Categories',
           ),
           BottomNavigationBarItem(
+            backgroundColor: Colors.white,
             icon: Icon(Icons.favorite),
             label: 'Favorite',
           ),
           BottomNavigationBarItem(
+            backgroundColor: Colors.white,
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
+            backgroundColor: Colors.white,
             icon: Icon(Icons.person),
             label: 'Profile',
           ),

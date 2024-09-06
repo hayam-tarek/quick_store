@@ -41,6 +41,19 @@ class LayoutCubit extends Cubit<LayoutState> {
     }
   }
 
+  List<ProductModel> filteredProducts = [];
+  void filterProducts({required String query}) {
+    if (query.isEmpty || query == '') {
+      filteredProducts = [];
+    } else {
+      filteredProducts = products
+          .where((element) =>
+              element.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+    emit(GetProductsSuccess());
+  }
+
   // List<BannerModel> banners = [];
 
   // void getBanners() async {

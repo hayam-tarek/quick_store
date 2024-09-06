@@ -4,11 +4,18 @@ import 'package:flutter/material.dart';
 class CustomSearchTextFormField extends StatelessWidget {
   const CustomSearchTextFormField({
     super.key,
+    this.onChanged,
+    this.controller,
+    required this.onPressed,
   });
-
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        controller: controller,
+        onChanged: onChanged,
         cursorColor: kSecondaryColor,
         decoration: InputDecoration(
           filled: true,
@@ -35,7 +42,7 @@ class CustomSearchTextFormField extends StatelessWidget {
               Icons.close,
               color: Colors.grey,
             ),
-            onPressed: () {},
+            onPressed: onPressed,
           ),
         ));
   }

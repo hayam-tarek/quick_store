@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/models/product_model.dart';
 import 'package:e_commerce_app/view_models/layout_cubit/layout_cubit.dart';
 import 'package:e_commerce_app/views/widgets/banners_builder.dart';
 import 'package:e_commerce_app/views/widgets/categories_list_view.dart';
@@ -16,6 +15,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController controller = TextEditingController();
+
   @override
   void initState() {
     // BlocProvider.of<LayoutCubit>(context).getBanners();
@@ -28,8 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // List<BannerModel> banners = BlocProvider.of<LayoutCubit>(context).banners;
     // List<CategoryModel> categories = BlocProvider.of<LayoutCubit>(context).categories;
-    List<ProductModel> products =
-        BlocProvider.of<LayoutCubit>(context).products;
+    LayoutCubit cubit = BlocProvider.of<LayoutCubit>(context);
     return BlocConsumer<LayoutCubit, LayoutState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -39,10 +39,21 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: CustomScrollView(
               slivers: [
-                const SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CustomSearchTextFormField(),
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomSearchTextFormField(
+                      controller: controller,
+                      onPressed: () {
+                        controller.text = '';
+                        BlocProvider.of<LayoutCubit>(context)
+                            .filterProducts(query: controller.text);
+                      },
+                      onChanged: (query) {
+                        BlocProvider.of<LayoutCubit>(context)
+                            .filterProducts(query: query);
+                      },
+                    ),
                   ),
                 ),
                 const SliverToBoxAdapter(
@@ -75,7 +86,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 ProductsBody(
-                  products: products,
+                  products: cubit.filteredProducts.isEmpty
+                      ? cubit.products
+                      : cubit.filteredProducts,
                   state: state,
                 )
               ],
