@@ -21,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // BlocProvider.of<LayoutCubit>(context).getBanners();
     // BlocProvider.of<LayoutCubit>(context).getCategories();
-    BlocProvider.of<LayoutCubit>(context).getProducts();
     super.initState();
   }
 

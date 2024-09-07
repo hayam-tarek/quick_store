@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:e_commerce_app/core/utils/constant.dart';
+import 'package:e_commerce_app/view_models/layout_cubit/layout_cubit.dart';
 import 'package:e_commerce_app/views/screens/cart_screen.dart';
 import 'package:e_commerce_app/views/screens/categories_screen.dart';
 import 'package:e_commerce_app/views/screens/favorite_screen.dart';
@@ -8,6 +9,7 @@ import 'package:e_commerce_app/views/screens/home_screen.dart';
 import 'package:e_commerce_app/views/screens/profile_screen.dart';
 import 'package:e_commerce_app/views/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
@@ -26,6 +28,11 @@ class _LayoutScreenState extends State<LayoutScreen> {
     const ProfileScreen(),
   ];
   PageController pageController = PageController();
+  @override
+  void initState() {
+    BlocProvider.of<LayoutCubit>(context).getProducts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
