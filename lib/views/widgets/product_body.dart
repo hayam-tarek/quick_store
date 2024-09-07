@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:e_commerce_app/models/product_model.dart';
-import 'package:e_commerce_app/view_models/layout_cubit/layout_cubit.dart';
+import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
 import 'package:e_commerce_app/views/widgets/product_card.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -12,7 +12,7 @@ class ProductsBody extends StatelessWidget {
   });
 
   final List<ProductModel> products;
-  final LayoutState state;
+  final ProductsState state;
 
   @override
   Widget build(BuildContext context) {

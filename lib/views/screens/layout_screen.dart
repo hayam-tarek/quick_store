@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/view_models/layout_cubit/layout_cubit.dart';
+import 'package:e_commerce_app/view_models/categories/categories_cubit.dart';
+import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
 import 'package:e_commerce_app/views/screens/cart_screen.dart';
 import 'package:e_commerce_app/views/screens/categories_screen.dart';
 import 'package:e_commerce_app/views/screens/favorite_screen.dart';
@@ -30,7 +31,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
   PageController pageController = PageController();
   @override
   void initState() {
-    BlocProvider.of<LayoutCubit>(context).getProducts();
+    BlocProvider.of<ProductsCubit>(context).getProducts();
+    BlocProvider.of<CategoriesCubit>(context).getCategories();
     super.initState();
   }
 

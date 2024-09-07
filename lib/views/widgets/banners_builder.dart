@@ -7,11 +7,7 @@ import 'package:flutter/cupertino.dart';
 class BannersBuilder extends StatefulWidget {
   const BannersBuilder({
     super.key,
-    // required this.banners,
-    // required this.state,
   });
-  // final List<BannerModel> banners;
-  // final LayoutState state;
 
   @override
   State<BannersBuilder> createState() => _BannersBuilderState();
@@ -75,47 +71,5 @@ class _BannersBuilderState extends State<BannersBuilder> {
         }
       },
     );
-
-    //   if (widget.state is GetBannersLoading) {
-    //     return const Center(
-    //       child: CupertinoActivityIndicator(
-    //         color: kSecondaryColor,
-    //       ),
-    //     );
-    //   } else if (widget.state is GetBannersSuccess) {
-    //     return Column(
-    //       children: [
-    //         SizedBox(
-    //           height: 135,
-    //           child: PageView.builder(
-    //             controller: pageController,
-    //             physics: const BouncingScrollPhysics(),
-    //             itemCount: widget.banners.length,
-    //             itemBuilder: (context, index) {
-    //               return Container(
-    //                 margin: const EdgeInsets.symmetric(horizontal: 2),
-    //                 child: Image.network(
-    //                   widget.banners[index].image,
-    //                   fit: BoxFit.fill,
-    //                 ),
-    //               );
-    //             },
-    //           ),
-    //         ),
-    //         Center(
-    //           child: CustomSmoothPageIndicator(
-    //             pageController: pageController,
-    //             count: widget.banners.length,
-    //           ),
-    //         ),
-    //       ],
-    //     );
-    //   } else {
-    //     return const Center(
-    //       child: Text(
-    //         'No banners found.',
-    //       ),
-    //     );
-    //   }
   }
 }
