@@ -10,6 +10,7 @@ import 'package:e_commerce_app/views/screens/favorite_screen.dart';
 import 'package:e_commerce_app/views/screens/home_screen.dart';
 import 'package:e_commerce_app/views/screens/profile_screen.dart';
 import 'package:e_commerce_app/views/widgets/custom_app_bar.dart';
+import 'package:e_commerce_app/views/widgets/custom_bottom_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,47 +42,55 @@ class _LayoutScreenState extends State<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: customAppBar(),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        selectedItemColor: kSecondaryColor,
-        unselectedItemColor: kPrimaryColor,
-        type: BottomNavigationBarType.shifting,
-        onTap: (value) {
-          log('$value');
-          setState(() {
-            currentIndex = value;
-            pageController.jumpToPage(value);
-          });
-        },
-        currentIndex: currentIndex,
-        items: const [
-          BottomNavigationBarItem(
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BottomNavigationBar(
+            showUnselectedLabels: true,
+            selectedItemColor: kSecondaryColor,
+            unselectedItemColor: kPrimaryColor,
+            type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
-            icon: Icon(Icons.home),
-            label: 'Home',
+            onTap: (value) {
+              log('$value');
+              setState(() {
+                currentIndex = value;
+                pageController.jumpToPage(value);
+              });
+            },
+            currentIndex: currentIndex,
+            items: [
+              customBottomNavigationBarItem(
+                icon: const Icon(Icons.home_outlined),
+                activeIcon: const Icon(Icons.home),
+                label: 'Home',
+              ),
+              customBottomNavigationBarItem(
+                icon: const Icon(Icons.category_outlined),
+                activeIcon: const Icon(Icons.category),
+                label: 'Categories',
+              ),
+              customBottomNavigationBarItem(
+                icon: const Icon(Icons.favorite_border),
+                activeIcon: const Icon(Icons.favorite),
+                label: 'Favorite',
+              ),
+              customBottomNavigationBarItem(
+                icon: const Icon(Icons.shopping_cart_outlined),
+                activeIcon: const Icon(Icons.shopping_cart),
+                label: 'Cart',
+              ),
+              customBottomNavigationBarItem(
+                icon: const Icon(Icons.person_outlined),
+                activeIcon: const Icon(Icons.person),
+                label: 'Profile',
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.category),
-            label: 'Categories',
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.favorite),
-            label: 'Favorite',
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
+        ),
       ),
       // body: screens[currentIndex],
       body: PageView(

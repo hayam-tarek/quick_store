@@ -18,8 +18,8 @@ class CustomSearchTextFormField extends StatelessWidget {
         onChanged: onChanged,
         cursorColor: kSecondaryColor,
         decoration: InputDecoration(
-          filled: true,
-          fillColor: kPrimaryColor.withOpacity(.1),
+          // filled: true,
+          // fillColor: kSecondaryColor.withOpacity(.1),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: kPrimaryColor,
@@ -33,6 +33,9 @@ class CustomSearchTextFormField extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
           hintText: 'Search',
+          hintStyle: const TextStyle(
+            color: Colors.grey,
+          ),
           prefixIcon: const Icon(
             Icons.search,
             color: Colors.grey,
