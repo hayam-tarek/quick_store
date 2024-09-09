@@ -60,31 +60,25 @@ class _ProductCardState extends State<ProductCard> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      BlocBuilder<FavoriteCubit, FavoriteState>(
-                        builder: (context, state) {
-                          return IconButton(
-                            onPressed: () async {
-                              BlocProvider.of<FavoriteCubit>(context)
-                                  .addOrDeleteFavorite(
-                                      productId:
-                                          widget.productModel.id.toInt());
-                              setState(() {});
-                            },
-                            icon: (
-                                    // widget.productModel.inFavorites ?? false || widget.inFavorites ||
-                                    favoritesID
-                                        .contains(widget.productModel.id))
-                                ? const Icon(
-                                    Icons.favorite_rounded,
-                                    color: Colors.red,
-                                  )
-                                : const Icon(
-                                    Icons.favorite_border_rounded,
-                                    color: Colors.red,
-                                  ),
-                          );
+                      IconButton(
+                        onPressed: () async {
+                          await BlocProvider.of<FavoriteCubit>(context)
+                              .addOrDeleteFavorite(
+                                  productId: widget.productModel.id.toInt());
+                          setState(() {});
                         },
-                      ),
+                        icon: (
+                                // widget.productModel.inFavorites ?? false || widget.inFavorites ||
+                                favoritesID.contains(widget.productModel.id))
+                            ? const Icon(
+                                Icons.favorite_rounded,
+                                color: Colors.red,
+                              )
+                            : const Icon(
+                                Icons.favorite_border_rounded,
+                                color: Colors.grey,
+                              ),
+                      )
                     ],
                   ),
                 ],

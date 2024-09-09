@@ -1,5 +1,3 @@
-import 'package:e_commerce_app/core/utils/listener_to_favorite.dart';
-import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
 import 'package:e_commerce_app/views/widgets/banners_builder.dart';
 import 'package:e_commerce_app/views/widgets/categories_list_view.dart';
@@ -69,17 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             BlocBuilder<ProductsCubit, ProductsState>(
-              builder: (context, productsState) {
-                return BlocListener<FavoriteCubit, FavoriteState>(
-                  listener: (context, favoriteState) {
-                    listenerToFavorite(context, favoriteState);
-                  },
-                  child: ProductsBody(
-                    products: productsCubit.filteredProducts.isEmpty
-                        ? productsCubit.products
-                        : productsCubit.filteredProducts,
-                    productsState: productsState,
-                  ),
+              builder: (context, state) {
+                return ProductsBody(
+                  products: productsCubit.filteredProducts.isEmpty
+                      ? productsCubit.products
+                      : productsCubit.filteredProducts,
+                  productsState: state,
                 );
               },
             )

@@ -11,7 +11,7 @@ part 'favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
-  void addOrDeleteFavorite({required int productId}) async {
+  Future<void> addOrDeleteFavorite({required int productId}) async {
     emit(AddOrDeleteFavoriteLoading());
     try {
       var json = await API().post(
