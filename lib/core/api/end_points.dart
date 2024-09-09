@@ -23,5 +23,7 @@ class ApiKey {
   static const String english = 'en';
   static const String arabic = 'ar';
   static const String products = 'products';
+  static const String product = 'product';
   static const String productId = 'product_id';
+  static const String id = 'id';
 }

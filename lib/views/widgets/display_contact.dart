@@ -1,8 +1,8 @@
 import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:flutter/material.dart';
 
-class DisplayItem extends StatelessWidget {
-  const DisplayItem({
+class DisplayContact extends StatelessWidget {
+  const DisplayContact({
     super.key,
     required this.title,
     required this.iconData,

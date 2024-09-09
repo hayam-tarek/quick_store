@@ -25,7 +25,13 @@ class _CategoriesListViewState extends State<CategoriesListView> {
               color: kSecondaryColor,
             ),
           );
-        } else if (state is GetCategoriesSuccess) {
+        } else if (state is GetCategoriesFailure) {
+          return const Center(
+            child: Text(
+              'No categories found.',
+            ),
+          );
+        } else {
           return ListView.builder(
             padding: const EdgeInsets.all(.8),
             scrollDirection: Axis.horizontal,
@@ -44,12 +50,6 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                 ),
               );
             },
-          );
-        } else {
-          return const Center(
-            child: Text(
-              'No categories found.',
-            ),
           );
         }
       },

@@ -12,6 +12,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: BlocProvider(
         create: (context) => ProfileCubit()..getProfile(token: '$kToken'),
         child: BlocConsumer<ProfileCubit, ProfileState>(
@@ -26,18 +27,16 @@ class ProfileScreen extends StatelessWidget {
                   color: kSecondaryColor,
                 ),
               );
-            } else if (state is GetProfileSuccess) {
+            } else if (state is GetProfileFailure) {
+              return Center(
+                child: Text(state.message),
+              );
+            } else {
               return Padding(
                 padding: const EdgeInsets.all(16),
                 child: ProfileBody(
                   userDataModel: userDataModel!,
                 ),
-              );
-            } else {
-              return Center(
-                child: state is GetProfileFailure
-                    ? Text(state.message)
-                    : const Text("Try again later..."),
               );
             }
           },

@@ -14,19 +14,22 @@ class CategoryTapedCard extends StatelessWidget {
         Expanded(
           child: InkWell(
             onTap: () {},
-            child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
-                    color: Colors.grey,
-                  ),
+            child: Card(
+              elevation: 7.5,
+              color: Colors.white,
+              shadowColor: Colors.grey,
+              surfaceTintColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  5,
                 ),
-                child: Image.network(
-                  categoryModel.image,
-                  fit: BoxFit.fill,
-                )),
+              ),
+              child: Image.network(
+                width: double.infinity,
+                categoryModel.image,
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
         ),
         Text(

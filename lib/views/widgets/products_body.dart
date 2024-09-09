@@ -8,15 +8,15 @@ class ProductsBody extends StatelessWidget {
   const ProductsBody({
     super.key,
     required this.products,
-    required this.state,
+    required this.productsState,
   });
 
   final List<ProductModel> products;
-  final ProductsState state;
+  final ProductsState productsState;
 
   @override
   Widget build(BuildContext context) {
-    if (state is GetProductsLoading) {
+    if (productsState is GetProductsLoading) {
       return const SliverFillRemaining(
         child: Center(
           child: CupertinoActivityIndicator(
@@ -24,7 +24,7 @@ class ProductsBody extends StatelessWidget {
           ),
         ),
       );
-    } else if (state is GetProductsSuccess) {
+    } else if (productsState is GetProductsSuccess) {
       return SliverGrid.builder(
         itemCount: products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

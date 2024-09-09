@@ -6,7 +6,7 @@ class TitleWithButton extends StatelessWidget {
     super.key,
     required this.title,
     required this.buttonTitle,
-    required this.onPressed,
+    this.onPressed,
   });
   final String title;
   final String buttonTitle;
@@ -25,17 +25,26 @@ class TitleWithButton extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        TextButton(
-          onPressed: onPressed,
-          child: Text(
-            buttonTitle,
-            style: TextStyle(
-              color: kPrimaryColor.withOpacity(
-                .7,
+        onPressed != null
+            ? TextButton(
+                onPressed: onPressed,
+                child: Text(
+                  buttonTitle,
+                  style: TextStyle(
+                    color: kPrimaryColor.withOpacity(
+                      .7,
+                    ),
+                  ),
+                ),
+              )
+            : Text(
+                buttonTitle,
+                style: TextStyle(
+                  color: kPrimaryColor.withOpacity(
+                    .7,
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
       ],
     );
   }

@@ -1,8 +1,10 @@
+import 'package:e_commerce_app/core/utils/listener_to_favorite.dart';
+import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
 import 'package:e_commerce_app/views/widgets/banners_builder.dart';
 import 'package:e_commerce_app/views/widgets/categories_list_view.dart';
 import 'package:e_commerce_app/views/widgets/custom_search_text_form_field.dart';
-import 'package:e_commerce_app/views/widgets/product_body.dart';
+import 'package:e_commerce_app/views/widgets/products_body.dart';
 import 'package:e_commerce_app/views/widgets/title_with_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,12 +69,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             BlocBuilder<ProductsCubit, ProductsState>(
-              builder: (context, state) {
-                return ProductsBody(
-                  products: productsCubit.filteredProducts.isEmpty
-                      ? productsCubit.products
-                      : productsCubit.filteredProducts,
-                  state: state,
+              builder: (context, productsState) {
+                return BlocListener<FavoriteCubit, FavoriteState>(
+                  listener: (context, favoriteState) {
+                    listenerToFavorite(context, favoriteState);
+                  },
+                  child: ProductsBody(
+                    products: productsCubit.filteredProducts.isEmpty
+                        ? productsCubit.products
+                        : productsCubit.filteredProducts,
+                    productsState: productsState,
+                  ),
                 );
               },
             )

@@ -6,9 +6,9 @@ class ProductModel {
   String image;
   String name;
   String description;
-  List<String> images;
-  bool inFavorites;
-  bool inCart;
+  List<String>? images;
+  bool? inFavorites;
+  bool? inCart;
   ProductModel({
     required this.description,
     required this.discount,
@@ -17,9 +17,9 @@ class ProductModel {
     required this.name,
     required this.oldPrice,
     required this.price,
-    required this.images,
-    required this.inCart,
-    required this.inFavorites,
+    this.images,
+    this.inCart,
+    this.inFavorites,
   });
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         id: json["id"],
@@ -29,7 +29,9 @@ class ProductModel {
         image: json["image"],
         name: json["name"],
         description: json["description"],
-        images: List<String>.from(json["images"].map((x) => x)),
+        images: json["images"] != null
+            ? List<String>.from(json["images"].map((x) => x))
+            : null,
         inFavorites: json["in_favorites"],
         inCart: json["in_cart"],
       );

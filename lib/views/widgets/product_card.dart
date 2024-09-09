@@ -1,12 +1,16 @@
 import 'package:e_commerce_app/models/product_model.dart';
+import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
     required this.productModel,
+    this.inFavorites = false,
   });
   final ProductModel productModel;
+  final bool inFavorites;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -15,6 +19,7 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
+    Set<num> favoritesID = BlocProvider.of<FavoriteCubit>(context).favoritesID;
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -55,17 +60,30 @@ class _ProductCardState extends State<ProductCard> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: widget.productModel.inFavorites
-                            ? const Icon(
-                                Icons.favorite_rounded,
-                                color: Colors.red,
-                              )
-                            : const Icon(
-                                Icons.favorite_border_rounded,
-                                color: Colors.red,
-                              ),
+                      BlocBuilder<FavoriteCubit, FavoriteState>(
+                        builder: (context, state) {
+                          return IconButton(
+                            onPressed: () async {
+                              BlocProvider.of<FavoriteCubit>(context)
+                                  .addOrDeleteFavorite(
+                                      productId:
+                                          widget.productModel.id.toInt());
+                              setState(() {});
+                            },
+                            icon: (
+                                    // widget.productModel.inFavorites ?? false || widget.inFavorites ||
+                                    favoritesID
+                                        .contains(widget.productModel.id))
+                                ? const Icon(
+                                    Icons.favorite_rounded,
+                                    color: Colors.red,
+                                  )
+                                : const Icon(
+                                    Icons.favorite_border_rounded,
+                                    color: Colors.red,
+                                  ),
+                          );
+                        },
                       ),
                     ],
                   ),

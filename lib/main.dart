@@ -5,6 +5,7 @@ import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:e_commerce_app/core/utils/simple_bloc_observer.dart';
 import 'package:e_commerce_app/view_models/auth_cubit/auth_cubit.dart';
 import 'package:e_commerce_app/view_models/categories/categories_cubit.dart';
+import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
 import 'package:e_commerce_app/views/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,9 @@ class ECommerceApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CategoriesCubit(),
+        ),
+        BlocProvider(
+          create: (context) => FavoriteCubit(),
         ),
       ],
       child: MaterialApp(
