@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/view_models/categories/categories_cubit.dart';
+import 'package:e_commerce_app/view_models/categories_cubit/categories_cubit.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
 import 'package:e_commerce_app/views/screens/cart_screen.dart';

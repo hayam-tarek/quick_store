@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/models/category_model.dart';
-import 'package:e_commerce_app/view_models/categories/categories_cubit.dart';
+import 'package:e_commerce_app/view_models/categories_cubit/categories_cubit.dart';
 import 'package:e_commerce_app/views/widgets/category_taped_card.dart';
 import 'package:e_commerce_app/views/widgets/title_with_button.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               SliverToBoxAdapter(
                 child: TitleWithButton(
                   title: 'Categories',
-                  buttonTitle: '${categories.length} products',
+                  buttonTitle: '${categories.length} categories',
                 ),
               ),
               const SliverToBoxAdapter(
