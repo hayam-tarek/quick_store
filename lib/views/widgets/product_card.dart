@@ -7,10 +7,14 @@ class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
     required this.productModel,
-    this.inFavorites = false,
+    this.showOldPrice = false,
+    this.showShoppingCart = false,
+    this.showFavorite = true,
   });
   final ProductModel productModel;
-  final bool inFavorites;
+  final bool showOldPrice;
+  final bool showShoppingCart;
+  final bool showFavorite;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -50,35 +54,62 @@ class _ProductCardState extends State<ProductCard> {
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$${widget.productModel.price}',
+                        '\$${widget.productModel.price}   ',
                         style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 17,
+                          color: Colors.green,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      IconButton(
-                        onPressed: () async {
-                          await BlocProvider.of<FavoriteCubit>(context)
-                              .addOrDeleteFavorite(
-                                  productId: widget.productModel.id.toInt());
-                          setState(() {});
-                        },
-                        icon: (
-                                // widget.productModel.inFavorites ?? false || widget.inFavorites ||
-                                favoritesID.contains(widget.productModel.id))
-                            ? const Icon(
-                                Icons.favorite_rounded,
-                                color: Colors.red,
-                              )
-                            : const Icon(
-                                Icons.favorite_border_rounded,
-                                color: Colors.grey,
-                              ),
-                      )
+                      if (widget.showOldPrice)
+                        Text(
+                          '\$${widget.productModel.oldPrice}',
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                      const Spacer(),
+                      if (widget.showShoppingCart)
+                        IconButton(
+                          onPressed: () async {
+                            // await BlocProvider.of<FavoriteCubit>(context)
+                            //     .addOrDeleteFavorite(
+                            //         productId: widget.productModel.id.toInt());
+                            setState(() {});
+                          },
+                          icon: (!favoritesID.contains(widget.productModel.id))
+                              ? const Icon(
+                                  Icons.add_shopping_cart,
+                                  color: Colors.green,
+                                )
+                              : const Icon(
+                                  Icons.remove_shopping_cart,
+                                  color: Colors.orange,
+                                ),
+                        ),
+                      if (widget.showFavorite)
+                        IconButton(
+                          onPressed: () async {
+                            await BlocProvider.of<FavoriteCubit>(context)
+                                .addOrDeleteFavorite(
+                                    productId: widget.productModel.id.toInt());
+                            setState(() {});
+                          },
+                          icon: (favoritesID.contains(widget.productModel.id))
+                              ? const Icon(
+                                  Icons.favorite_rounded,
+                                  color: Colors.red,
+                                )
+                              : const Icon(
+                                  Icons.favorite_border_rounded,
+                                  color: Colors.grey,
+                                ),
+                        )
                     ],
                   ),
                 ],

@@ -1,22 +1,22 @@
 import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:e_commerce_app/models/product_model.dart';
-import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
+import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/views/widgets/simple_product_card.dart';
 import 'package:flutter/cupertino.dart';
 
-class FavoritesBody extends StatelessWidget {
-  const FavoritesBody({
+class CartBody extends StatelessWidget {
+  const CartBody({
     super.key,
     required this.products,
-    required this.favoriteState,
+    required this.cartState,
   });
 
   final List<ProductModel> products;
-  final FavoriteState favoriteState;
+  final CartState cartState;
 
   @override
   Widget build(BuildContext context) {
-    if (favoriteState is GetFavoriteLoading) {
+    if (cartState is GetCartLoading) {
       return const SliverFillRemaining(
         child: Center(
           child: CupertinoActivityIndicator(
@@ -24,7 +24,7 @@ class FavoritesBody extends StatelessWidget {
           ),
         ),
       );
-    } else if (favoriteState is GetFavoriteFailure) {
+    } else if (cartState is GetCartFailure) {
       return const SliverFillRemaining(
         child: Center(
           child: Text(
@@ -40,7 +40,7 @@ class FavoritesBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: SimpleProductCard(
               showShoppingCart: true,
-              showFavorite: true,
+              showFavorite: false,
               productModel: products[index],
             ),
           );

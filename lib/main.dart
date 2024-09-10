@@ -4,6 +4,7 @@ import 'package:e_commerce_app/core/services/local_storage.dart';
 import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:e_commerce_app/core/utils/simple_bloc_observer.dart';
 import 'package:e_commerce_app/view_models/auth_cubit/auth_cubit.dart';
+import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/view_models/categories_cubit/categories_cubit.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
@@ -39,6 +40,9 @@ class ECommerceApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => FavoriteCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CartCubit(),
         ),
       ],
       child: MaterialApp(

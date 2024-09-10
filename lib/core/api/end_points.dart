@@ -7,6 +7,7 @@ class EndPoints {
   static const String banners = '$baseUrl/banners';
   static const String home = '$baseUrl/home';
   static const String favorites = '$baseUrl/favorites';
+  static const String carts = '$baseUrl/carts';
 }
 
 class ApiKey {
@@ -26,4 +27,7 @@ class ApiKey {
   static const String product = 'product';
   static const String productId = 'product_id';
   static const String id = 'id';
+  static const String cartItems = 'cart_items';
+  static const String subTotal = 'sub_total';
+  static const String total = 'total';
 }

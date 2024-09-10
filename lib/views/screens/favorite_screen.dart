@@ -36,7 +36,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 SliverToBoxAdapter(
                   child: TitleWithButton(
                     title: 'Favorites',
-                    buttonTitle: '${cubit.favorites.length} products',
+                    buttonTitle: '${cubit.favorites.length} product',
                   ),
                 ),
                 FavoritesBody(
@@ -50,37 +50,4 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       ),
     );
   }
-
-  // void listenerToFavoriteAction(BuildContext context, FavoriteState state) {
-  //   bool isLoading = false;
-  //   if (state is AddOrDeleteFavoriteLoading) {
-  //     isLoading = true;
-  //     showDialog(
-  //       context: context,
-  //       barrierDismissible: false,
-  //       builder: (context) {
-  //         return const CupertinoActivityIndicator(
-  //           color: kSecondaryColor,
-  //         );
-  //       },
-  //     ).then((_) {
-  //       isLoading = false;
-  //     });
-  //   }
-  //   if (state is AddOrDeleteFavoriteSuccess) {
-  //     if (!isLoading) {
-  //       Navigator.pop(context);
-  //     }
-  //     ScaffoldMessenger.of(context)
-  //         .showSnackBar(customSnackBar(text: state.message));
-  //     BlocProvider.of<FavoriteCubit>(context).getFavorite();
-  //   }
-  //   if (state is AddOrDeleteFavoriteFailure) {
-  //     if (!isLoading) {
-  //       Navigator.pop(context);
-  //     }
-  //     ScaffoldMessenger.of(context)
-  //         .showSnackBar(customSnackBar(text: state.message));
-  //   }
-  // }
 }

@@ -26,7 +26,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               SliverToBoxAdapter(
                 child: TitleWithButton(
                   title: 'Categories',
-                  buttonTitle: '${categories.length} categories',
+                  buttonTitle: '${categories.length} category',
                 ),
               ),
               const SliverToBoxAdapter(
