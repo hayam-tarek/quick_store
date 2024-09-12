@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/models/product_model.dart';
+import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,13 +9,9 @@ class ProductCard extends StatefulWidget {
     super.key,
     required this.productModel,
     this.showOldPrice = false,
-    this.showShoppingCart = false,
-    this.showFavorite = true,
   });
   final ProductModel productModel;
   final bool showOldPrice;
-  final bool showShoppingCart;
-  final bool showFavorite;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -24,12 +21,13 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     Set<num> favoritesID = BlocProvider.of<FavoriteCubit>(context).favoritesID;
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        InkWell(
-          onTap: () {},
-          child: Card(
+    Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
+    return InkWell(
+      onTap: () {},
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Card(
             elevation: 7.5,
             color: Colors.white,
             shadowColor: Colors.grey,
@@ -49,7 +47,7 @@ class _ProductCardState extends State<ProductCard> {
                     widget.productModel.name,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      color: Colors.grey,
+                      color: Colors.black54,
                       fontSize: 15,
                     ),
                   ),
@@ -58,7 +56,7 @@ class _ProductCardState extends State<ProductCard> {
                       Text(
                         '\$${widget.productModel.price}   ',
                         style: const TextStyle(
-                          color: Colors.green,
+                          color: Colors.black,
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
@@ -73,60 +71,67 @@ class _ProductCardState extends State<ProductCard> {
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                      const Spacer(),
-                      if (widget.showShoppingCart)
-                        IconButton(
-                          onPressed: () async {
-                            // await BlocProvider.of<FavoriteCubit>(context)
-                            //     .addOrDeleteFavorite(
-                            //         productId: widget.productModel.id.toInt());
-                            setState(() {});
-                          },
-                          icon: (!favoritesID.contains(widget.productModel.id))
-                              ? const Icon(
-                                  Icons.add_shopping_cart,
-                                  color: Colors.green,
-                                )
-                              : const Icon(
-                                  Icons.remove_shopping_cart,
-                                  color: Colors.orange,
-                                ),
-                        ),
-                      if (widget.showFavorite)
-                        IconButton(
-                          onPressed: () async {
-                            await BlocProvider.of<FavoriteCubit>(context)
-                                .addOrDeleteFavorite(
-                                    productId: widget.productModel.id.toInt());
-                            setState(() {});
-                          },
-                          icon: (favoritesID.contains(widget.productModel.id))
-                              ? const Icon(
-                                  Icons.favorite_rounded,
-                                  color: Colors.red,
-                                )
-                              : const Icon(
-                                  Icons.favorite_border_rounded,
-                                  color: Colors.grey,
-                                ),
-                        )
                     ],
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                 ],
               ),
             ),
           ),
-        ),
-        Positioned(
-          right: 25,
-          top: -30,
-          child: Image.network(
-            widget.productModel.image,
-            height: 75,
-            width: 75,
+          Positioned(
+            right: 20,
+            top: -30,
+            child: Image.network(
+              widget.productModel.image,
+              height: 75,
+              width: 75,
+            ),
           ),
-        ),
-      ],
+          Positioned(
+            left: 0,
+            top: 0,
+            child: IconButton(
+              onPressed: () async {
+                await BlocProvider.of<FavoriteCubit>(context)
+                    .addOrDeleteFavorite(
+                        productId: widget.productModel.id.toInt());
+                setState(() {});
+              },
+              icon: (favoritesID.contains(widget.productModel.id))
+                  ? const Icon(
+                      Icons.favorite_rounded,
+                      color: Colors.red,
+                    )
+                  : const Icon(
+                      Icons.favorite_border_rounded,
+                      color: Colors.grey,
+                    ),
+            ),
+          ),
+          Positioned(
+            right: 0,
+            bottom: 0,
+            child: IconButton(
+              onPressed: () async {
+                await BlocProvider.of<CartCubit>(context).addOrDeleteFromCart(
+                    productId: widget.productModel.id.toInt());
+                setState(() {});
+              },
+              icon: (cartItemsID.contains(widget.productModel.id))
+                  ? const Icon(
+                      Icons.remove_shopping_cart_outlined,
+                      color: Colors.orange,
+                    )
+                  : const Icon(
+                      Icons.add_shopping_cart,
+                      color: Colors.green,
+                    ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

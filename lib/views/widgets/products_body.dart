@@ -1,6 +1,8 @@
 import 'package:e_commerce_app/core/utils/constant.dart';
+import 'package:e_commerce_app/core/utils/listener_to_cart.dart';
 import 'package:e_commerce_app/core/utils/listener_to_favorite.dart';
 import 'package:e_commerce_app/models/product_model.dart';
+import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
 import 'package:e_commerce_app/views/widgets/product_card.dart';
@@ -32,24 +34,29 @@ class ProductsBody extends StatelessWidget {
         listener: (context, state) {
           listenerToFavorite(context, state);
         },
-        child: SliverGrid.builder(
-          itemCount: products.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 10,
-          ),
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(
-                left: 5,
-                right: 5,
-                top: 50,
-              ),
-              child: ProductCard(
-                productModel: products[index],
-              ),
-            );
+        child: BlocListener<CartCubit, CartState>(
+          listener: (context, state) {
+            listenerToCart(context, state);
           },
+          child: SliverGrid.builder(
+            itemCount: products.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 10,
+            ),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(
+                  left: 5,
+                  right: 5,
+                  top: 50,
+                ),
+                child: ProductCard(
+                  productModel: products[index],
+                ),
+              );
+            },
+          ),
         ),
       );
     } else {

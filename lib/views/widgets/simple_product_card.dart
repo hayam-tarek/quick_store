@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/models/product_model.dart';
+import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,7 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
   @override
   Widget build(BuildContext context) {
     Set<num> favoritesID = BlocProvider.of<FavoriteCubit>(context).favoritesID;
-
+    Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
     return InkWell(
       onTap: () {},
       child: Card(
@@ -40,11 +41,14 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
             children: [
               Expanded(
                 flex: 1,
-                child: Image.network(
-                  widget.productModel.image,
-                  fit: BoxFit.contain,
-                  // width: double.infinity,
-                  // height: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 5.0),
+                  child: Image.network(
+                    widget.productModel.image,
+                    fit: BoxFit.contain,
+                    // width: double.infinity,
+                    // height: double.infinity,
+                  ),
                 ),
               ),
               Expanded(
@@ -81,29 +85,25 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                        const Spacer(),
                         if (widget.showShoppingCart)
                           IconButton(
                             onPressed: () async {
-                              // await BlocProvider.of<FavoriteCubit>(context)
-                              //     .addOrDeleteFavorite(
-                              //         productId: widget.productModel.id.toInt());
+                              await BlocProvider.of<CartCubit>(context)
+                                  .addOrDeleteFromCart(
+                                      productId:
+                                          widget.productModel.id.toInt());
                               setState(() {});
                             },
-                            icon:
-                                (!favoritesID.contains(widget.productModel.id))
-                                    ? const Icon(
-                                        Icons.add_shopping_cart,
-                                        color: Colors.green,
-                                      )
-                                    : const Icon(
-                                        Icons.remove_shopping_cart,
-                                        color: Colors.orange,
-                                      ),
+                            icon: (cartItemsID.contains(widget.productModel.id))
+                                ? const Icon(
+                                    Icons.remove_shopping_cart_outlined,
+                                    color: Colors.orange,
+                                  )
+                                : const Icon(
+                                    Icons.add_shopping_cart,
+                                    color: Colors.green,
+                                  ),
                           ),
                         if (widget.showFavorite)
                           IconButton(

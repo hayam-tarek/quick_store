@@ -48,8 +48,6 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   List<ProductModel> favorites = [];
   Set<num> favoritesID = {};
   void getFavorite() async {
-    favorites = [];
-    favoritesID = {};
     emit(GetFavoriteLoading());
     try {
       var json = await API().get(
@@ -60,6 +58,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         },
       );
       if (json[ApiKey.status] == true) {
+        favorites = [];
+        favoritesID = {};
         List<dynamic> favoritesData = json[ApiKey.data][ApiKey.data];
         for (var item in favoritesData) {
           favorites.add(ProductModel.fromJson(item[ApiKey.product]));

@@ -24,7 +24,7 @@ class CartBody extends StatelessWidget {
           ),
         ),
       );
-    } else if (cartState is GetCartFailure) {
+    } else if (cartState is GetCartFailure || products.isEmpty) {
       return const SliverFillRemaining(
         child: Center(
           child: Text(

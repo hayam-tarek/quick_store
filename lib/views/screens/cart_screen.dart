@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/utils/listener_to_cart.dart';
 import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/views/widgets/cart_body.dart';
 import 'package:e_commerce_app/views/widgets/title_with_button.dart';
@@ -23,7 +24,9 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocConsumer<CartCubit, CartState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          listenerToCart(context, state);
+        },
         builder: (context, state) {
           CartCubit cubit = BlocProvider.of<CartCubit>(context);
           return Padding(

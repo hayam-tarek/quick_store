@@ -24,7 +24,7 @@ class FavoritesBody extends StatelessWidget {
           ),
         ),
       );
-    } else if (favoriteState is GetFavoriteFailure) {
+    } else if (favoriteState is GetFavoriteFailure || products.isEmpty) {
       return const SliverFillRemaining(
         child: Center(
           child: Text(
@@ -39,7 +39,7 @@ class FavoritesBody extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: SimpleProductCard(
-              showShoppingCart: true,
+              showShoppingCart: false,
               showFavorite: true,
               productModel: products[index],
             ),
