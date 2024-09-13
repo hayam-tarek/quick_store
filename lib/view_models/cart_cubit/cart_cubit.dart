@@ -48,8 +48,8 @@ class CartCubit extends Cubit<CartState> {
 
   List<ProductModel> cart = [];
   Set<num> cartItemsID = {};
-  int total = 0;
-  int subTotal = 0;
+  num total = 0;
+  num subTotal = 0;
   void getCart() async {
     emit(GetCartLoading());
     try {

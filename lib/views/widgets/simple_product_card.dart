@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/models/product_model.dart';
 import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
+import 'package:e_commerce_app/views/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,16 +26,7 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
     Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
     return InkWell(
       onTap: () {},
-      child: Card(
-        elevation: 7.5,
-        color: Colors.white,
-        shadowColor: Colors.grey,
-        surfaceTintColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            5,
-          ),
-        ),
+      child: CustomCard(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

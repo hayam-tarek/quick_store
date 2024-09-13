@@ -1,5 +1,6 @@
-import 'package:e_commerce_app/core/utils/listener_to_cart.dart';
+import 'package:e_commerce_app/core/utils/listener_to_favorite.dart';
 import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
+import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/views/widgets/cart_body.dart';
 import 'package:e_commerce_app/views/widgets/title_with_button.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,9 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: BlocConsumer<CartCubit, CartState>(
+      body: BlocConsumer<FavoriteCubit, FavoriteState>(
         listener: (context, state) {
-          listenerToCart(context, state);
+          listenerToFavorite(context, state);
         },
         builder: (context, state) {
           CartCubit cubit = BlocProvider.of<CartCubit>(context);
@@ -36,13 +37,10 @@ class _CartScreenState extends State<CartScreen> {
                 SliverToBoxAdapter(
                   child: TitleWithButton(
                     title: 'Cart',
-                    buttonTitle: 'Total price \$${cubit.total}',
+                    buttonTitle: 'Total price \$${cubit.total}', //TODO
                   ),
                 ),
-                CartBody(
-                  products: cubit.cart,
-                  cartState: state,
-                ),
+                const CartBody(),
               ],
             ),
           );

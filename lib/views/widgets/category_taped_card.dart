@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/models/category_model.dart';
+import 'package:e_commerce_app/views/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 
 class CategoryTapedCard extends StatelessWidget {
@@ -14,16 +15,7 @@ class CategoryTapedCard extends StatelessWidget {
         Expanded(
           child: InkWell(
             onTap: () {},
-            child: Card(
-              elevation: 7.5,
-              color: Colors.white,
-              shadowColor: Colors.grey,
-              surfaceTintColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  5,
-                ),
-              ),
+            child: CustomCard(
               child: Image.network(
                 width: double.infinity,
                 categoryModel.image,

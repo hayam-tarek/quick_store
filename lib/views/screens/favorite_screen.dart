@@ -1,4 +1,5 @@
-import 'package:e_commerce_app/core/utils/listener_to_favorite.dart';
+import 'package:e_commerce_app/core/utils/listener_to_cart.dart';
+import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/views/widgets/favorites_body.dart';
 import 'package:e_commerce_app/views/widgets/title_with_button.dart';
@@ -23,9 +24,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: BlocConsumer<FavoriteCubit, FavoriteState>(
+      body: BlocConsumer<CartCubit, CartState>(
         listener: (context, state) {
-          listenerToFavorite(context, state);
+          listenerToCart(context, state);
         },
         builder: (context, state) {
           FavoriteCubit cubit = BlocProvider.of<FavoriteCubit>(context);
@@ -36,13 +37,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 SliverToBoxAdapter(
                   child: TitleWithButton(
                     title: 'Favorites',
-                    buttonTitle: '${cubit.favorites.length} product',
+                    buttonTitle: '${cubit.favorites.length} product', //TODO
                   ),
                 ),
-                FavoritesBody(
-                  products: cubit.favorites,
-                  favoriteState: state,
-                ),
+                const FavoritesBody(),
               ],
             ),
           );
