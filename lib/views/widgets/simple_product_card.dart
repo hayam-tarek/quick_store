@@ -85,6 +85,7 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
                                   .addOrDeleteFromCart(
                                       productId:
                                           widget.productModel.id.toInt());
+                              BlocProvider.of<CartCubit>(context).getCart();
                               setState(() {});
                             },
                             icon: (cartItemsID.contains(widget.productModel.id))
@@ -104,6 +105,8 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
                                   .addOrDeleteFavorite(
                                       productId:
                                           widget.productModel.id.toInt());
+                              BlocProvider.of<FavoriteCubit>(context)
+                                  .getFavorite();
                               setState(() {});
                             },
                             icon: (favoritesID.contains(widget.productModel.id))

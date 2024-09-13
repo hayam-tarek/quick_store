@@ -1,8 +1,6 @@
 import 'package:e_commerce_app/core/utils/listener_to_cart.dart';
 import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
-import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/views/widgets/favorites_body.dart';
-import 'package:e_commerce_app/views/widgets/title_with_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +14,7 @@ class FavoriteScreen extends StatefulWidget {
 class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   void initState() {
-    BlocProvider.of<FavoriteCubit>(context).getFavorite();
+    // BlocProvider.of<FavoriteCubit>(context).getFavorite();
     super.initState();
   }
 
@@ -29,20 +27,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           listenerToCart(context, state);
         },
         builder: (context, state) {
-          FavoriteCubit cubit = BlocProvider.of<FavoriteCubit>(context);
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: TitleWithButton(
-                    title: 'Favorites',
-                    buttonTitle: '${cubit.favorites.length} product', //TODO
-                  ),
-                ),
-                const FavoritesBody(),
-              ],
-            ),
+          return const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: FavoritesBody(),
           );
         },
       ),

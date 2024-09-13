@@ -89,6 +89,7 @@ class _ProductCardState extends State<ProductCard> {
                 await BlocProvider.of<FavoriteCubit>(context)
                     .addOrDeleteFavorite(
                         productId: widget.productModel.id.toInt());
+                BlocProvider.of<FavoriteCubit>(context).getFavorite();
                 setState(() {});
               },
               icon: (favoritesID.contains(widget.productModel.id))
@@ -109,6 +110,7 @@ class _ProductCardState extends State<ProductCard> {
               onPressed: () async {
                 await BlocProvider.of<CartCubit>(context).addOrDeleteFromCart(
                     productId: widget.productModel.id.toInt());
+                BlocProvider.of<CartCubit>(context).getCart();
                 setState(() {});
               },
               icon: (cartItemsID.contains(widget.productModel.id))
