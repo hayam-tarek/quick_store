@@ -7,7 +7,7 @@ SnackBar customSnackBar({required String text, bool showCloseIcon = false}) {
     content: Text(
       text,
       style: const TextStyle(
-        color: Colors.white,
+        color: kForegroundColor,
       ),
     ),
     backgroundColor: kPrimaryColor,

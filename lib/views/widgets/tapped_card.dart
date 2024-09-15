@@ -20,11 +20,11 @@ class TappedCard extends StatelessWidget {
         child: ListTile(
           leading: Icon(
             iconData,
-            color: Colors.white,
+            color: kForegroundColor,
           ),
           title: Text(
             title,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: kForegroundColor),
           ),
         ),
       ),

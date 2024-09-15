@@ -83,18 +83,18 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: PoetsenOne
-      fonts:
-        - asset: assets/fonts/PoetsenOne.ttf
-    - family: SignikaNegative
-      fonts:
-        - asset: assets/fonts/SignikaNegative.ttf
     - family: Jolly Lodger
       fonts:
         - asset: assets/fonts/Jolly Lodger.ttf
     - family: JetBrains Mono
       fonts:
         - asset: assets/fonts/JetBrains Mono.ttf
+    - family: Arapey
+      fonts:
+        - asset: assets/fonts/Arapey.ttf
+    - family: Arimo
+      fonts:
+        - asset: assets/fonts/Arimo.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

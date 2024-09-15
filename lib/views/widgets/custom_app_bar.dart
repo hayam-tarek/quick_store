@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 AppBar customAppBar() {
   return AppBar(
     centerTitle: true,
-    backgroundColor: Colors.white,
+    backgroundColor: kBackgroundColor,
     title: const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

@@ -17,7 +17,7 @@ class CustomCircleAvatar extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         // border: Border.all(
-        //   color: Colors.white,
+        //   color: kForegroundColor,
         // ),
         boxShadow: [
           BoxShadow(

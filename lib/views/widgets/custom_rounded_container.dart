@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:flutter/material.dart';
 
 class CustomRoundedContainer extends StatelessWidget {
@@ -8,7 +9,7 @@ class CustomRoundedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white.withOpacity(.8),
+          color: kForegroundColor.withOpacity(.8),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(50),
             topRight: Radius.circular(50),

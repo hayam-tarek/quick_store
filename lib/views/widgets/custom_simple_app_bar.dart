@@ -6,13 +6,13 @@ AppBar customSimpleAppBar({
   required String title,
 }) {
   return AppBar(
-    backgroundColor: kPrimaryColor,
-    foregroundColor: Colors.white,
+    backgroundColor: kBackgroundColor,
+    foregroundColor: kPrimaryColor,
     centerTitle: true,
     title: Text(
       title,
       style: const TextStyle(
-        color: Colors.white,
+        color: kPrimaryColor,
         fontFamily: kPrimaryFont,
         fontWeight: FontWeight.bold,
         fontSize: 30,

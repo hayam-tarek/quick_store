@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:flutter/material.dart';
 
 class CustomMaterialButton extends StatelessWidget {
@@ -19,7 +20,7 @@ class CustomMaterialButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      textColor: Colors.white,
+      textColor: kForegroundColor,
       padding: const EdgeInsets.symmetric(
         vertical: 10,
       ),

@@ -58,7 +58,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
             selectedItemColor: kSecondaryColor,
             unselectedItemColor: kPrimaryColor,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.white,
+            backgroundColor: kBackgroundColor,
             onTap: (value) {
               log('$value');
               setState(() {
