@@ -39,13 +39,10 @@ class _CategoriesListViewState extends State<CategoriesListView> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {},
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(
-                      categoriesCubit.categories[index].image,
-                    ),
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(
+                    categoriesCubit.categories[index].image,
                   ),
                 ),
               );

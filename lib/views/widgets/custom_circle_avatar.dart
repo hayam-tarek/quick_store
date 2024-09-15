@@ -12,8 +12,8 @@ class CustomCircleAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: 200,
+      height: 150,
+      width: 150,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         // border: Border.all(

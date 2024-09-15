@@ -5,6 +5,7 @@ import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/view_models/categories_cubit/categories_cubit.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
+import 'package:e_commerce_app/view_models/profile_cubit/profile_cubit.dart';
 import 'package:e_commerce_app/views/screens/cart_screen.dart';
 import 'package:e_commerce_app/views/screens/categories_screen.dart';
 import 'package:e_commerce_app/views/screens/favorite_screen.dart';
@@ -38,6 +39,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
     BlocProvider.of<ProductsCubit>(context).getProducts();
     BlocProvider.of<CategoriesCubit>(context).getCategories();
     BlocProvider.of<FavoriteCubit>(context).getFavorite();
+    BlocProvider.of<ProfileCubit>(context).getProfile();
+
     super.initState();
   }
 

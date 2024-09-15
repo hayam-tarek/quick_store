@@ -8,6 +8,7 @@ import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_app/view_models/categories_cubit/categories_cubit.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
+import 'package:e_commerce_app/view_models/profile_cubit/profile_cubit.dart';
 import 'package:e_commerce_app/views/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,6 +44,9 @@ class ECommerceApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CartCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ProfileCubit(),
         ),
       ],
       child: MaterialApp(

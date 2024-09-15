@@ -1,8 +1,9 @@
 import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:flutter/material.dart';
 
-SnackBar customSnackBar({required String text}) {
+SnackBar customSnackBar({required String text, bool showCloseIcon = false}) {
   return SnackBar(
+    showCloseIcon: showCloseIcon,
     content: Text(
       text,
       style: const TextStyle(
@@ -10,8 +11,8 @@ SnackBar customSnackBar({required String text}) {
       ),
     ),
     backgroundColor: kPrimaryColor,
-    duration: const Duration(
-      seconds: 2,
+    duration: Duration(
+      seconds: showCloseIcon ? 1000 : 3,
     ),
   );
 }

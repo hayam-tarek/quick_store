@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/models/user_data_model.dart';
 import 'package:e_commerce_app/views/widgets/custom_circle_avatar.dart';
 import 'package:e_commerce_app/views/widgets/display_contact.dart';
+import 'package:e_commerce_app/views/widgets/password_dialog.dart';
 import 'package:e_commerce_app/views/widgets/tapped_card.dart';
 import 'package:e_commerce_app/views/widgets/title_text.dart';
 import 'package:flutter/material.dart';
@@ -41,19 +42,37 @@ class ProfileBody extends StatelessWidget {
             height: 25,
           ),
           TappedCard(
-            title: 'Update data',
+            title: 'Update profile',
             iconData: Icons.person,
-            onTap: () {},
+            onTap: () {
+              // TODO: update profile
+            },
+          ),
+          TappedCard(
+            title: 'Change password',
+            iconData: Icons.password,
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return PasswordDialog();
+                },
+              );
+            },
           ),
           TappedCard(
             title: 'Orders',
             iconData: Icons.shopping_basket_rounded,
-            onTap: () {},
+            onTap: () {
+              // TODO: orders
+            },
           ),
           TappedCard(
             title: 'Log out',
             iconData: Icons.logout_rounded,
-            onTap: () {},
+            onTap: () {
+              // TODO: log out
+            },
           ),
         ],
       ),

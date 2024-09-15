@@ -5,8 +5,10 @@ class CustomPasswordTextFormField extends StatefulWidget {
   const CustomPasswordTextFormField({
     super.key,
     this.passwordController,
+    this.labelText = 'Password',
   });
   final TextEditingController? passwordController;
+  final String labelText;
 
   @override
   State<CustomPasswordTextFormField> createState() =>
@@ -33,7 +35,7 @@ class _CustomPasswordTextFormFieldState
       ),
       obscureText: obscurePassword,
       keyboardType: TextInputType.visiblePassword,
-      labelText: 'Password',
+      labelText: widget.labelText,
       controller: widget.passwordController,
       validatorText: 'Please enter your password',
     );

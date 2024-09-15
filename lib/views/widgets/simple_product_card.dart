@@ -25,7 +25,9 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
     Set<num> favoritesID = BlocProvider.of<FavoriteCubit>(context).favoritesID;
     Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        // TODO: navigate to product details
+      },
       child: CustomCard(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

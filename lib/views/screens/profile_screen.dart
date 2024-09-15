@@ -13,34 +13,31 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: BlocProvider(
-        create: (context) => ProfileCubit()..getProfile(token: '$kToken'),
-        child: BlocConsumer<ProfileCubit, ProfileState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            final UserDataModel? userDataModel =
-                BlocProvider.of<ProfileCubit>(context).userDataModel;
+      body: BlocConsumer<ProfileCubit, ProfileState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          final UserDataModel? userDataModel =
+              BlocProvider.of<ProfileCubit>(context).userDataModel;
 
-            if (state is GetProfileLoading) {
-              return const Center(
-                child: CupertinoActivityIndicator(
-                  color: kSecondaryColor,
-                ),
-              );
-            } else if (state is GetProfileFailure) {
-              return Center(
-                child: Text(state.message),
-              );
-            } else {
-              return Padding(
-                padding: const EdgeInsets.all(16),
-                child: ProfileBody(
-                  userDataModel: userDataModel!,
-                ),
-              );
-            }
-          },
-        ),
+          if (state is GetProfileLoading) {
+            return const Center(
+              child: CupertinoActivityIndicator(
+                color: kSecondaryColor,
+              ),
+            );
+          } else if (state is GetProfileFailure) {
+            return Center(
+              child: Text(state.message),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: ProfileBody(
+                userDataModel: userDataModel!,
+              ),
+            );
+          }
+        },
       ),
     );
   }

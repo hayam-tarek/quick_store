@@ -8,6 +8,7 @@ class EndPoints {
   static const String home = '$baseUrl/home';
   static const String favorites = '$baseUrl/favorites';
   static const String carts = '$baseUrl/carts';
+  static const String changePassword = '$baseUrl/change-password';
 }
 
 class ApiKey {
@@ -30,4 +31,6 @@ class ApiKey {
   static const String cartItems = 'cart_items';
   static const String subTotal = 'sub_total';
   static const String total = 'total';
+  static const String oldPassword = 'current_password';
+  static const String newPassword = 'new_password';
 }

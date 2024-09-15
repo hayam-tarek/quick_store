@@ -14,7 +14,9 @@ class CategoryTapedCard extends StatelessWidget {
       children: [
         Expanded(
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              // TODO: navigate to products screen
+            },
             child: CustomCard(
               child: Image.network(
                 width: double.infinity,

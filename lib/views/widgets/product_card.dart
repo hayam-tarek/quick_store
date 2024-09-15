@@ -24,7 +24,9 @@ class _ProductCardState extends State<ProductCard> {
     Set<num> favoritesID = BlocProvider.of<FavoriteCubit>(context).favoritesID;
     Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        // TODO: navigate to product details
+      },
       child: Stack(
         clipBehavior: Clip.none,
         children: [
