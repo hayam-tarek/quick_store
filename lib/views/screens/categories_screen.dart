@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:e_commerce_app/models/category_model.dart';
 import 'package:e_commerce_app/view_models/categories_cubit/categories_cubit.dart';
 import 'package:e_commerce_app/views/widgets/category_taped_card.dart';
@@ -18,7 +19,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     List<CategoryModel> categories =
         BlocProvider.of<CategoriesCubit>(context).categories;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kBackgroundColor,
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: CustomScrollView(

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:e_commerce_app/core/utils/listener_to_favorite.dart';
 import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce_app/views/widgets/cart_body.dart';
@@ -21,7 +22,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kBackgroundColor,
       body: BlocConsumer<FavoriteCubit, FavoriteState>(
         listener: (context, state) {
           listenerToFavorite(context, state);

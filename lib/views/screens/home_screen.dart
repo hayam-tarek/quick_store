@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/utils/constant.dart';
 import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
 import 'package:e_commerce_app/views/widgets/banners_builder.dart';
 import 'package:e_commerce_app/views/widgets/categories_list_view.dart';
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     ProductsCubit productsCubit = BlocProvider.of<ProductsCubit>(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: CustomScrollView(

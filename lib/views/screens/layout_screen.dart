@@ -47,7 +47,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kBackgroundColor,
       appBar: customAppBar(),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),

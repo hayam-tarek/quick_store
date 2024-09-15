@@ -16,6 +16,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
