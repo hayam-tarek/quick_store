@@ -48,14 +48,19 @@ class _ProductCardState extends State<ProductCard> {
                   Row(
                     children: [
                       Text(
-                        '\$${widget.productModel.price}   ',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
+                        '\$${widget.productModel.price} ',
+                        style: TextStyle(
+                          color: widget.productModel.oldPrice !=
+                                  widget.productModel.price
+                              ? Colors.red
+                              : Colors.black,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      if (widget.showOldPrice)
+                      if (widget.showOldPrice ||
+                          widget.productModel.oldPrice !=
+                              widget.productModel.price)
                         Text(
                           '\$${widget.productModel.oldPrice}',
                           style: const TextStyle(
@@ -68,7 +73,7 @@ class _ProductCardState extends State<ProductCard> {
                     ],
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 17,
                   ),
                 ],
               ),

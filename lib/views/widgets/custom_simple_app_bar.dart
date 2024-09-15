@@ -7,17 +7,8 @@ AppBar customSimpleAppBar({
 }) {
   return AppBar(
     backgroundColor: kPrimaryColor,
+    foregroundColor: Colors.white,
     centerTitle: true,
-    leading: IconButton(
-      onPressed: () {
-        Navigator.pop(context);
-      },
-      icon: const Icon(
-        Icons.arrow_back_rounded,
-        color: Colors.white,
-        size: 30,
-      ),
-    ),
     title: Text(
       title,
       style: const TextStyle(

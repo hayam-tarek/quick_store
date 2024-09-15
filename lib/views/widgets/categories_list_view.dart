@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/core/utils/constant.dart';
+import 'package:e_commerce_app/models/category_model.dart';
 import 'package:e_commerce_app/view_models/categories_cubit/categories_cubit.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesListView extends StatefulWidget {
@@ -16,7 +16,8 @@ class CategoriesListView extends StatefulWidget {
 class _CategoriesListViewState extends State<CategoriesListView> {
   @override
   Widget build(BuildContext context) {
-    CategoriesCubit categoriesCubit = BlocProvider.of<CategoriesCubit>(context);
+    List<CategoryModel> categories =
+        BlocProvider.of<CategoriesCubit>(context).categories;
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, state) {
         if (state is GetCategoriesLoading) {
@@ -33,18 +34,33 @@ class _CategoriesListViewState extends State<CategoriesListView> {
           );
         } else {
           return ListView.builder(
-            padding: const EdgeInsets.all(.8),
             scrollDirection: Axis.horizontal,
-            itemCount: categoriesCubit.categories.length,
+            itemCount: categories.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  radius: 40,
-                  backgroundImage: NetworkImage(
-                    categoriesCubit.categories[index].image,
+                padding: const EdgeInsets.all(4.0),
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: kSecondaryColor.withOpacity(.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    categories[index].name,
+                    style: const TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
+                // child: CircleAvatar(
+                //   radius: 40,
+                //   backgroundImage: NetworkImage(
+                //     categoriesCubit.categories[index].image,
+                //   ),
+                // ),
               );
             },
           );

@@ -50,12 +50,14 @@ class _HomeScreenState extends State<HomeScreen> {
               child: TitleWithButton(
                 title: 'Categories',
                 buttonTitle: 'View All',
-                onPressed: () {},
+                onPressed: () {
+                  //TODO
+                },
               ),
             ),
             const SliverToBoxAdapter(
               child: SizedBox(
-                height: 100,
+                height: 60,
                 child: CategoriesListView(),
               ),
             ),
@@ -63,7 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: TitleWithButton(
                 title: 'Products',
                 buttonTitle: 'View All',
-                onPressed: () {},
+                onPressed: () {
+                  //TODO
+                },
               ),
             ),
             BlocBuilder<ProductsCubit, ProductsState>(

@@ -84,9 +84,9 @@ class _LayoutScreenState extends State<LayoutScreen> {
                 label: 'Favorite',
               ),
               customBottomNavigationBarItem(
-                icon: const Icon(Icons.shopping_cart_outlined),
-                activeIcon: const Icon(Icons.shopping_cart),
-                label: 'Cart',
+                icon: const Icon(Icons.shopping_bag_outlined),
+                activeIcon: const Icon(Icons.shopping_bag),
+                label: 'My Cart',
               ),
               customBottomNavigationBarItem(
                 icon: const Icon(Icons.person_outlined),

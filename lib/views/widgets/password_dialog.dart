@@ -62,8 +62,8 @@ class PasswordDialog extends StatelessWidget {
                   formKey.currentState!.save();
 
                   BlocProvider.of<ProfileCubit>(context).changePassword(
-                    oldPassword: oldPasswordController!.text,
-                    newPassword: newPasswordController!.text,
+                    oldPassword: oldPasswordController!.text.trim(),
+                    newPassword: newPasswordController!.text.trim(),
                   );
                 }
               },
