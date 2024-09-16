@@ -45,32 +45,35 @@ class _ProductCardState extends State<ProductCard> {
                       fontSize: 15,
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        '\$${widget.productModel.price} ',
-                        style: TextStyle(
-                          color: widget.productModel.oldPrice !=
-                                  widget.productModel.price
-                              ? Colors.red
-                              : Colors.black,
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      if (widget.showOldPrice ||
-                          widget.productModel.oldPrice !=
-                              widget.productModel.price)
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
                         Text(
-                          '\$${widget.productModel.oldPrice}',
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
+                          '\$${widget.productModel.price} ',
+                          style: TextStyle(
+                            color: widget.productModel.oldPrice !=
+                                    widget.productModel.price
+                                ? Colors.red
+                                : Colors.black,
+                            fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.lineThrough,
                           ),
                         ),
-                    ],
+                        if (widget.showOldPrice ||
+                            widget.productModel.oldPrice !=
+                                widget.productModel.price)
+                          Text(
+                            '\$${widget.productModel.oldPrice}',
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 17,

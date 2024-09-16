@@ -47,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   children: [
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 35),
                     const Center(
                         child: TitleText(
                       text: 'Register',

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -13,14 +12,14 @@ class API {
     required String url,
     @required Map<String, String>? headers,
   }) async {
-    log('url = $url headers = $headers');
+    //log('url = $url headers = $headers');
     Response response = await http.get(
       Uri.parse(url),
       headers: headers,
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> json = jsonDecode(response.body);
-      log('response: $json');
+      //log('response: $json');
       return json;
     } else {
       throw Exception('Failed to load data ${response.statusCode}');
@@ -32,7 +31,7 @@ class API {
     @required dynamic body,
     @required Map<String, String>? headers,
   }) async {
-    log('url = $url body = $body headers = $headers');
+    //log('url = $url body = $body headers = $headers');
     Response response = await http.post(
       Uri.parse(url),
       body: body,
@@ -40,7 +39,7 @@ class API {
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> json = jsonDecode(response.body);
-      log('response: $json');
+      //log('response: $json');
       return json;
     } else {
       throw Exception('Failed to load data ${response.statusCode}');
@@ -52,7 +51,7 @@ class API {
     @required dynamic body,
     @required Map<String, String>? headers,
   }) async {
-    log('url = $url body = $body headers = $headers');
+    //log('url = $url body = $body headers = $headers');
     Response response = await http.put(
       Uri.parse(url),
       body: body,
@@ -60,7 +59,7 @@ class API {
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> json = jsonDecode(response.body);
-      log('response: $json');
+      //log('response: $json');
       return json;
     } else {
       throw Exception('Failed to load data ${response.statusCode}');

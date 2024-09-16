@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   children: [
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 35),
                     const Center(
                       child: TitleText(
                         text: 'Login',
@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
-                            customSnackBar(text: 'Welcome dear ...'),
+                            customSnackBar(text: 'Welcome back'),
                           );
                         }
                         if (state is LoginFailureState) {
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       firstText: 'Dont have an account?',
                       secondText: 'Register',
                       onSecondTextPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
+                        Navigator.pushReplacement(context, MaterialPageRoute(
                           builder: (context) {
                             return const RegisterScreen();
                           },

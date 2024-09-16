@@ -41,15 +41,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Text(
                   'Welcome to our ',
                   style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
                     color: kPrimaryColor,
                   ),
                 ),
                 Text(
                   'store!',
                   style: TextStyle(
-                    fontSize: 35,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                     color: kSecondaryColor,
                     fontFamily: kPrimaryFont,

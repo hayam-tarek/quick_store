@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/services/local_storage.dart';
 import 'package:e_commerce_app/models/user_data_model.dart';
 import 'package:e_commerce_app/views/widgets/custom_circle_avatar.dart';
 import 'package:e_commerce_app/views/widgets/display_contact.dart';
@@ -74,6 +75,11 @@ class ProfileBody extends StatelessWidget {
               // TODO: log out
             },
           ),
+          OutlinedButton(
+              onPressed: () {
+                LocalData().removeFromCache(key: 'token');
+              },
+              child: const Text('remove token'))
         ],
       ),
     );
