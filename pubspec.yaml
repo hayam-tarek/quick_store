@@ -1,4 +1,4 @@
-name: e_commerce_app
+name: quick_store
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -41,7 +41,6 @@ dependencies:
   shared_preferences: ^2.3.2
   meta: ^1.15.0
   smooth_page_indicator: ^1.2.0+3
-  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"

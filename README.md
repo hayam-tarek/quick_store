@@ -1,4 +1,4 @@
-# e_commerce_app
+# quick_store
 
 A new Flutter project.
 

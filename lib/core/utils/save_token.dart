@@ -1,5 +1,5 @@
-import 'package:e_commerce_app/core/services/local_storage.dart';
-import 'package:e_commerce_app/core/utils/constant.dart';
+import 'package:quick_store/core/services/local_storage.dart';
+import 'package:quick_store/core/utils/constant.dart';
 
 Future<void> saveToken({required String token}) async {
   await LocalData().setToCache(

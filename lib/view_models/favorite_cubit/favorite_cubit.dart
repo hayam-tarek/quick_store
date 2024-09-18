@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:e_commerce_app/core/api/api.dart';
-import 'package:e_commerce_app/core/api/end_points.dart';
-import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/models/product_model.dart';
+import 'package:quick_store/core/api/api.dart';
+import 'package:quick_store/core/api/end_points.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/models/product_model.dart';
 import 'package:meta/meta.dart';
 
 part 'favorite_state.dart';

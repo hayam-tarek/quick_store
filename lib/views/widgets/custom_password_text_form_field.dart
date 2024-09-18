@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/views/widgets/custom_text_florm_field.dart';
+import 'package:quick_store/views/widgets/custom_text_florm_field.dart';
 import 'package:flutter/material.dart';
 
 class CustomPasswordTextFormField extends StatefulWidget {

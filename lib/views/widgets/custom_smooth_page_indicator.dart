@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/core/utils/constant.dart';
+import 'package:quick_store/core/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

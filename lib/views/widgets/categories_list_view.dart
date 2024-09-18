@@ -1,6 +1,6 @@
-import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/models/category_model.dart';
-import 'package:e_commerce_app/view_models/categories_cubit/categories_cubit.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/models/category_model.dart';
+import 'package:quick_store/view_models/categories_cubit/categories_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

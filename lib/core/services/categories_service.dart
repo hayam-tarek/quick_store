@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:e_commerce_app/core/api/api.dart';
-import 'package:e_commerce_app/core/api/end_points.dart';
-import 'package:e_commerce_app/models/category_model.dart';
+import 'package:quick_store/core/api/api.dart';
+import 'package:quick_store/core/api/end_points.dart';
+import 'package:quick_store/models/category_model.dart';
 
 class CategoriesService {
   Future<List<CategoryModel>> getCategories() async {

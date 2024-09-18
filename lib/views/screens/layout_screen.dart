@@ -1,18 +1,18 @@
 import 'dart:developer';
 
-import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/view_models/cart_cubit/cart_cubit.dart';
-import 'package:e_commerce_app/view_models/categories_cubit/categories_cubit.dart';
-import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
-import 'package:e_commerce_app/view_models/products_cubit/products_cubit.dart';
-import 'package:e_commerce_app/view_models/profile_cubit/profile_cubit.dart';
-import 'package:e_commerce_app/views/screens/cart_screen.dart';
-import 'package:e_commerce_app/views/screens/categories_screen.dart';
-import 'package:e_commerce_app/views/screens/favorite_screen.dart';
-import 'package:e_commerce_app/views/screens/home_screen.dart';
-import 'package:e_commerce_app/views/screens/profile_screen.dart';
-import 'package:e_commerce_app/views/widgets/custom_app_bar.dart';
-import 'package:e_commerce_app/views/widgets/custom_bottom_navigation_bar_item.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
+import 'package:quick_store/view_models/categories_cubit/categories_cubit.dart';
+import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
+import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
+import 'package:quick_store/view_models/profile_cubit/profile_cubit.dart';
+import 'package:quick_store/views/screens/cart_screen.dart';
+import 'package:quick_store/views/screens/categories_screen.dart';
+import 'package:quick_store/views/screens/favorite_screen.dart';
+import 'package:quick_store/views/screens/home_screen.dart';
+import 'package:quick_store/views/screens/profile_screen.dart';
+import 'package:quick_store/views/widgets/custom_app_bar.dart';
+import 'package:quick_store/views/widgets/custom_bottom_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

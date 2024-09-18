@@ -1,7 +1,7 @@
-import 'package:e_commerce_app/core/services/banner_services.dart';
-import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/models/banner_model.dart';
-import 'package:e_commerce_app/views/widgets/custom_smooth_page_indicator.dart';
+import 'package:quick_store/core/services/banner_services.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/models/banner_model.dart';
+import 'package:quick_store/views/widgets/custom_smooth_page_indicator.dart';
 import 'package:flutter/cupertino.dart';
 
 class BannersBuilder extends StatefulWidget {

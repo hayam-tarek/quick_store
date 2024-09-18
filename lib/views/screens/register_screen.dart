@@ -1,12 +1,12 @@
-import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/view_models/auth_cubit/auth_cubit.dart';
-import 'package:e_commerce_app/views/screens/layout_screen.dart';
-import 'package:e_commerce_app/views/screens/login_screen.dart';
-import 'package:e_commerce_app/views/widgets/custom_rounded_container.dart';
-import 'package:e_commerce_app/views/widgets/custom_snake_bar.dart';
-import 'package:e_commerce_app/views/widgets/helper_text.dart';
-import 'package:e_commerce_app/views/widgets/register_sheet_body.dart';
-import 'package:e_commerce_app/views/widgets/title_text.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
+import 'package:quick_store/views/screens/layout_screen.dart';
+import 'package:quick_store/views/screens/login_screen.dart';
+import 'package:quick_store/views/widgets/custom_rounded_container.dart';
+import 'package:quick_store/views/widgets/custom_snake_bar.dart';
+import 'package:quick_store/views/widgets/helper_text.dart';
+import 'package:quick_store/views/widgets/register_sheet_body.dart';
+import 'package:quick_store/views/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

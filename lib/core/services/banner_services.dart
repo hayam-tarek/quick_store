@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:e_commerce_app/core/api/api.dart';
-import 'package:e_commerce_app/core/api/end_points.dart';
-import 'package:e_commerce_app/models/banner_model.dart';
+import 'package:quick_store/core/api/api.dart';
+import 'package:quick_store/core/api/end_points.dart';
+import 'package:quick_store/models/banner_model.dart';
 
 class BannerService {
   Future<List<BannerModel>> getBanners() async {

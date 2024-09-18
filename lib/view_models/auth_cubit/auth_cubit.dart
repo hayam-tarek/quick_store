@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:e_commerce_app/core/api/api.dart';
-import 'package:e_commerce_app/core/api/end_points.dart';
-import 'package:e_commerce_app/core/utils/save_token.dart';
+import 'package:quick_store/core/api/api.dart';
+import 'package:quick_store/core/api/end_points.dart';
+import 'package:quick_store/core/utils/save_token.dart';
 import 'package:flutter/material.dart';
 
 part 'auth_state.dart';

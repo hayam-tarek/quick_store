@@ -1,7 +1,7 @@
-import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/core/utils/listener_to_favorite.dart';
-import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
-import 'package:e_commerce_app/views/widgets/cart_body.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/core/utils/listener_to_favorite.dart';
+import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
+import 'package:quick_store/views/widgets/cart_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

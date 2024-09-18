@@ -1,6 +1,6 @@
 {
-    "name": "e_commerce_app",
-    "short_name": "e_commerce_app",
+    "name": "quick_store",
+    "short_name": "quick_store",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

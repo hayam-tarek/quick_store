@@ -1,5 +1,5 @@
-import 'package:e_commerce_app/models/category_model.dart';
-import 'package:e_commerce_app/views/widgets/custom_card.dart';
+import 'package:quick_store/models/category_model.dart';
+import 'package:quick_store/views/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 
 class CategoryTapedCard extends StatelessWidget {

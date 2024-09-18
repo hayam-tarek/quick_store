@@ -1,7 +1,7 @@
-import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/views/screens/login_screen.dart';
-import 'package:e_commerce_app/views/screens/register_screen.dart';
-import 'package:e_commerce_app/views/widgets/custom_material_button.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/views/screens/login_screen.dart';
+import 'package:quick_store/views/screens/register_screen.dart';
+import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {

@@ -1,6 +1,6 @@
-import 'package:e_commerce_app/core/utils/constant.dart';
-import 'package:e_commerce_app/view_models/favorite_cubit/favorite_cubit.dart';
-import 'package:e_commerce_app/views/widgets/custom_snake_bar.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
+import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
