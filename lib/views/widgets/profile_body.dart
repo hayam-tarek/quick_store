@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:quick_store/core/services/local_storage.dart';
 import 'package:quick_store/models/user_data_model.dart';
+import 'package:quick_store/views/screens/update_profile_screen.dart';
 import 'package:quick_store/views/widgets/custom_circle_avatar.dart';
 import 'package:quick_store/views/widgets/display_contact.dart';
 import 'package:quick_store/views/widgets/password_dialog.dart';
 import 'package:quick_store/views/widgets/tapped_card.dart';
 import 'package:quick_store/views/widgets/title_text.dart';
-import 'package:flutter/material.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({
@@ -46,7 +47,13 @@ class ProfileBody extends StatelessWidget {
             title: 'Update profile',
             iconData: Icons.person,
             onTap: () {
-              // TODO: update profile
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UpdateProfileScreen(
+                      userDataModel: userDataModel,
+                    ),
+                  ));
             },
           ),
           TappedCard(

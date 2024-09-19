@@ -1,5 +1,5 @@
-import 'package:quick_store/core/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_store/core/utils/constant.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -12,6 +12,8 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText,
     this.suffixIcon,
     this.prefixIcon,
+    this.initialValue,
+    this.onSaved,
   });
   final String labelText;
   final TextEditingController? controller;
@@ -21,10 +23,14 @@ class CustomTextFormField extends StatelessWidget {
   final bool? obscureText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
+  final String? initialValue;
+  final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSaved,
+      initialValue: initialValue,
       cursorColor: kPrimaryColor,
       cursorErrorColor: Colors.red,
       keyboardType: keyboardType,

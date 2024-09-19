@@ -9,6 +9,7 @@ class EndPoints {
   static const String favorites = '$baseUrl/favorites';
   static const String carts = '$baseUrl/carts';
   static const String changePassword = '$baseUrl/change-password';
+  static const String updateProfile = '$baseUrl/update-profile';
 }
 
 class ApiKey {
@@ -21,6 +22,7 @@ class ApiKey {
   static const String email = 'email';
   static const String password = 'password';
   static const String phone = 'phone';
+  static const String image = 'image';
   static const String token = 'token';
   static const String english = 'en';
   static const String arabic = 'ar';
