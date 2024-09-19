@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
 import 'package:quick_store/views/screens/layout_screen.dart';
@@ -7,8 +9,6 @@ import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 import 'package:quick_store/views/widgets/helper_text.dart';
 import 'package:quick_store/views/widgets/login_sheet_body.dart';
 import 'package:quick_store/views/widgets/title_text.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
-                            customSnackBar(text: 'Welcome back'),
+                            customSnackBar(text: state.message),
                           );
                         }
                         if (state is LoginFailureState) {

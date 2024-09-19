@@ -10,6 +10,7 @@ class EndPoints {
   static const String carts = '$baseUrl/carts';
   static const String changePassword = '$baseUrl/change-password';
   static const String updateProfile = '$baseUrl/update-profile';
+  static const String logout = '$baseUrl/logout';
 }
 
 class ApiKey {

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:quick_store/core/services/local_storage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/user_data_model.dart';
+import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
 import 'package:quick_store/views/screens/update_profile_screen.dart';
+import 'package:quick_store/views/screens/welcome_screen.dart';
 import 'package:quick_store/views/widgets/custom_circle_avatar.dart';
+import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 import 'package:quick_store/views/widgets/display_contact.dart';
 import 'package:quick_store/views/widgets/password_dialog.dart';
 import 'package:quick_store/views/widgets/tapped_card.dart';
@@ -75,18 +78,34 @@ class ProfileBody extends StatelessWidget {
               // TODO: orders
             },
           ),
-          TappedCard(
-            title: 'Log out',
-            iconData: Icons.logout_rounded,
-            onTap: () {
-              // TODO: log out
+          BlocConsumer<AuthCubit, AuthState>(
+            listener: (context, state) {
+              if (state is LogoutSuccessState) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(customSnackBar(text: state.message));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const WelcomeScreen(),
+                  ),
+                  ModalRoute.withName('/'),
+                );
+              }
+              if (state is LogoutFailureState) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(customSnackBar(text: state.error));
+              }
+            },
+            builder: (context, state) {
+              return TappedCard(
+                title: state is LogoutLoadingState ? "Loading..." : 'Log out',
+                iconData: Icons.logout_rounded,
+                onTap: () {
+                  context.read<AuthCubit>().logout();
+                },
+              );
             },
           ),
-          OutlinedButton(
-              onPressed: () {
-                LocalData().removeFromCache(key: 'token');
-              },
-              child: const Text('remove token'))
         ],
       ),
     );

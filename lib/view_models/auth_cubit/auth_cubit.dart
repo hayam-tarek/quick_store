@@ -1,10 +1,11 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:quick_store/core/api/api.dart';
 import 'package:quick_store/core/api/end_points.dart';
-import 'package:quick_store/core/utils/save_token.dart';
-import 'package:flutter/material.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/core/utils/token.dart';
 
 part 'auth_state.dart';
 
@@ -32,8 +33,8 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
       if (json[ApiKey.status] == true) {
-        await saveToken(token: json[ApiKey.data][ApiKey.token]);
-        emit(RegisterSuccessState());
+        await Token.saveToken(token: json[ApiKey.data][ApiKey.token]);
+        emit(RegisterSuccessState(message: json[ApiKey.message]));
       } else {
         throw Exception(json[ApiKey.message]);
       }
@@ -65,8 +66,8 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
       if (json[ApiKey.status] == true) {
-        await saveToken(token: json[ApiKey.data][ApiKey.token]);
-        emit(LoginSuccessState());
+        await Token.saveToken(token: json[ApiKey.data][ApiKey.token]);
+        emit(LoginSuccessState(message: json[ApiKey.message]));
       } else {
         throw Exception(json[ApiKey.message]);
       }
@@ -75,6 +76,34 @@ class AuthCubit extends Cubit<AuthState> {
       String message = e.toString().replaceFirst('Exception: ', '');
       emit(
         LoginFailureState(
+          error: message,
+        ),
+      );
+    }
+  }
+
+  void logout() async {
+    emit(LogoutLoadingState());
+    try {
+      var json = await API().post(
+        url: EndPoints.logout,
+        headers: {
+          ApiKey.lang: ApiKey.english,
+          ApiKey.authorization: kToken!,
+        },
+        body: null,
+      );
+      if (json[ApiKey.status] == true) {
+        await Token.deleteToken();
+        emit(LogoutSuccessState(message: json[ApiKey.message]));
+      } else {
+        throw Exception(json[ApiKey.message]);
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      String message = e.toString().replaceFirst('Exception: ', '');
+      emit(
+        LogoutFailureState(
           error: message,
         ),
       );
