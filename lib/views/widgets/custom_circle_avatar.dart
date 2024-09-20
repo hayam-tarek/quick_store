@@ -1,5 +1,5 @@
-import 'package:quick_store/core/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_store/views/widgets/circle_avatar_decoration.dart';
 
 class CustomCircleAvatar extends StatelessWidget {
   const CustomCircleAvatar({
@@ -11,29 +11,7 @@ class CustomCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      width: 150,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        // border: Border.all(
-        //   color: kForegroundColor,
-        // ),
-        boxShadow: [
-          BoxShadow(
-            color: kSecondaryColor.withOpacity(.5),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(5, 5),
-          ),
-          BoxShadow(
-            color: kPrimaryColor.withOpacity(.5),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(-5, -5),
-          ),
-        ],
-      ),
+    return CircleAvatarDecoration(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: CircleAvatar(

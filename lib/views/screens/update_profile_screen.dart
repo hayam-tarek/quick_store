@@ -54,16 +54,27 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 children: [
                   const SizedBox(height: 20),
                   Center(
-                      child: PickImage(
-                    networkImageUrl: widget.userDataModel.image,
-                    onPick: () async {
-                      image = await ImagePickerHelper.pickImage();
-                      base64Image =
-                          await ImagePickerHelper.convertToBase64Image(
-                        image: image,
-                      );
-                    },
-                  )),
+                    child: PickImage(
+                      pickedImage: image,
+                      defaultNetworkImageUrl: widget.userDataModel.image,
+                      onPick: () async {
+                        image = await ImagePickerHelper.pickImage();
+                        if (image != null) {
+                          setState(() {});
+                          base64Image =
+                              await ImagePickerHelper.convertToBase64Image(
+                                  image: image!);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            customSnackBar(text: "Image selected"),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            customSnackBar(text: "No image selected"),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 80),
                   CustomTextFormField(
                     labelText: "Name",
