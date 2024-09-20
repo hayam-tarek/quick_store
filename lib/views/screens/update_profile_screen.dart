@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/core/utils/pick_image.dart';
 import 'package:quick_store/models/user_data_model.dart';
 import 'package:quick_store/view_models/profile_cubit/profile_cubit.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_simple_app_bar.dart';
 import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 import 'package:quick_store/views/widgets/custom_text_florm_field.dart';
-import 'package:quick_store/views/widgets/pickImage.dart';
+import 'package:quick_store/views/widgets/pick_image.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({super.key, required this.userDataModel});
@@ -23,6 +25,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   String? name;
   String? email;
   String? phone;
+  XFile? image;
+  String? base64Image;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +55,15 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   const SizedBox(height: 20),
                   Center(
                       child: PickImage(
-                          networkImageUrl: widget.userDataModel.image)),
+                    networkImageUrl: widget.userDataModel.image,
+                    onPick: () async {
+                      image = await ImagePickerHelper.pickImage();
+                      base64Image =
+                          await ImagePickerHelper.convertToBase64Image(
+                        image: image,
+                      );
+                    },
+                  )),
                   const SizedBox(height: 80),
                   CustomTextFormField(
                     labelText: "Name",
@@ -87,6 +99,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           name: name!,
                           email: email!,
                           phone: phone!,
+                          image: base64Image ?? widget.userDataModel.image,
                         );
                       }
                     },

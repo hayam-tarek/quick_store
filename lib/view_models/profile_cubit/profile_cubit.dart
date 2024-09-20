@@ -80,7 +80,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     required String name,
     required String email,
     required String phone,
-    //required String image,
+    required String image,
   }) async {
     emit(UpdateProfileLoading());
     try {
@@ -94,7 +94,7 @@ class ProfileCubit extends Cubit<ProfileState> {
           ApiKey.name: name,
           ApiKey.email: email,
           ApiKey.phone: phone,
-          //ApiKey.image: image,
+          ApiKey.image: image,
         },
       );
       if (json[ApiKey.status] == true) {

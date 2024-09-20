@@ -6,9 +6,11 @@ class PickImage extends StatelessWidget {
   const PickImage({
     super.key,
     required this.networkImageUrl,
+    required this.onPick,
   });
 
   final String networkImageUrl;
+  final void Function()? onPick;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class PickImage extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: onPick,
               icon: const Icon(
                 Icons.camera_alt_outlined,
                 color: kForegroundColor,
