@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:quick_store/core/services/banner_services.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/banner_model.dart';
 import 'package:quick_store/views/widgets/custom_smooth_page_indicator.dart';
-import 'package:flutter/cupertino.dart';
 
 class BannersBuilder extends StatefulWidget {
   const BannersBuilder({
@@ -16,6 +16,7 @@ class BannersBuilder extends StatefulWidget {
 class _BannersBuilderState extends State<BannersBuilder> {
   final PageController pageController = PageController();
 
+  // ignore: prefer_typing_uninitialized_variables
   var future;
   @override
   void initState() {
