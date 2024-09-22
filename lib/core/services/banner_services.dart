@@ -17,6 +17,7 @@ class BannerService {
         for (var item in data) {
           banners.add(BannerModel.fromJSON(json: item));
         }
+        banners.shuffle();
         return banners;
       } else {
         throw Exception(json[ApiKey.message]);

@@ -11,6 +11,9 @@ class EndPoints {
   static const String changePassword = '$baseUrl/change-password';
   static const String updateProfile = '$baseUrl/update-profile';
   static const String logout = '$baseUrl/logout';
+  static String categoryProducts({required num id}) {
+    return '$baseUrl/categories/$id';
+  }
 }
 
 class ApiKey {

@@ -1,6 +1,9 @@
-import 'package:quick_store/models/category_model.dart';
-import 'package:quick_store/views/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_store/models/category_model.dart';
+import 'package:quick_store/view_models/categories_cubit/categories_cubit.dart';
+import 'package:quick_store/views/screens/category_products_screen.dart';
+import 'package:quick_store/views/widgets/custom_card.dart';
 
 class CategoryTapedCard extends StatelessWidget {
   const CategoryTapedCard({
@@ -15,7 +18,15 @@ class CategoryTapedCard extends StatelessWidget {
         Expanded(
           child: InkWell(
             onTap: () {
-              // TODO: navigate to products screen
+              BlocProvider.of<CategoriesCubit>(context)
+                  .getCategoryProducts(id: categoryModel.id);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      CategoryProductsScreen(categoryModel: categoryModel),
+                ),
+              );
             },
             child: CustomCard(
               child: Image.network(

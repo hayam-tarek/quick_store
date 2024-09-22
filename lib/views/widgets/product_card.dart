@@ -77,6 +77,7 @@ class _ProductCardState extends State<ProductCard> {
                   ),
                   const SizedBox(
                     height: 17,
+                    width: double.infinity,
                   ),
                 ],
               ),

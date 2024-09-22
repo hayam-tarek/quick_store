@@ -13,3 +13,12 @@ final class GetCategoriesFailure extends CategoriesState {
   final String message;
   GetCategoriesFailure({required this.message});
 }
+
+final class GetCategoryProductsLoading extends CategoriesState {}
+
+final class GetCategoryProductsSuccess extends CategoriesState {}
+
+final class GetCategoryProductsFailure extends CategoriesState {
+  final String message;
+  GetCategoryProductsFailure({required this.message});
+}
