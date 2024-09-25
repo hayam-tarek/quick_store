@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/core/utils/listener_to_cart.dart';
 import 'package:quick_store/core/utils/listener_to_favorite.dart';
@@ -6,8 +8,6 @@ import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
 import 'package:quick_store/views/widgets/product_card.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsBody extends StatelessWidget {
   const ProductsBody({
@@ -30,35 +30,39 @@ class ProductsBody extends StatelessWidget {
         ),
       );
     } else if (productsState is GetProductsSuccess) {
-      return BlocListener<FavoriteCubit, FavoriteState>(
+      return BlocConsumer<FavoriteCubit, FavoriteState>(
         listener: (context, state) {
           listenerToFavorite(context, state);
         },
-        child: BlocListener<CartCubit, CartState>(
-          listener: (context, state) {
-            listenerToCart(context, state);
-          },
-          child: SliverGrid.builder(
-            itemCount: products.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 10,
-              childAspectRatio: .9,
-            ),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(
-                  left: 5,
-                  right: 5,
-                  top: 50,
+        builder: (context, state) {
+          return BlocConsumer<CartCubit, CartState>(
+            listener: (context, state) {
+              listenerToCart(context, state);
+            },
+            builder: (context, state) {
+              return SliverGrid.builder(
+                itemCount: products.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: .9,
                 ),
-                child: ProductCard(
-                  productModel: products[index],
-                ),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 5,
+                      right: 5,
+                      top: 50,
+                    ),
+                    child: ProductCard(
+                      productModel: products[index],
+                    ),
+                  );
+                },
               );
             },
-          ),
-        ),
+          );
+        },
       );
     } else {
       return const SliverFillRemaining(

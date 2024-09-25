@@ -3,16 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/product_model.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
+import 'package:quick_store/views/screens/product_details_screen.dart';
 import 'package:quick_store/views/widgets/custom_card.dart';
+import 'package:quick_store/views/widgets/show_price.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
     required this.productModel,
-    this.showOldPrice = false,
   });
   final ProductModel productModel;
-  final bool showOldPrice;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -25,7 +25,13 @@ class _ProductCardState extends State<ProductCard> {
     Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
     return InkWell(
       onTap: () {
-        // TODO: navigate to product details
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetailsScreen(
+                productModel: widget.productModel,
+              ),
+            ));
       },
       child: Stack(
         clipBehavior: Clip.none,
@@ -47,32 +53,9 @@ class _ProductCardState extends State<ProductCard> {
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        Text(
-                          '\$${widget.productModel.price} ',
-                          style: TextStyle(
-                            color: widget.productModel.oldPrice !=
-                                    widget.productModel.price
-                                ? Colors.red
-                                : Colors.black,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        if (widget.showOldPrice ||
-                            widget.productModel.oldPrice !=
-                                widget.productModel.price)
-                          Text(
-                            '\$${widget.productModel.oldPrice}',
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                      ],
+                    child: ShowPrice(
+                      productModel: widget.productModel,
+                      fontSize: 15,
                     ),
                   ),
                   const SizedBox(

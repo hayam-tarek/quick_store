@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/product_model.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
+import 'package:quick_store/views/screens/product_details_screen.dart';
 import 'package:quick_store/views/widgets/custom_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_store/views/widgets/show_price.dart';
 
 class SimpleProductCard extends StatefulWidget {
   const SimpleProductCard({
@@ -26,7 +28,13 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
     Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
     return InkWell(
       onTap: () {
-        // TODO: navigate to product details
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetailsScreen(
+                productModel: widget.productModel,
+              ),
+            ));
       },
       child: CustomCard(
         child: Padding(
@@ -62,23 +70,8 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
                     ),
                     Row(
                       children: [
-                        Text(
-                          '\$${widget.productModel.price}   ',
-                          style: const TextStyle(
-                            color: Colors.green,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '\$${widget.productModel.oldPrice}',
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                        ),
+                        ShowPrice(
+                            productModel: widget.productModel, fontSize: 13),
                         const Spacer(),
                         if (widget.showShoppingCart)
                           IconButton(

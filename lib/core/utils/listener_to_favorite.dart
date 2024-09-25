@@ -1,8 +1,7 @@
-import 'package:quick_store/core/utils/constant.dart';
-import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
-import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
 
 void listenerToFavorite(BuildContext context, FavoriteState favoriteState) {
   bool isLoading = false;
@@ -24,14 +23,14 @@ void listenerToFavorite(BuildContext context, FavoriteState favoriteState) {
     if (!isLoading) {
       Navigator.pop(context);
     }
-    ScaffoldMessenger.of(context)
-        .showSnackBar(customSnackBar(text: favoriteState.message));
+    // ScaffoldMessenger.of(context)
+    //     .showSnackBar(customSnackBar(text: favoriteState.message));
   }
   if (favoriteState is AddOrDeleteFavoriteFailure) {
     if (!isLoading) {
       Navigator.pop(context);
     }
-    ScaffoldMessenger.of(context)
-        .showSnackBar(customSnackBar(text: favoriteState.message));
+    // ScaffoldMessenger.of(context)
+    //     .showSnackBar(customSnackBar(text: favoriteState.message));
   }
 }

@@ -31,7 +31,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       onSaved: onSaved,
       initialValue: initialValue,
-      cursorColor: kPrimaryColor,
+      cursorColor: kSecondaryColor,
       cursorErrorColor: Colors.red,
       keyboardType: keyboardType,
       obscureText: obscureText ?? false,

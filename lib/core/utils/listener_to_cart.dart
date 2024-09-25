@@ -1,8 +1,7 @@
-import 'package:quick_store/core/utils/constant.dart';
-import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
-import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 
 void listenerToCart(BuildContext context, CartState cartState) {
   bool isLoading = false;
@@ -24,14 +23,14 @@ void listenerToCart(BuildContext context, CartState cartState) {
     if (!isLoading) {
       Navigator.pop(context);
     }
-    ScaffoldMessenger.of(context)
-        .showSnackBar(customSnackBar(text: cartState.message));
+    // ScaffoldMessenger.of(context)
+    //     .showSnackBar(customSnackBar(text: cartState.message));
   }
   if (cartState is AddOrDeleteFromCartFailure) {
     if (!isLoading) {
       Navigator.pop(context);
     }
-    ScaffoldMessenger.of(context)
-        .showSnackBar(customSnackBar(text: cartState.message));
+    // ScaffoldMessenger.of(context)
+    //     .showSnackBar(customSnackBar(text: cartState.message));
   }
 }
