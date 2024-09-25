@@ -14,6 +14,10 @@ class EndPoints {
   static String categoryProducts({required num id}) {
     return '$baseUrl/categories/$id';
   }
+
+  static String productDetails({required num id}) {
+    return '$baseUrl/products/$id';
+  }
 }
 
 class ApiKey {

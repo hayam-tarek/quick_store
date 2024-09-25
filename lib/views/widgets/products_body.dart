@@ -29,7 +29,15 @@ class ProductsBody extends StatelessWidget {
           ),
         ),
       );
-    } else if (productsState is GetProductsSuccess) {
+    } else if (productsState is GetProductsFailure) {
+      return const SliverFillRemaining(
+        child: Center(
+          child: Text(
+            "No Products",
+          ),
+        ),
+      );
+    } else {
       return BlocConsumer<FavoriteCubit, FavoriteState>(
         listener: (context, state) {
           listenerToFavorite(context, state);
@@ -63,14 +71,6 @@ class ProductsBody extends StatelessWidget {
             },
           );
         },
-      );
-    } else {
-      return const SliverFillRemaining(
-        child: Center(
-          child: Text(
-            "No Products",
-          ),
-        ),
       );
     }
   }

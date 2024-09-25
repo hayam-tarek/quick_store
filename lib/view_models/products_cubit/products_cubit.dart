@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:meta/meta.dart';
 import 'package:quick_store/core/api/api.dart';
 import 'package:quick_store/core/api/end_points.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/product_model.dart';
-import 'package:meta/meta.dart';
 
 part 'products_state.dart';
 
@@ -53,5 +53,33 @@ class ProductsCubit extends Cubit<ProductsState> {
           .toList();
     }
     emit(GetProductsSuccess());
+  }
+
+  ProductModel? productDetails;
+  void getProductDetails({required num id}) async {
+    emit(GetProductDetailsLoading());
+    try {
+      var json = await API().get(
+        url: EndPoints.productDetails(id: id),
+        headers: {
+          ApiKey.lang: ApiKey.english,
+          ApiKey.authorization: kToken!,
+        },
+      );
+      if (json[ApiKey.status] == true) {
+        productDetails = ProductModel.fromJson(json[ApiKey.data]);
+        emit(GetProductDetailsSuccess());
+      } else {
+        throw Exception(json[ApiKey.message]);
+      }
+    } catch (e) {
+      log(e.toString());
+      String message = e.toString().replaceFirst('Exception: ', '');
+      emit(
+        GetProductDetailsFailure(
+          message: message,
+        ),
+      );
+    }
   }
 }

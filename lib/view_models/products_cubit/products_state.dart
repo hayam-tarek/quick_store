@@ -13,3 +13,12 @@ final class GetProductsFailure extends ProductsState {
   final String message;
   GetProductsFailure({required this.message});
 }
+
+final class GetProductDetailsSuccess extends ProductsState {}
+
+final class GetProductDetailsLoading extends ProductsState {}
+
+final class GetProductDetailsFailure extends ProductsState {
+  final String message;
+  GetProductDetailsFailure({required this.message});
+}

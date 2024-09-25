@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/product_model.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
+import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
 import 'package:quick_store/views/screens/product_details_screen.dart';
 import 'package:quick_store/views/widgets/custom_card.dart';
 import 'package:quick_store/views/widgets/show_price.dart';
@@ -28,12 +29,12 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
     Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
     return InkWell(
       onTap: () {
+        BlocProvider.of<ProductsCubit>(context)
+            .getProductDetails(id: widget.productModel.id);
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProductDetailsScreen(
-                productModel: widget.productModel,
-              ),
+              builder: (context) => const ProductDetailsScreen(),
             ));
       },
       child: CustomCard(
