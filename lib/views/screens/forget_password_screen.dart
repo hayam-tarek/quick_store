@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/views/widgets/custom_email_text_form_field.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_simple_app_bar.dart';
-import 'package:quick_store/views/widgets/custom_text_florm_field.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   ForgetPasswordScreen({super.key});
@@ -42,12 +42,8 @@ class ForgetPasswordScreen extends StatelessWidget {
                     key: formKey,
                     child: Column(
                       children: [
-                        CustomTextFormField(
-                          controller: emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          labelText: 'Email',
-                          prefixIcon: const Icon(Icons.email),
-                          validatorText: 'Please enter your email',
+                        CustomEmailTextFormField(
+                          emailController: emailController,
                         ),
                         const SizedBox(
                           height: 10,

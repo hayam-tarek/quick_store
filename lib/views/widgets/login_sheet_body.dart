@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
 import 'package:quick_store/views/screens/forget_password_screen.dart';
+import 'package:quick_store/views/widgets/custom_email_text_form_field.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_password_text_form_field.dart';
-import 'package:quick_store/views/widgets/custom_text_florm_field.dart';
 
 class LoginSheetBody extends StatefulWidget {
   const LoginSheetBody({super.key, required this.state});
@@ -32,12 +32,8 @@ class _LoginSheetBodyState extends State<LoginSheetBody> {
         child: Column(
           children: [
             const SizedBox(height: 50),
-            CustomTextFormField(
-              prefixIcon: const Icon(Icons.email),
-              keyboardType: TextInputType.emailAddress,
-              labelText: 'Email',
-              controller: emailController,
-              validatorText: 'Please enter your email',
+            CustomEmailTextFormField(
+              emailController: emailController,
             ),
             const SizedBox(height: 10),
             CustomPasswordTextFormField(
