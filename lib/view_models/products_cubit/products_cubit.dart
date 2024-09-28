@@ -23,6 +23,7 @@ class ProductsCubit extends Cubit<ProductsState> {
         },
       );
       if (json[ApiKey.status] == true) {
+        products = [];
         List<dynamic> productsData = json[ApiKey.data][ApiKey.products];
         for (var item in productsData) {
           products.add(ProductModel.fromJson(item));

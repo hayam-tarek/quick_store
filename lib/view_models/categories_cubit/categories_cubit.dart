@@ -23,6 +23,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         },
       );
       if (json[ApiKey.status] == true) {
+        categories = [];
         List<dynamic> data = json[ApiKey.data][ApiKey.data];
         for (var item in data) {
           categories.add(CategoryModel.fromJSON(json: item));
@@ -44,7 +45,6 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   List<ProductModel> categoryProducts = [];
   void getCategoryProducts({required num id}) async {
-    categoryProducts = [];
     emit(GetCategoryProductsLoading());
     try {
       var json = await API().get(
@@ -55,6 +55,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         },
       );
       if (json[ApiKey.status] == true) {
+        categoryProducts = [];
         List<dynamic> data = json[ApiKey.data][ApiKey.data];
         for (var item in data) {
           categoryProducts.add(ProductModel.fromJson(item));
