@@ -26,35 +26,39 @@ class CategoryProductsBody extends StatelessWidget {
         ),
       );
     } else if (categoriesState is GetCategoryProductsSuccess) {
-      return BlocListener<FavoriteCubit, FavoriteState>(
+      return BlocConsumer<FavoriteCubit, FavoriteState>(
         listener: (context, state) {
           listenerToFavorite(context, state);
         },
-        child: BlocListener<CartCubit, CartState>(
-          listener: (context, state) {
-            listenerToCart(context, state);
-          },
-          child: GridView.builder(
-            itemCount: categoryProducts.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 10,
-              childAspectRatio: .9,
-            ),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(
-                  left: 5,
-                  right: 5,
-                  top: 50,
+        builder: (context, state) {
+          return BlocConsumer<CartCubit, CartState>(
+            listener: (context, state) {
+              listenerToCart(context, state);
+            },
+            builder: (context, state) {
+              return GridView.builder(
+                itemCount: categoryProducts.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: .9,
                 ),
-                child: ProductCard(
-                  productModel: categoryProducts[index],
-                ),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 5,
+                      right: 5,
+                      top: 50,
+                    ),
+                    child: ProductCard(
+                      productModel: categoryProducts[index],
+                    ),
+                  );
+                },
               );
             },
-          ),
-        ),
+          );
+        },
       );
     } else {
       return const Center(
