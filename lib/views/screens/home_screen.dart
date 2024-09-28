@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
 import 'package:quick_store/views/widgets/banners_builder.dart';
 import 'package:quick_store/views/widgets/categories_list_view.dart';
 import 'package:quick_store/views/widgets/custom_search_text_form_field.dart';
 import 'package:quick_store/views/widgets/products_body.dart';
-import 'package:quick_store/views/widgets/title_with_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_store/views/widgets/title_text.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -47,13 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
             const SliverToBoxAdapter(
               child: BannersBuilder(),
             ),
-            SliverToBoxAdapter(
-              child: TitleWithButton(
-                title: 'Categories',
-                buttonTitle: 'View All',
-                onPressed: () {
-                  //TODO
-                },
+            const SliverToBoxAdapter(
+              child: TitleText(
+                text: 'Categories',
+                fontSize: 25,
               ),
             ),
             const SliverToBoxAdapter(
@@ -62,15 +59,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CategoriesListView(),
               ),
             ),
-            SliverToBoxAdapter(
-              child: TitleWithButton(
-                title: 'Products',
-                buttonTitle: 'View All',
-                onPressed: () {
-                  //TODO
-                },
-              ),
-            ),
+            const SliverToBoxAdapter(
+                child: TitleText(
+              text: 'Products',
+              fontSize: 25,
+            )),
             BlocBuilder<ProductsCubit, ProductsState>(
               builder: (context, state) {
                 return ProductsBody(

@@ -71,13 +71,13 @@ class ProfileBody extends StatelessWidget {
               );
             },
           ),
-          TappedCard(
-            title: 'Orders',
-            iconData: Icons.shopping_basket_rounded,
-            onTap: () {
-              // TODO: orders
-            },
-          ),
+          // TappedCard(
+          //   title: 'Orders',
+          //   iconData: Icons.shopping_basket_rounded,
+          //   onTap: () {
+          //     // TODO: orders
+          //   },
+          // ),
           BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state is LogoutSuccessState) {

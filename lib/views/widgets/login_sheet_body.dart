@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
 import 'package:quick_store/views/screens/forget_password_screen.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_password_text_form_field.dart';
 import 'package:quick_store/views/widgets/custom_text_florm_field.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginSheetBody extends StatefulWidget {
   const LoginSheetBody({super.key, required this.state});
@@ -49,12 +49,13 @@ class _LoginSheetBodyState extends State<LoginSheetBody> {
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return const ForgetPasswordScreen();
+                      return ForgetPasswordScreen();
                     },
                   ));
                 },
-                child: const Text(
+                child: Text(
                   'Forget Password?',
+                  style: TextStyle(color: kSecondaryColor.withOpacity(.5)),
                 ),
               ),
             ),

@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     HelperText(
-                      firstText: 'Dont have an account?',
+                      firstText: 'Don\'t have an account?',
                       secondText: 'Register',
                       onSecondTextPressed: () {
                         Navigator.pushReplacement(context, MaterialPageRoute(
