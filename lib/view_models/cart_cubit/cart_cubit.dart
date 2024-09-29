@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:meta/meta.dart';
 import 'package:quick_store/core/api/api.dart';
 import 'package:quick_store/core/api/end_points.dart';
 import 'package:quick_store/core/utils/constant.dart';
-import 'package:quick_store/models/product_model.dart';
-import 'package:meta/meta.dart';
+import 'package:quick_store/models/cart_model.dart';
 
 part 'cart_state.dart';
 
@@ -46,7 +46,7 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  List<ProductModel> cart = [];
+  List<CartModel> cart = [];
   Set<num> cartItemsID = {};
   num total = 0;
   num subTotal = 0;
@@ -67,7 +67,7 @@ class CartCubit extends Cubit<CartState> {
         total = json[ApiKey.data][ApiKey.total];
         List<dynamic> cartItems = json[ApiKey.data][ApiKey.cartItems];
         for (var item in cartItems) {
-          cart.add(ProductModel.fromJson(item[ApiKey.product]));
+          cart.add(CartModel.fromJson(item));
           cartItemsID.add(item[ApiKey.product][ApiKey.id]);
         }
         emit(GetCartSuccess());

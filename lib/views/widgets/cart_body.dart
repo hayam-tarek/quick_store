@@ -1,11 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/listener_to_cart.dart';
-import 'package:quick_store/models/product_model.dart';
+import 'package:quick_store/models/cart_model.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/views/widgets/check_out_sheet.dart';
+import 'package:quick_store/views/widgets/quantity_control.dart';
 import 'package:quick_store/views/widgets/simple_product_card.dart';
-import 'package:quick_store/views/widgets/title_with_button.dart';
+import 'package:quick_store/views/widgets/title_text.dart';
 
 class CartBody extends StatelessWidget {
   const CartBody({
@@ -20,16 +21,16 @@ class CartBody extends StatelessWidget {
       },
       builder: (context, state) {
         CartCubit cubit = BlocProvider.of<CartCubit>(context);
-        List<ProductModel> products = cubit.cart;
+        List<CartModel> cartItems = cubit.cart;
         return Column(
           children: [
             Expanded(
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
-                    child: TitleWithButton(
-                      title: 'Cart',
-                      buttonTitle: 'Total price \$${cubit.total}',
+                    child: TitleText(
+                      text: 'Cart',
+                      fontSize: 30,
                     ),
                   ),
                   // if (state is GetCartLoading)
@@ -41,7 +42,7 @@ class CartBody extends StatelessWidget {
                   //     ),
                   //   )
                   // else
-                  if (state is GetCartFailure || products.isEmpty)
+                  if (state is GetCartFailure || cartItems.isEmpty)
                     const SliverFillRemaining(
                       child: Center(
                         child: Text(
@@ -51,14 +52,21 @@ class CartBody extends StatelessWidget {
                     )
                   else
                     SliverList.builder(
-                      itemCount: products.length,
+                      itemCount: cartItems.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: SimpleProductCard(
-                            showShoppingCart: true,
-                            showFavorite: true,
-                            productModel: products[index],
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: SimpleProductCard(
+                                  showShoppingCart: true,
+                                  showFavorite: true,
+                                  productModel: cartItems[index].productModel,
+                                ),
+                              ),
+                              QuantityControl(cartModel: cartItems[index]),
+                            ],
                           ),
                         );
                       },
