@@ -21,7 +21,7 @@ class CartBody extends StatelessWidget {
       },
       builder: (context, state) {
         CartCubit cubit = BlocProvider.of<CartCubit>(context);
-        List<CartModel> cartItems = cubit.cart;
+        List<CartItemModel> cartItems = cubit.cart;
         return Column(
           children: [
             Expanded(
@@ -65,7 +65,7 @@ class CartBody extends StatelessWidget {
                                   productModel: cartItems[index].productModel,
                                 ),
                               ),
-                              QuantityControl(cartModel: cartItems[index]),
+                              QuantityControl(cartItemModel: cartItems[index]),
                             ],
                           ),
                         );

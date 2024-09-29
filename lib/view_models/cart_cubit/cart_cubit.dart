@@ -46,7 +46,7 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  List<CartModel> cart = [];
+  List<CartItemModel> cart = [];
   Set<num> cartItemsID = {};
   num total = 0;
   num subTotal = 0;
@@ -67,7 +67,7 @@ class CartCubit extends Cubit<CartState> {
         total = json[ApiKey.data][ApiKey.total];
         List<dynamic> cartItems = json[ApiKey.data][ApiKey.cartItems];
         for (var item in cartItems) {
-          cart.add(CartModel.fromJson(item));
+          cart.add(CartItemModel.fromJson(item));
           cartItemsID.add(item[ApiKey.product][ApiKey.id]);
         }
         emit(GetCartSuccess());

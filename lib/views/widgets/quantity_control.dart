@@ -5,10 +5,10 @@ import 'package:quick_store/models/cart_model.dart';
 class QuantityControl extends StatelessWidget {
   const QuantityControl({
     super.key,
-    required this.cartModel,
+    required this.cartItemModel,
   });
 
-  final CartModel cartModel;
+  final CartItemModel cartItemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class QuantityControl extends StatelessWidget {
           ),
         ),
         Text(
-          'x${cartModel.quantity}',
+          'x${cartItemModel.quantity}',
           style: const TextStyle(
             fontSize: 18,
           ),
