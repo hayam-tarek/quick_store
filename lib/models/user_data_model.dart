@@ -4,8 +4,8 @@ class UserDataModel {
   final String email;
   final String phone;
   final String image;
-  final int points;
-  final int credit;
+  final num points;
+  final num credit;
 
   UserDataModel({
     required this.id,
