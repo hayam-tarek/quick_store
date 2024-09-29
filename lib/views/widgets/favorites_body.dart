@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/listener_to_favorite.dart';
 import 'package:quick_store/models/product_model.dart';
 import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:quick_store/views/widgets/simple_product_card.dart';
-import 'package:quick_store/views/widgets/title_with_button.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_store/views/widgets/title_text.dart';
 
 class FavoritesBody extends StatelessWidget {
   const FavoritesBody({
@@ -23,9 +23,9 @@ class FavoritesBody extends StatelessWidget {
         return CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: TitleWithButton(
-                title: 'Favorites',
-                buttonTitle: '${cubit.favorites.length} product',
+              child: TitleText(
+                text: 'Favorite',
+                fontSize: 30,
               ),
             ),
             // if (state is GetFavoriteLoading)
