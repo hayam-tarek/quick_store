@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/product_model.dart';
-import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
-import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
 import 'package:quick_store/views/screens/product_details_screen.dart';
+import 'package:quick_store/views/widgets/cart_button.dart';
 import 'package:quick_store/views/widgets/custom_card.dart';
+import 'package:quick_store/views/widgets/favorite_button.dart';
 import 'package:quick_store/views/widgets/show_price.dart';
 
 class ProductCard extends StatefulWidget {
@@ -22,8 +22,6 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
-    Set<num> favoritesID = BlocProvider.of<FavoriteCubit>(context).favoritesID;
-    Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
     return InkWell(
       onTap: () {
         BlocProvider.of<ProductsCubit>(context)
@@ -79,48 +77,17 @@ class _ProductCardState extends State<ProductCard> {
           Positioned(
             left: 0,
             top: 0,
-            child: IconButton(
-              onPressed: () async {
-                await BlocProvider.of<FavoriteCubit>(context)
-                    .addOrDeleteFavorite(
-                        productId: widget.productModel.id.toInt());
-                if (context.mounted) {
-                  BlocProvider.of<FavoriteCubit>(context).getFavorite();
-                }
-                setState(() {});
-              },
-              icon: (favoritesID.contains(widget.productModel.id))
-                  ? const Icon(
-                      Icons.favorite_rounded,
-                      color: Colors.red,
-                    )
-                  : const Icon(
-                      Icons.favorite_border_rounded,
-                      color: Colors.grey,
-                    ),
+            child: FavoriteButton(
+              context: context,
+              productModel: widget.productModel,
             ),
           ),
           Positioned(
             right: 0,
             bottom: 0,
-            child: IconButton(
-              onPressed: () async {
-                await BlocProvider.of<CartCubit>(context).addOrDeleteFromCart(
-                    productId: widget.productModel.id.toInt());
-                if (context.mounted) {
-                  BlocProvider.of<CartCubit>(context).getCart();
-                }
-                setState(() {});
-              },
-              icon: (cartItemsID.contains(widget.productModel.id))
-                  ? const Icon(
-                      Icons.remove_shopping_cart_outlined,
-                      color: Colors.orange,
-                    )
-                  : const Icon(
-                      Icons.add_shopping_cart,
-                      color: Colors.green,
-                    ),
+            child: CartButton(
+              context: context,
+              productModel: widget.productModel,
             ),
           ),
         ],
