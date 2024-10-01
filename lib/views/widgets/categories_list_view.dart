@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/category_model.dart';
 import 'package:quick_store/view_models/categories_cubit/categories_cubit.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesListView extends StatefulWidget {
   const CategoriesListView({
@@ -16,8 +16,6 @@ class CategoriesListView extends StatefulWidget {
 class _CategoriesListViewState extends State<CategoriesListView> {
   @override
   Widget build(BuildContext context) {
-    List<CategoryModel> categories =
-        BlocProvider.of<CategoriesCubit>(context).categories;
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, state) {
         if (state is GetCategoriesLoading) {
@@ -33,6 +31,8 @@ class _CategoriesListViewState extends State<CategoriesListView> {
             ),
           );
         } else {
+          List<CategoryModel> categories =
+              BlocProvider.of<CategoriesCubit>(context).categories;
           return ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
