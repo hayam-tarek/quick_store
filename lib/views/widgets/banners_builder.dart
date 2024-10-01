@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:quick_store/core/services/banner_services.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/banner_model.dart';
@@ -50,6 +51,13 @@ class _BannersBuilderState extends State<BannersBuilder> {
                       child: Image.network(
                         snapshot.data![index].image,
                         fit: BoxFit.fill,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Icon(
+                            Icons.broken_image,
+                            color: Colors.grey,
+                            size: 70,
+                          );
+                        },
                       ),
                     );
                   },

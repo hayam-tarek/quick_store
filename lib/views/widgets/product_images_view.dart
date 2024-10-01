@@ -28,6 +28,13 @@ class ProductImagesView extends StatelessWidget {
                 child: Image.network(
                   productModel.images![index],
                   fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Icon(
+                      Icons.broken_image,
+                      color: Colors.grey,
+                      size: 70,
+                    );
+                  },
                 ),
               );
             },

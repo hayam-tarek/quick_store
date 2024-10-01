@@ -5,6 +5,7 @@ import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
 import 'package:quick_store/views/screens/product_details_screen.dart';
 import 'package:quick_store/views/widgets/cart_button.dart';
 import 'package:quick_store/views/widgets/custom_card.dart';
+import 'package:quick_store/views/widgets/custom_network_image.dart';
 import 'package:quick_store/views/widgets/favorite_button.dart';
 import 'package:quick_store/views/widgets/show_price.dart';
 
@@ -68,10 +69,8 @@ class _ProductCardState extends State<ProductCard> {
           Positioned(
             right: 20,
             top: -30,
-            child: Image.network(
-              widget.productModel.image,
-              height: 75,
-              width: 75,
+            child: CustomNetworkImage(
+              src: widget.productModel.image,
             ),
           ),
           Positioned(

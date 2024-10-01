@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/product_model.dart';
-import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
 import 'package:quick_store/views/screens/product_details_screen.dart';
 import 'package:quick_store/views/widgets/cart_button.dart';
@@ -26,7 +25,6 @@ class SimpleProductCard extends StatefulWidget {
 class _SimpleProductCardState extends State<SimpleProductCard> {
   @override
   Widget build(BuildContext context) {
-    Set<num> cartItemsID = BlocProvider.of<CartCubit>(context).cartItemsID;
     return InkWell(
       onTap: () {
         BlocProvider.of<ProductsCubit>(context)
@@ -51,6 +49,13 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
                     fit: BoxFit.contain,
                     // width: double.infinity,
                     // height: double.infinity,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Icon(
+                        Icons.broken_image,
+                        color: Colors.grey,
+                        size: 70,
+                      );
+                    },
                   ),
                 ),
               ),
