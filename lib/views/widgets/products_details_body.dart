@@ -65,7 +65,9 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                     await BlocProvider.of<CartCubit>(context)
                         .addOrDeleteFromCart(
                             productId: widget.productModel.id.toInt());
-                    BlocProvider.of<CartCubit>(context).getCart();
+                    if (context.mounted) {
+                      BlocProvider.of<CartCubit>(context).getCart();
+                    }
                     setState(() {});
                   },
                 ),
@@ -85,7 +87,9 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                       await BlocProvider.of<FavoriteCubit>(context)
                           .addOrDeleteFavorite(
                               productId: widget.productModel.id.toInt());
-                      BlocProvider.of<FavoriteCubit>(context).getFavorite();
+                      if (context.mounted) {
+                        BlocProvider.of<FavoriteCubit>(context).getFavorite();
+                      }
                       setState(() {});
                     },
                     icon: favoritesID.contains(widget.productModel.id)

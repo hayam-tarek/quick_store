@@ -64,13 +64,17 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           base64Image =
                               await ImagePickerHelper.convertToBase64Image(
                                   image: image!);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            customSnackBar(text: "Image selected"),
-                          );
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              customSnackBar(text: "Image selected"),
+                            );
+                          }
                         } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            customSnackBar(text: "No image selected"),
-                          );
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              customSnackBar(text: "No image selected"),
+                            );
+                          }
                         }
                       },
                     ),

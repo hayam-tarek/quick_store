@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/views/screens/layout_screen.dart';
 import 'package:quick_store/views/screens/welcome_screen.dart';
-import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,13 +14,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-              kToken != null ? const LayoutScreen() : const WelcomeScreen(),
-        ),
-      );
+      if (mounted) {
+        return Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                kToken != null ? const LayoutScreen() : const WelcomeScreen(),
+          ),
+        );
+      }
     });
     super.initState();
   }
