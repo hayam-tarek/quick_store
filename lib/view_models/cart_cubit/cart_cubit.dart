@@ -12,6 +12,35 @@ part 'cart_state.dart';
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
 
+  Future<void> updateCart({required int cartId, required int quantity}) async {
+    emit(UpdateCartLoading());
+    try {
+      var json = await API().put(
+        url: EndPoints.updateCart(id: cartId),
+        body: {
+          ApiKey.quantity: '$quantity',
+        },
+        headers: {
+          ApiKey.lang: ApiKey.english,
+          ApiKey.authorization: kToken!,
+        },
+      );
+      if (json[ApiKey.status] == true) {
+        emit(UpdateCartSuccess(message: json[ApiKey.message]));
+      } else {
+        throw Exception(json[ApiKey.message]);
+      }
+    } catch (e) {
+      log(e.toString());
+      String message = e.toString().replaceFirst('Exception: ', '');
+      emit(
+        AddOrDeleteFromCartFailure(
+          message: message,
+        ),
+      );
+    }
+  }
+
   Future<void> addOrDeleteFromCart({required int productId}) async {
     emit(AddOrDeleteFromCartLoading());
     try {

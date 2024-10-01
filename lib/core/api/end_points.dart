@@ -18,6 +18,10 @@ class EndPoints {
   static String productDetails({required num id}) {
     return '$baseUrl/products/$id';
   }
+
+  static String updateCart({required num id}) {
+    return '$baseUrl/carts/$id';
+  }
 }
 
 class ApiKey {
@@ -43,4 +47,5 @@ class ApiKey {
   static const String total = 'total';
   static const String oldPassword = 'current_password';
   static const String newPassword = 'new_password';
+  static const String quantity = 'quantity';
 }

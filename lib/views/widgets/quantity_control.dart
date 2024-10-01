@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/cart_model.dart';
+import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 
 class QuantityControl extends StatelessWidget {
   const QuantityControl({
@@ -19,8 +21,12 @@ class QuantityControl extends StatelessWidget {
           foregroundColor: kSecondaryColor,
           radius: 15,
           child: IconButton(
-            onPressed: () {
-              //TODO
+            onPressed: () async {
+              await BlocProvider.of<CartCubit>(context).updateCart(
+                  cartId: cartItemModel.id, quantity: ++cartItemModel.quantity);
+              if (context.mounted) {
+                //BlocProvider.of<CartCubit>(context).getCart();
+              }
             },
             icon: Icon(
               Icons.add,
@@ -39,8 +45,13 @@ class QuantityControl extends StatelessWidget {
           foregroundColor: kSecondaryColor,
           radius: 15,
           child: IconButton(
-            onPressed: () {
-              //TODO
+            onPressed: () async {
+              if (cartItemModel.quantity == 1) return;
+              await BlocProvider.of<CartCubit>(context).updateCart(
+                  cartId: cartItemModel.id, quantity: --cartItemModel.quantity);
+              if (context.mounted) {
+                //BlocProvider.of<CartCubit>(context).getCart();
+              }
             },
             icon: Icon(
               Icons.remove,

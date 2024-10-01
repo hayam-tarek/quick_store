@@ -5,6 +5,18 @@ sealed class CartState {}
 
 final class CartInitial extends CartState {}
 
+final class UpdateCartLoading extends CartState {}
+
+final class UpdateCartSuccess extends CartState {
+  final String message;
+  UpdateCartSuccess({required this.message});
+}
+
+final class UpdateCartFailure extends CartState {
+  final String message;
+  UpdateCartFailure({required this.message});
+}
+
 final class AddOrDeleteFromCartLoading extends CartState {}
 
 final class AddOrDeleteFromCartSuccess extends CartState {
