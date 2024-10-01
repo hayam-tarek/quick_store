@@ -25,7 +25,7 @@ class QuantityControl extends StatelessWidget {
               await BlocProvider.of<CartCubit>(context).updateCart(
                   cartId: cartItemModel.id, quantity: ++cartItemModel.quantity);
               if (context.mounted) {
-                //BlocProvider.of<CartCubit>(context).getCart();
+                BlocProvider.of<CartCubit>(context).getCart();
               }
             },
             icon: Icon(
@@ -50,7 +50,7 @@ class QuantityControl extends StatelessWidget {
               await BlocProvider.of<CartCubit>(context).updateCart(
                   cartId: cartItemModel.id, quantity: --cartItemModel.quantity);
               if (context.mounted) {
-                //BlocProvider.of<CartCubit>(context).getCart();
+                BlocProvider.of<CartCubit>(context).getCart();
               }
             },
             icon: Icon(
