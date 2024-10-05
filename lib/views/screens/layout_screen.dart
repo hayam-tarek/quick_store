@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/categories_cubit/categories_cubit.dart';
@@ -13,8 +15,6 @@ import 'package:quick_store/views/screens/home_screen.dart';
 import 'package:quick_store/views/screens/profile_screen.dart';
 import 'package:quick_store/views/widgets/custom_app_bar.dart';
 import 'package:quick_store/views/widgets/custom_bottom_navigation_bar_item.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
@@ -49,6 +49,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: customAppBar(),
+      endDrawer: Drawer(),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: ClipRRect(

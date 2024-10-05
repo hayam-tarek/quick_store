@@ -6,6 +6,7 @@ const String kBackgroundPath = 'assets/images/auth_background.webp';
 */
 const String kLogoPath = 'assets/images/logo/logo-no-background-sec.png';
 const String kIconPath = 'assets/images/icons/quickshop-favicon-color-sec.png';
+const String kMenuIconPath = 'assets/images/icons/menu.png';
 const Color kPrimaryColor = Color(0xff130912);
 const Color kSecondaryColor = Color(0xffE77917);
 const Color kBackgroundColor = Color(0xffFAFAFA);

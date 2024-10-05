@@ -33,6 +33,13 @@ class CategoryTapedCard extends StatelessWidget {
                 width: double.infinity,
                 categoryModel.image,
                 fit: BoxFit.fill,
+                errorBuilder: (context, error, stackTrace) {
+                  return Icon(
+                    Icons.broken_image,
+                    color: Colors.grey,
+                    size: 70,
+                  );
+                },
               ),
             ),
           ),
