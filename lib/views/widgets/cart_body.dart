@@ -31,6 +31,10 @@ class CartBody extends StatelessWidget {
               ScaffoldMessenger.of(context)
                   .showSnackBar(customSnackBar(text: state.message));
             }
+            if (state is UpdateCartFailure) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(customSnackBar(text: state.message));
+            }
           },
           builder: (context, state) {
             CartCubit cubit = BlocProvider.of<CartCubit>(context);

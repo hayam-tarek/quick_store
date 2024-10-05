@@ -22,11 +22,11 @@ class QuantityControl extends StatelessWidget {
           radius: 15,
           child: IconButton(
             onPressed: () async {
-              await BlocProvider.of<CartCubit>(context).updateCart(
-                  cartId: cartItemModel.id, quantity: ++cartItemModel.quantity);
-              if (context.mounted) {
-                BlocProvider.of<CartCubit>(context).getCart();
-              }
+              await BlocProvider.of<CartCubit>(context)
+                  .updateCart(cartItemModel: cartItemModel, quantity: 1);
+              // if (context.mounted) {
+              //   BlocProvider.of<CartCubit>(context).getCart();
+              // }
             },
             icon: Icon(
               Icons.add,
@@ -47,11 +47,11 @@ class QuantityControl extends StatelessWidget {
           child: IconButton(
             onPressed: () async {
               if (cartItemModel.quantity == 1) return;
-              await BlocProvider.of<CartCubit>(context).updateCart(
-                  cartId: cartItemModel.id, quantity: --cartItemModel.quantity);
-              if (context.mounted) {
-                BlocProvider.of<CartCubit>(context).getCart();
-              }
+              await BlocProvider.of<CartCubit>(context)
+                  .updateCart(cartItemModel: cartItemModel, quantity: -1);
+              // if (context.mounted) {
+              //   BlocProvider.of<CartCubit>(context).getCart();
+              // }
             },
             icon: Icon(
               Icons.remove,
