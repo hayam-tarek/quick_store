@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/product_model.dart';
 import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
 
-class FavoriteButton extends StatefulWidget {
+class FavoriteButton extends StatelessWidget {
   const FavoriteButton({
     super.key,
     required this.context,
@@ -14,23 +14,18 @@ class FavoriteButton extends StatefulWidget {
   final ProductModel productModel;
 
   @override
-  State<FavoriteButton> createState() => _FavoriteButtonState();
-}
-
-class _FavoriteButtonState extends State<FavoriteButton> {
-  @override
   Widget build(BuildContext context) {
     Set<num> favoritesID = BlocProvider.of<FavoriteCubit>(context).favoritesID;
     return IconButton(
       onPressed: () async {
-        await BlocProvider.of<FavoriteCubit>(context)
-            .addOrDeleteFavorite(productId: widget.productModel.id.toInt());
-        if (context.mounted) {
-          BlocProvider.of<FavoriteCubit>(context).getFavorite();
-        }
-        setState(() {});
+        BlocProvider.of<FavoriteCubit>(context)
+            .addOrDeleteFavorite(productId: productModel.id.toInt());
+        // if (context.mounted) {
+        //   BlocProvider.of<FavoriteCubit>(context).getFavorite();
+        // }
+        // setState(() {});
       },
-      icon: (favoritesID.contains(widget.productModel.id))
+      icon: (favoritesID.contains(productModel.id))
           ? const Icon(
               Icons.favorite_rounded,
               color: Colors.red,

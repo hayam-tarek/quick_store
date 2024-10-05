@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
-import 'package:quick_store/core/utils/listener_to_cart.dart';
-import 'package:quick_store/core/utils/listener_to_favorite.dart';
 import 'package:quick_store/models/product_model.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
+import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 import 'package:quick_store/views/widgets/product_card.dart';
 
 class ProductsBody extends StatelessWidget {
@@ -40,12 +40,20 @@ class ProductsBody extends StatelessWidget {
     } else {
       return BlocConsumer<FavoriteCubit, FavoriteState>(
         listener: (context, state) {
-          listenerToFavorite(context, state);
+          //listenerToFavorite(context, state);
+          if (state is AddOrDeleteFavoriteFailure) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(customSnackBar(text: state.message));
+          }
         },
         builder: (context, state) {
           return BlocConsumer<CartCubit, CartState>(
             listener: (context, state) {
-              listenerToCart(context, state);
+              // listenerToCart(context, state);
+              if (state is AddOrDeleteFromCartFailure) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(customSnackBar(text: state.message));
+              }
             },
             builder: (context, state) {
               return SliverGrid.builder(
