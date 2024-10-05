@@ -1,17 +1,22 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:meta/meta.dart';
 import 'package:quick_store/core/api/api.dart';
 import 'package:quick_store/core/api/end_points.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/product_model.dart';
-import 'package:meta/meta.dart';
 
 part 'favorite_state.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
   Future<void> addOrDeleteFavorite({required int productId}) async {
+    if (favoritesID.contains(productId)) {
+      favoritesID.remove(productId);
+    } else {
+      favoritesID.add(productId);
+    }
     emit(AddOrDeleteFavoriteLoading());
     try {
       var json = await API().post(
@@ -25,13 +30,14 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         },
       );
       if (json[ApiKey.status] == true) {
+        emit(AddOrDeleteFavoriteSuccess(message: json[ApiKey.message]));
+        getFavorite();
+      } else {
         if (favoritesID.contains(productId)) {
           favoritesID.remove(productId);
         } else {
           favoritesID.add(productId);
         }
-        emit(AddOrDeleteFavoriteSuccess(message: json[ApiKey.message]));
-      } else {
         throw Exception(json[ApiKey.message]);
       }
     } catch (e) {

@@ -62,13 +62,12 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                       ? 'Remove from Cart'
                       : 'Add to Cart',
                   onPressed: () async {
-                    await BlocProvider.of<CartCubit>(context)
-                        .addOrDeleteFromCart(
-                            productId: widget.productModel.id.toInt());
-                    if (context.mounted) {
-                      BlocProvider.of<CartCubit>(context).getCart();
-                    }
-                    setState(() {});
+                    BlocProvider.of<CartCubit>(context).addOrDeleteFromCart(
+                        productId: widget.productModel.id.toInt());
+                    // if (context.mounted) {
+                    //   BlocProvider.of<CartCubit>(context).getCart();
+                    // }
+                    // setState(() {});
                   },
                 ),
               ),
@@ -84,13 +83,13 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                   ),
                   child: IconButton(
                     onPressed: () async {
-                      await BlocProvider.of<FavoriteCubit>(context)
+                      BlocProvider.of<FavoriteCubit>(context)
                           .addOrDeleteFavorite(
                               productId: widget.productModel.id.toInt());
-                      if (context.mounted) {
-                        BlocProvider.of<FavoriteCubit>(context).getFavorite();
-                      }
-                      setState(() {});
+                      // if (context.mounted) {
+                      //   BlocProvider.of<FavoriteCubit>(context).getFavorite();
+                      // }
+                      // setState(() {});
                     },
                     icon: favoritesID.contains(widget.productModel.id)
                         ? const Icon(

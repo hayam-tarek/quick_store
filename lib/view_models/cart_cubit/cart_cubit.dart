@@ -42,6 +42,11 @@ class CartCubit extends Cubit<CartState> {
   }
 
   Future<void> addOrDeleteFromCart({required int productId}) async {
+    if (cartItemsID.contains(productId)) {
+      cartItemsID.remove(productId);
+    } else {
+      cartItemsID.add(productId);
+    }
     emit(AddOrDeleteFromCartLoading());
     try {
       var json = await API().post(
@@ -55,13 +60,14 @@ class CartCubit extends Cubit<CartState> {
         },
       );
       if (json[ApiKey.status] == true) {
+        emit(AddOrDeleteFromCartSuccess(message: json[ApiKey.message]));
+        getCart();
+      } else {
         if (cartItemsID.contains(productId)) {
           cartItemsID.remove(productId);
         } else {
           cartItemsID.add(productId);
         }
-        emit(AddOrDeleteFromCartSuccess(message: json[ApiKey.message]));
-      } else {
         throw Exception(json[ApiKey.message]);
       }
     } catch (e) {

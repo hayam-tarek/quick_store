@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/product_model.dart';
+import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
+import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
 import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
 import 'package:quick_store/views/widgets/custom_simple_app_bar.dart';
+import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 import 'package:quick_store/views/widgets/products_details_body.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -37,7 +40,27 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             } else {
               ProductModel productModel =
                   BlocProvider.of<ProductsCubit>(context).productDetails!;
-              return ProductDetailsBody(productModel: productModel);
+              return BlocConsumer<FavoriteCubit, FavoriteState>(
+                listener: (context, state) {
+                  if (state is AddOrDeleteFavoriteFailure) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(customSnackBar(text: state.message));
+                  }
+                },
+                builder: (context, state) {
+                  return BlocConsumer<CartCubit, CartState>(
+                    listener: (context, state) {
+                      if (state is AddOrDeleteFromCartFailure) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(customSnackBar(text: state.message));
+                      }
+                    },
+                    builder: (context, state) {
+                      return ProductDetailsBody(productModel: productModel);
+                    },
+                  );
+                },
+              );
             }
           },
         ),
