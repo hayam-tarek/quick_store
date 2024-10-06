@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_store/core/utils/location.dart';
 import 'package:quick_store/models/user_data_model.dart';
 import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
 import 'package:quick_store/views/screens/update_profile_screen.dart';
@@ -69,6 +70,13 @@ class ProfileBody extends StatelessWidget {
                   return PasswordDialog();
                 },
               );
+            },
+          ),
+          TappedCard(
+            title: 'Location',
+            iconData: Icons.location_history,
+            onTap: () {
+              Location.determinePosition();
             },
           ),
           TappedCard(
