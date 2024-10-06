@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quick_store/core/utils/location.dart';
 import 'package:quick_store/models/user_data_model.dart';
 import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
+import 'package:quick_store/views/screens/location_screen.dart';
 import 'package:quick_store/views/screens/update_profile_screen.dart';
 import 'package:quick_store/views/screens/welcome_screen.dart';
 import 'package:quick_store/views/widgets/custom_circle_avatar.dart';
@@ -76,7 +76,14 @@ class ProfileBody extends StatelessWidget {
             title: 'Location',
             iconData: Icons.location_history,
             onTap: () {
-              Location.determinePosition();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return LocationScreen();
+                  },
+                ),
+              );
             },
           ),
           TappedCard(
