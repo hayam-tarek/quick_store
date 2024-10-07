@@ -1,16 +1,22 @@
 import 'dart:developer';
 
+import 'package:bloc/bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:meta/meta.dart';
 
-class LocationServices {
-  static determinePosition() async {
+part 'location_services_state.dart';
+
+class LocationServicesCubit extends Cubit<LocationServicesState> {
+  LocationServicesCubit() : super(LocationServicesInitial());
+  Position? currentPosition;
+  determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       log('Location services are disabled.');
-      return null;
+      emit(LocationServicesAreDisabled());
     }
 
     permission = await Geolocator.checkPermission();
@@ -18,13 +24,13 @@ class LocationServices {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         log('Location permissions are denied');
-        return null;
+        emit(LocationPermissionsAreDenied());
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       log('Location permissions are permanently denied, we cannot request permissions.');
-      return null;
+      emit(LocationPermissionsAreDeniedForever());
     }
 
     final LocationSettings locationSettings = LocationSettings(
@@ -32,10 +38,14 @@ class LocationServices {
       distanceFilter: 100,
     );
     //Current location
-    Position currentPosition = await Geolocator.getCurrentPosition(
+    currentPosition = await Geolocator.getCurrentPosition(
       locationSettings: locationSettings,
     );
-    return currentPosition;
+
+    if (currentPosition != null) {
+      log('Current position: $currentPosition');
+      emit(LocationServicesAreEnabled());
+    }
 
     //Last known location
     // Position? lastPosition = await Geolocator.getLastKnownPosition();

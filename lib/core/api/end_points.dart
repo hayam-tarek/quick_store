@@ -11,6 +11,7 @@ class EndPoints {
   static const String changePassword = '$baseUrl/change-password';
   static const String updateProfile = '$baseUrl/update-profile';
   static const String logout = '$baseUrl/logout';
+  static const String addAddress = '$baseUrl/addresses';
   static String categoryProducts({required num id}) {
     return '$baseUrl/categories/$id';
   }
@@ -48,4 +49,12 @@ class ApiKey {
   static const String oldPassword = 'current_password';
   static const String newPassword = 'new_password';
   static const String quantity = 'quantity';
+  static const String address = 'address';
+  static const String addresses = 'addresses';
+  static const String city = 'city';
+  static const String region = 'region';
+  static const String details = 'details';
+  static const String notes = 'notes';
+  static const String lat = 'latitude';
+  static const String lng = 'longitude';
 }
