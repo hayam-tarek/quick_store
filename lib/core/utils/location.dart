@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:geolocator/geolocator.dart';
 
-class Location {
+class LocationServices {
   static determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
