@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 
@@ -9,6 +10,10 @@ part 'location_services_state.dart';
 class LocationServicesCubit extends Cubit<LocationServicesState> {
   LocationServicesCubit() : super(LocationServicesInitial());
   Position? currentPosition;
+  String? name;
+  String? city;
+  String? region;
+  String? details;
   determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -25,12 +30,14 @@ class LocationServicesCubit extends Cubit<LocationServicesState> {
       if (permission == LocationPermission.denied) {
         log('Location permissions are denied');
         emit(LocationPermissionsAreDenied());
+        return;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       log('Location permissions are permanently denied, we cannot request permissions.');
       emit(LocationPermissionsAreDeniedForever());
+      return;
     }
 
     final LocationSettings locationSettings = LocationSettings(
@@ -43,7 +50,15 @@ class LocationServicesCubit extends Cubit<LocationServicesState> {
     );
 
     if (currentPosition != null) {
-      log('Current position: $currentPosition');
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        currentPosition!.latitude,
+        currentPosition!.longitude,
+      );
+      name = placemarks[0].name;
+      city = placemarks[0].administrativeArea;
+      region = placemarks[0].subAdministrativeArea;
+      details = placemarks[0].street;
+
       emit(LocationServicesAreEnabled());
     }
 
