@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -15,51 +13,51 @@ class LocationServicesCubit extends Cubit<LocationServicesState> {
   String? region;
   String? details;
   determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
+    try {
+      bool serviceEnabled;
+      LocationPermission permission;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      log('Location services are disabled.');
-      emit(LocationServicesAreDisabled());
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        log('Location permissions are denied');
-        emit(LocationPermissionsAreDenied());
-        return;
+      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        emit(LocationServicesAreDisabled());
       }
-    }
 
-    if (permission == LocationPermission.deniedForever) {
-      log('Location permissions are permanently denied, we cannot request permissions.');
-      emit(LocationPermissionsAreDeniedForever());
-      return;
-    }
+      permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          emit(LocationPermissionsAreDenied());
+          // return;
+        }
+      }
+      if (permission == LocationPermission.deniedForever) {
+        emit(LocationPermissionsAreDeniedForever());
+        // return;
+      }
 
-    final LocationSettings locationSettings = LocationSettings(
-      accuracy: LocationAccuracy.high,
-      distanceFilter: 100,
-    );
-    //Current location
-    currentPosition = await Geolocator.getCurrentPosition(
-      locationSettings: locationSettings,
-    );
-
-    if (currentPosition != null) {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-        currentPosition!.latitude,
-        currentPosition!.longitude,
+      final LocationSettings locationSettings = LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 100,
       );
-      name = placemarks[0].name;
-      city = placemarks[0].administrativeArea;
-      region = placemarks[0].subAdministrativeArea;
-      details = placemarks[0].street;
+      //Current location
+      currentPosition = await Geolocator.getCurrentPosition(
+        locationSettings: locationSettings,
+      );
 
-      emit(LocationServicesAreEnabled());
+      if (currentPosition != null) {
+        List<Placemark> placemarks = await placemarkFromCoordinates(
+          currentPosition!.latitude,
+          currentPosition!.longitude,
+        );
+        name = placemarks[0].name;
+        city = placemarks[0].administrativeArea;
+        region = placemarks[0].subAdministrativeArea;
+        details = placemarks[0].street;
+
+        emit(LocationServicesAreEnabled());
+      }
+    } on Exception catch (e) {
+      emit(LocationServicesException(message: e.toString()));
     }
 
     //Last known location

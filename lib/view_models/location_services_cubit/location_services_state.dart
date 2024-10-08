@@ -12,3 +12,9 @@ final class LocationPermissionsAreDenied extends LocationServicesState {}
 final class LocationPermissionsAreDeniedForever extends LocationServicesState {}
 
 final class LocationServicesAreEnabled extends LocationServicesState {}
+
+final class LocationServicesException extends LocationServicesState {
+  final String message;
+
+  LocationServicesException({required this.message});
+}
