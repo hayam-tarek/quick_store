@@ -34,7 +34,7 @@ class LocationServicesCubit extends Cubit<LocationServicesState> {
         emit(LocationPermissionsAreDeniedForever());
         // return;
       }
-
+      emit(LocationServicesLoading());
       final LocationSettings locationSettings = LocationSettings(
         accuracy: LocationAccuracy.high,
         distanceFilter: 100,

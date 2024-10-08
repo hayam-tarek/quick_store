@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/addresses_cubit/addresses_cubit.dart';
 import 'package:quick_store/view_models/location_services_cubit/location_services_cubit.dart';
+import 'package:quick_store/views/widgets/add_address_button.dart';
 import 'package:quick_store/views/widgets/address_sheet.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_simple_app_bar.dart';
@@ -72,42 +73,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     width: 16,
                   ),
                   Expanded(
-                    child: BlocConsumer<AddressesCubit, AddressesState>(
-                      listener: (context, state) {
-                        if (state is AddAddressFailure) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              customSnackBar(text: state.message));
-                        }
-                        if (state is AddAddressSuccess) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              customSnackBar(text: state.message));
-                          Navigator.pop(context);
-                        }
-                      },
-                      builder: (context, state) {
-                        return CustomMaterialButton(
-                          color: kPrimaryColor,
-                          text: state is AddAddressLoading
-                              ? "Loading..."
-                              : "Save",
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              formKey.currentState!.save();
-                              BlocProvider.of<AddressesCubit>(context)
-                                  .addAddress(
-                                      name: nameController.text,
-                                      city: cityController.text,
-                                      region: regionController.text,
-                                      details: detailsController.text,
-                                      notes: notesController.text,
-                                      lat: "${cubit.currentPosition!.altitude}",
-                                      lng:
-                                          "${cubit.currentPosition!.longitude}");
-                              //Navigator.pop(context);
-                            }
-                          },
-                        );
-                      },
+                    child: AddAddressButton(
+                      formKey: formKey,
+                      nameController: nameController,
+                      cityController: cityController,
+                      regionController: regionController,
+                      detailsController: detailsController,
+                      notesController: notesController,
+                      currentPosition: cubit.currentPosition!,
                     ),
                   ),
                 ],

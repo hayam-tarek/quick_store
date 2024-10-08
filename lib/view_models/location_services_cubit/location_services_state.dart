@@ -5,6 +5,8 @@ sealed class LocationServicesState {}
 
 final class LocationServicesInitial extends LocationServicesState {}
 
+final class LocationServicesLoading extends LocationServicesState {}
+
 final class LocationServicesAreDisabled extends LocationServicesState {}
 
 final class LocationPermissionsAreDenied extends LocationServicesState {}
