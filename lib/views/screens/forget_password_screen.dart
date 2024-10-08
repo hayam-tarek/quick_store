@@ -21,7 +21,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Image.asset(
-                'assets/images/forget.png',
+                kForgetPasswordPath,
               ),
             ),
             Expanded(

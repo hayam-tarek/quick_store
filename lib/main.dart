@@ -9,6 +9,7 @@ import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/categories_cubit/categories_cubit.dart';
 import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
+import 'package:quick_store/view_models/location_services_cubit/location_services_cubit.dart';
 import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
 import 'package:quick_store/view_models/profile_cubit/profile_cubit.dart';
 import 'package:quick_store/views/screens/splash_screen.dart';
@@ -47,6 +48,9 @@ class ECommerceApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ProfileCubit(),
+        ),
+        BlocProvider(
+          create: (context) => LocationServicesCubit(),
         ),
       ],
       child: MaterialApp(

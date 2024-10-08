@@ -14,6 +14,8 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.initialValue,
     this.onSaved,
+    this.minLines = 1,
+    this.maxLines = 1,
   });
   final String labelText;
   final TextEditingController? controller;
@@ -24,11 +26,15 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final String? initialValue;
+  final int? minLines;
+  final int? maxLines;
   final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      minLines: minLines,
+      maxLines: maxLines,
       onSaved: onSaved,
       initialValue: initialValue,
       cursorColor: kSecondaryColor,
