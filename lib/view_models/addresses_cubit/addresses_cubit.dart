@@ -10,7 +10,7 @@ part 'addresses_state.dart';
 
 class AddressesCubit extends Cubit<AddressesState> {
   AddressesCubit() : super(AddressesInitial());
-  String? lastAddedAddressId;
+  int? lastAddedAddressId;
   void addAddress({
     required String name,
     required String city,
@@ -25,7 +25,7 @@ class AddressesCubit extends Cubit<AddressesState> {
       var json = await API().post(
         url: EndPoints.addAddress,
         body: {
-          ApiKey.email: name,
+          ApiKey.name: name,
           ApiKey.city: city,
           ApiKey.region: region,
           ApiKey.details: details,
