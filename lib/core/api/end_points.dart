@@ -14,6 +14,7 @@ class EndPoints {
   static final String updateProfile = '$baseUrl/update-profile';
   static final String logout = '$baseUrl/logout';
   static final String addAddress = '$baseUrl/addresses';
+  static final String addOrder = '$baseUrl/orders';
   static String categoryProducts({required num id}) {
     return '$baseUrl/categories/$id';
   }
@@ -59,4 +60,7 @@ class ApiKey {
   static const String notes = 'notes';
   static const String lat = 'latitude';
   static const String lng = 'longitude';
+  static const String addressId = 'address_id';
+  static const String paymentMethod = 'payment_method';
+  static const String usePoints = 'use_points';
 }

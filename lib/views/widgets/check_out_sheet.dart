@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/views/screens/check_out_screen.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 
 class CheckOutSheet extends StatelessWidget {
@@ -47,7 +48,11 @@ class CheckOutSheet extends StatelessWidget {
             color: kPrimaryColor,
             text: "Check Out",
             onPressed: () {
-              //TODO
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return CheckOutScreen();
+                },
+              ));
             },
           ),
         ),
