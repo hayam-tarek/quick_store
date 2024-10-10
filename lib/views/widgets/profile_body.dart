@@ -37,10 +37,20 @@ class ProfileBody extends StatelessWidget {
             title: userDataModel.email,
             iconData: Icons.email_rounded,
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
           DisplayContact(
             title: userDataModel.phone,
             iconData: Icons.phone_rounded,
+          ),
+          const SizedBox(height: 5),
+          DisplayContact(
+            title: '\$${userDataModel.credit.toString()}',
+            iconData: Icons.credit_card,
+          ),
+          const SizedBox(height: 5),
+          DisplayContact(
+            title: '${userDataModel.points.toString()} point.',
+            iconData: Icons.loyalty,
           ),
           const Divider(
             indent: 50,
