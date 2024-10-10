@@ -23,3 +23,4 @@ const String kSecondaryFont = 'Arimo';
 const String kLastAddressId = 'lastAddressId';
 String? kToken;
 String? kLastAddressIdValue;
+String kApiBaseUrl = '';

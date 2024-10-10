@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
@@ -61,7 +59,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
             type: BottomNavigationBarType.fixed,
             backgroundColor: kBackgroundColor,
             onTap: (value) {
-              log('$value');
               setState(() {
                 currentIndex = value;
                 pageController.jumpToPage(value);
@@ -103,7 +100,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
         // physics: NeverScrollableScrollPhysics(),
         controller: pageController,
         onPageChanged: (index) {
-          log('page index $index');
           setState(() {
             currentIndex = index;
             pageController.jumpToPage(index);

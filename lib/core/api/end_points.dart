@@ -1,17 +1,19 @@
+import 'package:quick_store/core/utils/constant.dart';
+
 class EndPoints {
-  static const String baseUrl = 'https://student.valuxapps.com/api';
-  static const String login = '$baseUrl/login';
-  static const String register = '$baseUrl/register';
-  static const String profile = '$baseUrl/profile';
-  static const String categories = '$baseUrl/categories';
-  static const String banners = '$baseUrl/banners';
-  static const String home = '$baseUrl/home';
-  static const String favorites = '$baseUrl/favorites';
-  static const String carts = '$baseUrl/carts';
-  static const String changePassword = '$baseUrl/change-password';
-  static const String updateProfile = '$baseUrl/update-profile';
-  static const String logout = '$baseUrl/logout';
-  static const String addAddress = '$baseUrl/addresses';
+  static final String baseUrl = kApiBaseUrl;
+  static final String login = '$baseUrl/login';
+  static final String register = '$baseUrl/register';
+  static final String profile = '$baseUrl/profile';
+  static final String categories = '$baseUrl/categories';
+  static final String banners = '$baseUrl/banners';
+  static final String home = '$baseUrl/home';
+  static final String favorites = '$baseUrl/favorites';
+  static final String carts = '$baseUrl/carts';
+  static final String changePassword = '$baseUrl/change-password';
+  static final String updateProfile = '$baseUrl/update-profile';
+  static final String logout = '$baseUrl/logout';
+  static final String addAddress = '$baseUrl/addresses';
   static String categoryProducts({required num id}) {
     return '$baseUrl/categories/$id';
   }

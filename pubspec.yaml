@@ -44,6 +44,7 @@ dependencies:
   image_picker: ^1.1.2
   geolocator: ^13.0.1
   geocoding: ^3.0.0
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.1
@@ -78,6 +79,7 @@ flutter:
     - assets/images/logo/
     - assets/images/icons/
     - assets/images/
+    - .env
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

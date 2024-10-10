@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:quick_store/core/services/local_storage.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/core/utils/simple_bloc_observer.dart';
@@ -17,11 +16,11 @@ import 'package:quick_store/views/screens/splash_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
+  await dotenv.load(fileName: ".env");
+  kApiBaseUrl = dotenv.env['API_BASE_URL']!;
   await LocalData.cacheInitialization();
   kToken = LocalData().getFromCache(key: 'token');
   kLastAddressIdValue = LocalData().getFromCache(key: kLastAddressId);
-  log('$kToken');
-  log('$kLastAddressIdValue');
   runApp(const ECommerceApp());
 }
 

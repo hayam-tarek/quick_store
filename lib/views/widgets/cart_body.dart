@@ -102,7 +102,8 @@ class CartBody extends StatelessWidget {
                     ],
                   ),
                 ),
-                CheckOutSheet(totalPrice: cubit.total),
+                if (cartItems.isNotEmpty)
+                  CheckOutSheet(totalPrice: cubit.total),
               ],
             );
           },
