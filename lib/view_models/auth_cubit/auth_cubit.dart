@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_store/core/api/api.dart';
 import 'package:quick_store/core/api/end_points.dart';
+import 'package:quick_store/core/services/local_storage.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/core/utils/token.dart';
 
@@ -95,6 +96,8 @@ class AuthCubit extends Cubit<AuthState> {
       );
       if (json[ApiKey.status] == true) {
         await Token.deleteToken();
+        await LocalData().removeFromCache(key: kLastAddressId);
+        kLastAddressIdValue = null;
         emit(LogoutSuccessState(message: json[ApiKey.message]));
       } else {
         throw Exception(json[ApiKey.message]);

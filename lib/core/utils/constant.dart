@@ -5,10 +5,12 @@ const String kBackgroundPath = 'assets/images/auth_background.webp';
 * second style
 */
 const String kLogoPath = 'assets/images/logo/logo-no-background-sec.png';
-const String kIconPath = 'assets/images/icons/quickshop-favicon-color-sec.png';
+const String kIconPath = 'assets/images/icons/quickstore-favicon-color-sec.png';
 const String kMenuIconPath = 'assets/images/icons/menu.png';
 const String kCurrentLocationPath = 'assets/images/current-location.png';
 const String kForgetPasswordPath = 'assets/images/forget-password.png';
+const String kEmptyCartPath = 'assets/images/empty-cart.png';
+const String kFavBagPath = 'assets/images/fav-bag.png';
 const Color kPrimaryColor = Color(0xff130912);
 const Color kSecondaryColor = Color(0xffE77917);
 const Color kBackgroundColor = Color(0xffFAFAFA);
@@ -16,17 +18,8 @@ const Color kForegroundColor = Color(0xffFAFAFA);
 const String kPrimaryFont = 'Arapey';
 const String kSecondaryFont = 'Arimo';
 /*
-* first style
-*/
-// const String kLogoPath = 'assets/images/logo/logo-no-background-fr.png';
-// const String kIconPath = 'assets/images/icons/quickshop-favicon-color-fr.png';
-// const Color kPrimaryColor = Color(0xff1E55B3);
-// const Color kSecondaryColor = Color(0xffFF585F);
-// const Color kBackgroundColor = Color(0xffFFFFFF);
-// const Color kForegroundColor = Color(0xffFFFFFF);
-// const String kPrimaryFont = 'Jolly Lodger';
-// const String kSecondaryFont = 'JetBrains Mono';
-/*
  *
  */
+const String kLastAddressId = 'lastAddressId';
 String? kToken;
+String? kLastAddressIdValue;

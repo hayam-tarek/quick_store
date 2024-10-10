@@ -4,13 +4,13 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:quick_store/core/api/api.dart';
 import 'package:quick_store/core/api/end_points.dart';
+import 'package:quick_store/core/services/local_storage.dart';
 import 'package:quick_store/core/utils/constant.dart';
 
 part 'addresses_state.dart';
 
 class AddressesCubit extends Cubit<AddressesState> {
   AddressesCubit() : super(AddressesInitial());
-  int? lastAddedAddressId;
   void addAddress({
     required String name,
     required String city,
@@ -39,7 +39,9 @@ class AddressesCubit extends Cubit<AddressesState> {
         },
       );
       if (json[ApiKey.status] == true) {
-        lastAddedAddressId = json[ApiKey.data][ApiKey.id];
+        await LocalData().setToCache(
+            key: kLastAddressId, value: '${json[ApiKey.data][ApiKey.id]}');
+        kLastAddressIdValue = LocalData().getFromCache(key: kLastAddressId);
         emit(AddAddressSuccess(message: json[ApiKey.message]));
       } else {
         throw Exception(json[ApiKey.message]);

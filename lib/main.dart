@@ -19,7 +19,9 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   await LocalData.cacheInitialization();
   kToken = LocalData().getFromCache(key: 'token');
+  kLastAddressIdValue = LocalData().getFromCache(key: kLastAddressId);
   log('$kToken');
+  log('$kLastAddressIdValue');
   runApp(const ECommerceApp());
 }
 

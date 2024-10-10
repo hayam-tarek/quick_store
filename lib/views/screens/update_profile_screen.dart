@@ -106,7 +106,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   const SizedBox(height: 20),
                   CustomMaterialButton(
                     color: kPrimaryColor,
-                    text: state is UpdateProfileLoading ? "Loading" : "Update",
+                    text:
+                        state is UpdateProfileLoading ? "Loading..." : "Update",
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();

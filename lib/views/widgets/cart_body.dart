@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/cart_model.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/favorite_cubit/favorite_cubit.dart';
@@ -60,11 +61,18 @@ class CartBody extends StatelessWidget {
                       //   )
                       // else
                       if (state is GetCartFailure || cartItems.isEmpty)
-                        const SliverFillRemaining(
-                          child: Center(
-                            child: Text(
-                              "No Products",
-                            ),
+                        SliverFillRemaining(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                kEmptyCartPath,
+                                scale: 2,
+                              ),
+                              Text(
+                                "Your cart is empty",
+                              ),
+                            ],
                           ),
                         )
                       else
