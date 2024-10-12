@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/api/end_points.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
+import 'package:quick_store/view_models/orders_cubit/orders_cubit.dart';
+import 'package:quick_store/views/screens/submit_order_screen.dart';
 import 'package:quick_store/views/widgets/custom_check_box.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_simple_app_bar.dart';
@@ -37,6 +39,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               SizedBox(height: 10),
               CustomCheckBox(
                 title: 'Use Points',
+                icon: Icons.loyalty,
                 value: usePoints,
                 onChanged: (value) {
                   setState(() {
@@ -51,9 +54,26 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               SizedBox(height: 20),
               CustomMaterialButton(
                 color: kPrimaryColor,
-                text: "Submit",
+                text: "Continue",
                 onPressed: () {
-                  //TODO
+                  num? paymentMethod =
+                      BlocProvider.of<OrdersCubit>(context).paymentMethod;
+                  if (paymentMethod == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Please choose a payment method"),
+                      ),
+                    );
+                  } else {
+                    Navigator.pushReplacement(context, MaterialPageRoute(
+                      builder: (context) {
+                        return SubmitOrderScreen(
+                          paymentMethod: paymentMethod,
+                          usePoints: usePoints,
+                        );
+                      },
+                    ));
+                  }
                 },
               )
             ],

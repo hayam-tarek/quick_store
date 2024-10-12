@@ -13,8 +13,9 @@ const String kEmptyCartPath = 'assets/images/empty-cart.png';
 const String kFavBagPath = 'assets/images/fav-bag.png';
 
 const String kWishlistPath = 'assets/images/wishlist.png';
-const String kCashOnDelivery = 'assets/images/cash-on-delivery.png';
-const String kOnlinePayment = 'assets/images/online-payment.png';
+const String kCashOnDeliveryPath = 'assets/images/cash-on-delivery.png';
+const String kOnlinePaymentPath = 'assets/images/online-payment.png';
+const String kLocationPath = 'assets/images/location.png';
 
 const String kCardPath = 'assets/images/card.png';
 const String kCashPath = 'assets/images/cash.png';

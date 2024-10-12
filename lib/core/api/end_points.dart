@@ -69,11 +69,11 @@ class ApiValues {
   static const List<Map<String, String>> paymentMethods = [
     {
       "name": "Cash",
-      "image": kCashOnDelivery,
+      "image": kCashOnDeliveryPath,
     },
     {
       "name": "Online",
-      "image": kOnlinePayment,
+      "image": kOnlinePaymentPath,
     },
   ];
 }
