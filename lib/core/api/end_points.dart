@@ -64,3 +64,16 @@ class ApiKey {
   static const String paymentMethod = 'payment_method';
   static const String usePoints = 'use_points';
 }
+
+class ApiValues {
+  static const List<Map<String, String>> paymentMethods = [
+    {
+      "name": "Cash",
+      "image": kCashOnDelivery,
+    },
+    {
+      "name": "Online",
+      "image": kOnlinePayment,
+    },
+  ];
+}
