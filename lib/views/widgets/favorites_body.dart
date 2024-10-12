@@ -57,11 +57,16 @@ class FavoritesBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          kFavBagPath,
-                          scale: 4,
+                          kWishlistPath,
+                          scale: 5,
                         ),
                         const SizedBox(height: 20),
-                        Text("No Favorites Yet"),
+                        Text(
+                          "No Favorites Yet",
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
                       ],
                     ),
                   )

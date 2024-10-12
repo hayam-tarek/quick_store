@@ -11,6 +11,11 @@ const String kCurrentLocationPath = 'assets/images/current-location.png';
 const String kForgetPasswordPath = 'assets/images/forget-password.png';
 const String kEmptyCartPath = 'assets/images/empty-cart.png';
 const String kFavBagPath = 'assets/images/fav-bag.png';
+
+const String kWishlistPath = 'assets/images/wishlist.png';
+const String kCashOnDelivery = 'assets/images/cash-on-delivery.png';
+const String kOnlinePayment = 'assets/images/online-payment.png';
+
 const String kCardPath = 'assets/images/card.png';
 const String kCashPath = 'assets/images/cash.png';
 const Color kPrimaryColor = Color(0xff130912);

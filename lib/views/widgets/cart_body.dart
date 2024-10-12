@@ -67,10 +67,16 @@ class CartBody extends StatelessWidget {
                             children: [
                               Image.asset(
                                 kEmptyCartPath,
-                                scale: 2,
+                                scale: 5,
+                              ),
+                              SizedBox(
+                                height: 20,
                               ),
                               Text(
                                 "Your cart is empty",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
                               ),
                             ],
                           ),

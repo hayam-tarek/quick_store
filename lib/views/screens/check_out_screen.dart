@@ -19,11 +19,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   final List<dynamic> paymentMethods = [
     {
       "name": "Cash",
-      "image": kCashPath,
+      "image": kCashOnDelivery,
     },
     {
-      "name": "Card",
-      "image": kCardPath,
+      "name": "Online",
+      "image": kOnlinePayment,
     }
   ];
 
@@ -47,13 +47,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               ),
               SizedBox(height: 20),
               SizedBox(
-                height: 150,
+                height: 170,
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    mainAxisExtent: 150,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
+                    mainAxisExtent: 180,
                   ),
                   itemCount: paymentMethods.length,
                   itemBuilder: (context, index) {
@@ -64,13 +64,27 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           log('$currentIndex');
                         });
                       },
-                      child: Image.asset(
-                        scale: currentIndex == -1
-                            ? 1
-                            : currentIndex != index
-                                ? 6
-                                : 1,
-                        paymentMethods[index]["image"],
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            scale: currentIndex == -1
+                                ? 4
+                                : currentIndex != index
+                                    ? 6
+                                    : 4,
+                            paymentMethods[index]["image"],
+                          ),
+                          Text(
+                            paymentMethods[index]["name"],
+                            style: TextStyle(
+                                color: currentIndex == -1
+                                    ? kPrimaryColor
+                                    : currentIndex != index
+                                        ? Colors.grey
+                                        : kSecondaryColor),
+                          ),
+                        ],
                       ),
                     );
                   },
