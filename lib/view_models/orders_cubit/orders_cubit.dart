@@ -11,6 +11,7 @@ part 'orders_state.dart';
 
 class OrdersCubit extends Cubit<OrdersState> {
   OrdersCubit() : super(OrdersInitial());
+  num? paymentMethod;
   void addOrder({
     required num addressId,
     required num paymentMethod,

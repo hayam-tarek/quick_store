@@ -5,6 +5,7 @@ import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/orders_cubit/orders_cubit.dart';
 import 'package:quick_store/views/screens/submit_order_screen.dart';
+import 'package:quick_store/views/widgets/choose_location_with_radio.dart';
 import 'package:quick_store/views/widgets/custom_check_box.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_simple_app_bar.dart';
@@ -21,6 +22,7 @@ class CheckOutScreen extends StatefulWidget {
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
   bool usePoints = false;
+  String? value;
 
   @override
   Widget build(BuildContext context) {
@@ -29,54 +31,73 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         appBar: customSimpleAppBar(context: context, title: "Payment Details"),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TitleText(text: "Payment Method", fontSize: 25),
-              SizedBox(height: 20),
-              PaymentMethodsList(paymentMethods: ApiValues.paymentMethods),
-              SizedBox(height: 10),
-              CustomCheckBox(
-                title: 'Use Points',
-                icon: Icons.loyalty,
-                value: usePoints,
-                onChanged: (value) {
-                  setState(() {
-                    usePoints = value!;
-                  });
-                },
-              ),
-              SizedBox(height: 10),
-              OrderDetailsContainer(
-                cartCubit: BlocProvider.of<CartCubit>(context),
-              ),
-              SizedBox(height: 20),
-              CustomMaterialButton(
-                color: kPrimaryColor,
-                text: "Continue",
-                onPressed: () {
-                  num? paymentMethod =
-                      BlocProvider.of<OrdersCubit>(context).paymentMethod;
-                  if (paymentMethod == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Please choose a payment method"),
-                      ),
-                    );
-                  } else {
-                    Navigator.pushReplacement(context, MaterialPageRoute(
-                      builder: (context) {
-                        return SubmitOrderScreen(
-                          paymentMethod: paymentMethod,
-                          usePoints: usePoints,
-                        );
-                      },
-                    ));
-                  }
-                },
-              )
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TitleText(text: "Payment Method", fontSize: 25),
+                SizedBox(height: 20),
+                PaymentMethodsList(paymentMethods: ApiValues.paymentMethods),
+                SizedBox(height: 10),
+                CustomCheckBox(
+                  title: 'Use Points',
+                  icon: Icons.loyalty,
+                  value: usePoints,
+                  onChanged: (value) {
+                    setState(() {
+                      usePoints = value!;
+                    });
+                  },
+                ),
+                SizedBox(height: 10),
+                ChooseLocationWithRadio(
+                  value: value,
+                  onChanged: (value) {
+                    setState(() {
+                      this.value = value;
+                    });
+                  },
+                ),
+                SizedBox(height: 10),
+                OrderDetailsContainer(
+                  cartCubit: BlocProvider.of<CartCubit>(context),
+                ),
+                SizedBox(height: 10),
+                CustomMaterialButton(
+                  color: kPrimaryColor,
+                  text: "Continue",
+                  onPressed: () {
+                    num? paymentMethod =
+                        BlocProvider.of<OrdersCubit>(context).paymentMethod;
+                    if (paymentMethod == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("Please choose a payment method")),
+                      );
+                    } else if (value == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("Please choose a location")),
+                      );
+                    } else {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SubmitOrderScreen(
+                              paymentMethod: paymentMethod,
+                              usePoints: usePoints,
+                              chosenLocation: value!,
+                            );
+                          },
+                        ),
+                      );
+                    }
+                  },
+                )
+              ],
+            ),
           ),
         ));
   }

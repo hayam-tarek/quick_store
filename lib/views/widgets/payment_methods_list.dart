@@ -1,7 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/view_models/orders_cubit/orders_cubit.dart';
 
 class PaymentMethodsList extends StatefulWidget {
   const PaymentMethodsList({super.key, required this.paymentMethods});
@@ -15,6 +15,9 @@ class _PaymentMethodsListState extends State<PaymentMethodsList> {
   int currentIndex = -1;
   @override
   Widget build(BuildContext context) {
+    if (currentIndex == -1) {
+      BlocProvider.of<OrdersCubit>(context).paymentMethod = null;
+    }
     return Column(
       children: [
         SizedBox(
@@ -32,8 +35,9 @@ class _PaymentMethodsListState extends State<PaymentMethodsList> {
                 onTap: () {
                   setState(() {
                     currentIndex = index;
-                    log('$currentIndex');
                   });
+                  BlocProvider.of<OrdersCubit>(context).paymentMethod =
+                      index + 1;
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

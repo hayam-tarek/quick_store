@@ -7,9 +7,11 @@ class SubmitOrderScreen extends StatelessWidget {
     super.key,
     required this.paymentMethod,
     required this.usePoints,
+    required this.chosenLocation,
   });
   final num paymentMethod;
   final bool usePoints;
+  final String chosenLocation;
 
   @override
   Widget build(BuildContext context) {
