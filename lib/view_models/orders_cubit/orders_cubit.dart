@@ -13,9 +13,9 @@ class OrdersCubit extends Cubit<OrdersState> {
   OrdersCubit() : super(OrdersInitial());
   num? paymentMethod;
   void addOrder({
-    required num addressId,
-    required num paymentMethod,
-    required bool usePoints,
+    required String addressId,
+    required String paymentMethod,
+    required String usePoints,
   }) async {
     emit(AddOrderLoading());
     try {

@@ -16,6 +16,7 @@ const String kWishlistPath = 'assets/images/wishlist.png';
 const String kCashOnDeliveryPath = 'assets/images/cash-on-delivery.png';
 const String kOnlinePaymentPath = 'assets/images/online-payment.png';
 const String kLocationPath = 'assets/images/location.png';
+const String kDeliveryPath = 'assets/images/Delivery.png';
 
 const String kCardPath = 'assets/images/card.png';
 const String kCashPath = 'assets/images/cash.png';
@@ -28,6 +29,8 @@ const String kSecondaryFont = 'Arimo';
 /*
  *
  */
+const String kCurrentLocation = 'current location';
+const String kLastLocation = 'last location';
 const String kLastAddressId = 'lastAddressId';
 String? kToken;
 String? kLastAddressIdValue;
