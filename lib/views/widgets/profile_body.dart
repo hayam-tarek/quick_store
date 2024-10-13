@@ -12,6 +12,7 @@ import 'package:quick_store/views/widgets/password_dialog.dart';
 import 'package:quick_store/views/widgets/tapped_card.dart';
 import 'package:quick_store/views/widgets/title_text.dart';
 
+//TODO refactor
 class ProfileBody extends StatelessWidget {
   const ProfileBody({
     super.key,

@@ -42,15 +42,13 @@ class FavoritesBody extends StatelessWidget {
                     fontSize: 30,
                   ),
                 ),
-                // if (state is GetFavoriteLoading)
-                //   const SliverFillRemaining(
-                //     child: Center(
-                //       child: CupertinoActivityIndicator(
-                //         color: kSecondaryColor,
-                //       ),
-                //     ),
-                //   )
-                // else
+                if (state is GetFavoriteLoading)
+                  SliverToBoxAdapter(
+                    child: LinearProgressIndicator(
+                      color: kSecondaryColor,
+                      backgroundColor: kSecondaryColor.withOpacity(.5),
+                    ),
+                  ),
                 if (state is GetFavoriteFailure || products.isEmpty)
                   SliverFillRemaining(
                     child: Column(

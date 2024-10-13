@@ -45,7 +45,13 @@ class OrderStatusScreen extends StatelessWidget {
               );
             } else if (state is AddOrderSuccess) {
               BlocProvider.of<CartCubit>(context).getCart();
-
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                Future.delayed(const Duration(minutes: 1), () {
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                  }
+                });
+              });
               return Column(
                 children: [
                   Image.asset(

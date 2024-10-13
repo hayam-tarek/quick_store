@@ -51,15 +51,13 @@ class CartBody extends StatelessWidget {
                           fontSize: 30,
                         ),
                       ),
-                      // if (state is GetCartLoading)
-                      //   const SliverFillRemaining(
-                      //     child: Center(
-                      //       child: CupertinoActivityIndicator(
-                      //         color: kSecondaryColor,
-                      //       ),
-                      //     ),
-                      //   )
-                      // else
+                      if (state is GetCartLoading)
+                        SliverToBoxAdapter(
+                          child: LinearProgressIndicator(
+                            color: kSecondaryColor,
+                            backgroundColor: kSecondaryColor.withOpacity(.5),
+                          ),
+                        ),
                       if (state is GetCartFailure || cartItems.isEmpty)
                         SliverFillRemaining(
                           child: Column(
@@ -69,9 +67,7 @@ class CartBody extends StatelessWidget {
                                 kEmptyCartPath,
                                 scale: 5,
                               ),
-                              SizedBox(
-                                height: 20,
-                              ),
+                              SizedBox(height: 20),
                               Text(
                                 "Your cart is empty",
                                 style: TextStyle(
@@ -104,7 +100,7 @@ class CartBody extends StatelessWidget {
                               ),
                             );
                           },
-                        )
+                        ),
                     ],
                   ),
                 ),
