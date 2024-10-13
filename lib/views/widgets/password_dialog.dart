@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/profile_cubit/profile_cubit.dart';
 import 'package:quick_store/views/widgets/custom_password_text_form_field.dart';
 import 'package:quick_store/views/widgets/custom_snake_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PasswordDialog extends StatelessWidget {
   PasswordDialog({
@@ -41,8 +41,7 @@ class PasswordDialog extends StatelessWidget {
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 customSnackBar(
-                  text: state.message,
-                ),
+                    text: state.message, backgroundColor: Colors.green),
               );
             }
             if (state is ChangePasswordFailure) {
@@ -50,6 +49,7 @@ class PasswordDialog extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 customSnackBar(
                   text: state.message,
+                  backgroundColor: Colors.red[600]!,
                   showCloseIcon: true,
                 ),
               );

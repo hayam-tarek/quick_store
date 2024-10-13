@@ -24,13 +24,13 @@ void listenerToFavorite(BuildContext context, FavoriteState favoriteState) {
       Navigator.pop(context);
     }
     // ScaffoldMessenger.of(context)
-    //     .showSnackBar(customSnackBar(text: favoriteState.message));
+    //     .showSnackBar(customSnackBar(text: favoriteState.message,backgroundColor: Colors.green));
   }
   if (favoriteState is AddOrDeleteFavoriteFailure) {
     if (!isLoading) {
       Navigator.pop(context);
     }
     // ScaffoldMessenger.of(context)
-    //     .showSnackBar(customSnackBar(text: favoriteState.message));
+    //     .showSnackBar(customSnackBar(text: favoriteState.message,backgroundColor: Colors.red[600]!));
   }
 }

@@ -38,12 +38,12 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         listener: (context, state) {
           if (state is UpdateProfileSuccess) {
             Navigator.pop(context);
-            ScaffoldMessenger.of(context)
-                .showSnackBar(customSnackBar(text: state.message));
+            ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                text: state.message, backgroundColor: Colors.green));
           }
           if (state is UpdateProfileFailure) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(customSnackBar(text: state.message));
+            ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                text: state.message, backgroundColor: Colors.red[600]!));
           }
         },
         builder: (context, state) {

@@ -24,13 +24,13 @@ void listenerToCart(BuildContext context, CartState cartState) {
       Navigator.pop(context);
     }
     // ScaffoldMessenger.of(context)
-    //     .showSnackBar(customSnackBar(text: cartState.message));
+    //     .showSnackBar(customSnackBar(text: cartState.message,backgroundColor: Colors.green));
   }
   if (cartState is AddOrDeleteFromCartFailure) {
     if (!isLoading) {
       Navigator.pop(context);
     }
     // ScaffoldMessenger.of(context)
-    //     .showSnackBar(customSnackBar(text: cartState.message));
+    //     .showSnackBar(customSnackBar(text: cartState.message,backgroundColor: Colors.red[600]!));
   }
 }

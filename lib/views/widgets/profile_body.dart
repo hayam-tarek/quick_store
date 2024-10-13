@@ -107,8 +107,8 @@ class ProfileBody extends StatelessWidget {
           BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state is LogoutSuccessState) {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(customSnackBar(text: state.message));
+                // ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                //     text: state.message, backgroundColor: Colors.green));
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -118,8 +118,8 @@ class ProfileBody extends StatelessWidget {
                 );
               }
               if (state is LogoutFailureState) {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(customSnackBar(text: state.error));
+                ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                    text: state.error, backgroundColor: Colors.red[600]!));
               }
             },
             builder: (context, state) {

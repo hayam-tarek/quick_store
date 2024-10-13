@@ -20,8 +20,8 @@ class CartBody extends StatelessWidget {
     return BlocConsumer<FavoriteCubit, FavoriteState>(
       listener: (context, state) {
         if (state is AddOrDeleteFavoriteFailure) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(customSnackBar(text: state.message));
+          ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+              text: state.message, backgroundColor: Colors.red[600]!));
         }
       },
       builder: (context, state) {
@@ -29,12 +29,12 @@ class CartBody extends StatelessWidget {
           listener: (context, state) {
             // listenerToCart(context, state);
             if (state is AddOrDeleteFromCartFailure) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(customSnackBar(text: state.message));
+              ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                  text: state.message, backgroundColor: Colors.red[600]!));
             }
             if (state is UpdateCartFailure) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(customSnackBar(text: state.message));
+              ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                  text: state.message, backgroundColor: Colors.red[600]!));
             }
           },
           builder: (context, state) {

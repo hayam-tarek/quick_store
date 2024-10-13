@@ -65,12 +65,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
-                            customSnackBar(text: state.message),
+                            customSnackBar(
+                                text: state.message,
+                                backgroundColor: Colors.green),
                           );
                         }
                         if (state is LoginFailureState) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            customSnackBar(text: state.error),
+                            customSnackBar(
+                                text: state.error,
+                                backgroundColor: Colors.red[600]!),
                           );
                         }
                       },

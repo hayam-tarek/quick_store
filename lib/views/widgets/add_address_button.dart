@@ -31,12 +31,12 @@ class AddAddressButton extends StatelessWidget {
     return BlocConsumer<AddressesCubit, AddressesState>(
       listener: (context, state) {
         if (state is AddAddressFailure) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(customSnackBar(text: state.message));
+          ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+              text: state.message, backgroundColor: Colors.red[600]!));
         }
         if (state is AddAddressSuccess) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(customSnackBar(text: state.message));
+          ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+              text: state.message, backgroundColor: Colors.green));
           Navigator.pop(context, true);
         }
       },

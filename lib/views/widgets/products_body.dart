@@ -42,8 +42,8 @@ class ProductsBody extends StatelessWidget {
         listener: (context, state) {
           //listenerToFavorite(context, state);
           if (state is AddOrDeleteFavoriteFailure) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(customSnackBar(text: state.message));
+            ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                text: state.message, backgroundColor: Colors.red[600]!));
           }
         },
         builder: (context, state) {
@@ -51,8 +51,8 @@ class ProductsBody extends StatelessWidget {
             listener: (context, state) {
               // listenerToCart(context, state);
               if (state is AddOrDeleteFromCartFailure) {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(customSnackBar(text: state.message));
+                ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                    text: state.message, backgroundColor: Colors.red[600]!));
               }
             },
             builder: (context, state) {
