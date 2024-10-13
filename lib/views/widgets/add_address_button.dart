@@ -37,7 +37,7 @@ class AddAddressButton extends StatelessWidget {
         if (state is AddAddressSuccess) {
           ScaffoldMessenger.of(context)
               .showSnackBar(customSnackBar(text: state.message));
-          Navigator.pop(context);
+          Navigator.pop(context, true);
         }
       },
       builder: (context, state) {

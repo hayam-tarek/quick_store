@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/api/end_points.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/orders_cubit/orders_cubit.dart';
+import 'package:quick_store/views/screens/location_screen.dart';
 import 'package:quick_store/views/screens/submit_order_screen.dart';
 import 'package:quick_store/views/widgets/choose_location_with_radio.dart';
 import 'package:quick_store/views/widgets/custom_check_box.dart';
@@ -67,7 +70,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 CustomMaterialButton(
                   color: kPrimaryColor,
                   text: "Continue",
-                  onPressed: () {
+                  onPressed: () async {
                     num? paymentMethod =
                         BlocProvider.of<OrdersCubit>(context).paymentMethod;
                     if (paymentMethod == null) {
@@ -81,18 +84,43 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             content: Text("Please choose a location")),
                       );
                     } else {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
+                      if (value == kCurrentLocation) {
+                        bool? addressSaved;
+                        addressSaved =
+                            await Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return SubmitOrderScreen(
-                              paymentMethod: paymentMethod,
-                              usePoints: usePoints,
-                              chosenLocation: value!,
-                            );
+                            return LocationScreen();
                           },
-                        ),
-                      );
+                        ));
+                        log('############################$addressSaved');
+                        if (addressSaved != null && addressSaved == true) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return OrderStatusScreen(
+                                  paymentMethod: paymentMethod,
+                                  usePoints: usePoints,
+                                  chosenLocation: value!,
+                                );
+                              },
+                            ),
+                          );
+                        }
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return OrderStatusScreen(
+                                paymentMethod: paymentMethod,
+                                usePoints: usePoints,
+                                chosenLocation: value!,
+                              );
+                            },
+                          ),
+                        );
+                      }
                     }
                   },
                 )

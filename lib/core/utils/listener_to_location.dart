@@ -5,7 +5,7 @@ import 'package:quick_store/view_models/location_services_cubit/location_service
 import 'package:quick_store/views/screens/add_address_screen.dart';
 
 void locationServicesListener(
-    LocationServicesState state, BuildContext context) {
+    LocationServicesState state, BuildContext context) async {
   if (state is LocationPermissionsAreDenied) {
     showDialog(
       context: context,
@@ -63,11 +63,12 @@ void locationServicesListener(
     );
   }
   if (state is LocationServicesAreEnabled) {
-    Navigator.pushReplacement(context, MaterialPageRoute(
+    bool? addressSaved = await Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return AddAddressScreen();
       },
     ));
+    Navigator.pop(context, addressSaved);
   }
   if (state is LocationServicesException) {
     log(state.message);

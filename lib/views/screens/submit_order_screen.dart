@@ -7,8 +7,8 @@ import 'package:quick_store/view_models/orders_cubit/orders_cubit.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_simple_app_bar.dart';
 
-class SubmitOrderScreen extends StatelessWidget {
-  const SubmitOrderScreen({
+class OrderStatusScreen extends StatelessWidget {
+  const OrderStatusScreen({
     super.key,
     required this.paymentMethod,
     required this.usePoints,
@@ -22,10 +22,10 @@ class SubmitOrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: customSimpleAppBar(context: context, title: "Submit Order"),
+      appBar: customSimpleAppBar(context: context, title: "Order Status"),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: SubmitOrderBody(
+        child: OrderStatusBody(
           chosenLocation: chosenLocation,
           usePoints: usePoints,
           paymentMethod: paymentMethod,
@@ -35,8 +35,8 @@ class SubmitOrderScreen extends StatelessWidget {
   }
 }
 
-class SubmitOrderBody extends StatelessWidget {
-  const SubmitOrderBody(
+class OrderStatusBody extends StatelessWidget {
+  const OrderStatusBody(
       {super.key,
       required this.chosenLocation,
       required this.usePoints,
@@ -46,7 +46,7 @@ class SubmitOrderBody extends StatelessWidget {
   final num paymentMethod;
   @override
   Widget build(BuildContext context) {
-    if (chosenLocation == kLastLocation) {
+    {
       BlocProvider.of<OrdersCubit>(context).addOrder(
         addressId: kLastAddressIdValue!,
         paymentMethod: paymentMethod.toString(),
@@ -64,10 +64,9 @@ class SubmitOrderBody extends StatelessWidget {
             return Center(
               child: Text(state.message),
             );
-          } else {
-            if (state is AddOrderSuccess) {
-              BlocProvider.of<CartCubit>(context).getCart();
-            }
+          } else if (state is AddOrderSuccess) {
+            BlocProvider.of<CartCubit>(context).getCart();
+
             return Column(
               children: [
                 Image.asset(
@@ -106,13 +105,13 @@ class SubmitOrderBody extends StatelessWidget {
                 )
               ],
             );
+          } else {
+            return Center(
+              child: Text("Try again!"),
+            );
           }
         },
       );
-    } else if (chosenLocation == kCurrentLocation) {
-      return Container();
-    } else {
-      return Container();
     }
   }
 }
