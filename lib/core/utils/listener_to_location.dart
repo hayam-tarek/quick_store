@@ -68,7 +68,9 @@ void locationServicesListener(
         return AddAddressScreen();
       },
     ));
-    Navigator.pop(context, addressSaved);
+    if (context.mounted) {
+      Navigator.pop(context, addressSaved);
+    }
   }
   if (state is LocationServicesException) {
     log(state.message);
