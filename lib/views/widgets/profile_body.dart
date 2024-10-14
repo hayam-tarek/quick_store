@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/user_data_model.dart';
 import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
 import 'package:quick_store/views/screens/location_screen.dart';
+import 'package:quick_store/views/screens/orders_screen.dart';
 import 'package:quick_store/views/screens/update_profile_screen.dart';
 import 'package:quick_store/views/screens/welcome_screen.dart';
 import 'package:quick_store/views/widgets/custom_circle_avatar.dart';
@@ -45,12 +46,12 @@ class ProfileBody extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           DisplayContact(
-            title: '\$${userDataModel.credit.toString()}',
+            title: '\$${userDataModel.credit.floor().toString()}',
             iconData: Icons.credit_card,
           ),
           const SizedBox(height: 5),
           DisplayContact(
-            title: '${userDataModel.points.toString()} point.',
+            title: '${userDataModel.points.floor().toString()} point.',
             iconData: Icons.loyalty,
           ),
           const Divider(
@@ -101,7 +102,14 @@ class ProfileBody extends StatelessWidget {
             title: 'Orders',
             iconData: Icons.shopping_basket_rounded,
             onTap: () {
-              // TODO: orders
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const OrdersScreen();
+                  },
+                ),
+              );
             },
           ),
           BlocConsumer<AuthCubit, AuthState>(

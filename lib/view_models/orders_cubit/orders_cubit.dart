@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:quick_store/core/api/api.dart';
 import 'package:quick_store/core/api/end_points.dart';
 import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/models/order_model.dart';
 
 part 'orders_state.dart';
 
@@ -20,7 +21,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     emit(AddOrderLoading());
     try {
       var json = await API().post(
-        url: EndPoints.addOrder,
+        url: EndPoints.orders,
         body: {
           ApiKey.addressId: addressId,
           ApiKey.paymentMethod: paymentMethod,
@@ -41,6 +42,38 @@ class OrdersCubit extends Cubit<OrdersState> {
       String message = e.toString().replaceFirst('Exception: ', '');
       emit(
         AddOrderFailure(
+          message: message,
+        ),
+      );
+    }
+  }
+
+  List<OrderModel> orders = [];
+  void getOrders() async {
+    emit(GetOrdersLoading());
+    try {
+      var json = await API().get(
+        url: EndPoints.orders,
+        headers: {
+          ApiKey.lang: ApiKey.english,
+          ApiKey.authorization: kToken!,
+        },
+      );
+      if (json[ApiKey.status] == true) {
+        orders = [];
+        List<dynamic> data = json[ApiKey.data][ApiKey.data];
+        for (var element in data) {
+          orders.add(OrderModel.fromJson(element));
+        }
+        emit(GetOrdersSuccess());
+      } else {
+        throw Exception(json[ApiKey.message]);
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      String message = e.toString().replaceFirst('Exception: ', '');
+      emit(
+        GetOrdersFailure(
           message: message,
         ),
       );
