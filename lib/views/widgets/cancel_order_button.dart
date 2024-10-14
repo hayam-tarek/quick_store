@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/views/widgets/alert_dialog_icon.dart';
 
 class CancelOrderButton extends StatelessWidget {
   const CancelOrderButton({
@@ -14,17 +15,17 @@ class CancelOrderButton extends StatelessWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
-              icon: CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.red[600]!.withOpacity(.2),
-                child: Icon(
-                  Icons.warning_amber_rounded,
-                  size: 60,
-                  color: Colors.red[600],
-                ),
+              icon: AlertDialogIcon(
+                iconData: Icons.warning_amber_rounded,
+                iconColor: Colors.red[600]!,
               ),
               backgroundColor: kBackgroundColor,
               title: Text("Cancel Order"),
+              titleTextStyle: const TextStyle(
+                color: kPrimaryColor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
               content: Text("Are you sure you want to cancel this order?"),
               actions: [
                 TextButton(

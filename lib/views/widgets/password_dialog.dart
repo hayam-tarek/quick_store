@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/profile_cubit/profile_cubit.dart';
+import 'package:quick_store/views/widgets/alert_dialog_icon.dart';
 import 'package:quick_store/views/widgets/custom_password_text_form_field.dart';
 import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 
@@ -17,8 +18,11 @@ class PasswordDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      icon: const Icon(Icons.password),
-      iconColor: kSecondaryColor,
+      icon: AlertDialogIcon(
+        iconData: Icons.security,
+        iconColor: kSecondaryColor,
+      ),
+      backgroundColor: kBackgroundColor,
       title: const Text('Change password'),
       titleTextStyle: const TextStyle(
         color: kPrimaryColor,

@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/location_services_cubit/location_services_cubit.dart';
 import 'package:quick_store/views/screens/add_address_screen.dart';
+import 'package:quick_store/views/widgets/alert_dialog_icon.dart';
 
 void locationServicesListener(
     LocationServicesState state, BuildContext context) async {
@@ -11,27 +13,37 @@ void locationServicesListener(
       context: context,
       builder: (context) {
         return AlertDialog(
+          icon: AlertDialogIcon(
+            iconData: Icons.not_listed_location_outlined,
+            iconColor: kSecondaryColor,
+          ),
+          backgroundColor: kBackgroundColor,
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pop(context);
               },
-              child: const Text("Cancel"),
+              child: Text(
+                "Cancel",
+                style: TextStyle(color: kPrimaryColor.withOpacity(.5)),
+              ),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text("Ok"),
+              child: Text(
+                "Ok",
+                style: TextStyle(
+                  color: kSecondaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ],
-          icon: Icon(Icons.location_disabled),
-          content: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              "Please grant the app permission to access your location.",
-            ),
+          content: Text(
+            "Please grant the app permission to access your location.",
           ),
         );
       },
@@ -42,21 +54,25 @@ void locationServicesListener(
       context: context,
       builder: (context) {
         return AlertDialog(
+          icon: AlertDialogIcon(
+            iconData: Icons.location_disabled,
+            iconColor: Colors.red[600]!,
+          ),
+          backgroundColor: kBackgroundColor,
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pop(context);
               },
-              child: const Text("Ok"),
+              child: const Text(
+                "Ok",
+                style: TextStyle(color: kPrimaryColor),
+              ),
             ),
           ],
-          icon: Icon(Icons.location_disabled),
-          content: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              "Location Permissions Are Denied Forever.",
-            ),
+          content: Text(
+            "Location Permissions Are Denied Forever.",
           ),
         );
       },
