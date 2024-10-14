@@ -16,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onSaved,
     this.minLines = 1,
     this.maxLines = 1,
+    this.isEnabled = true,
   });
   final String labelText;
   final TextEditingController? controller;
@@ -29,10 +30,12 @@ class CustomTextFormField extends StatelessWidget {
   final int? minLines;
   final int? maxLines;
   final void Function(String?)? onSaved;
+  final bool? isEnabled;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: isEnabled,
       minLines: minLines,
       maxLines: maxLines,
       onSaved: onSaved,
@@ -65,6 +68,13 @@ class CustomTextFormField extends StatelessWidget {
         focusedBorder: customOutlineInputBorder(),
         errorBorder: customErrorOutlineInputBorder(),
         focusedErrorBorder: customErrorOutlineInputBorder(),
+        disabledBorder: customOutlineInputBorder().copyWith(
+          borderSide: BorderSide(
+            color: kPrimaryColor.withOpacity(
+              .2,
+            ),
+          ),
+        ),
       ),
     );
   }

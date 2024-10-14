@@ -44,6 +44,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               AbsorbPointer(
                 absorbing: absorbing,
                 child: AddressSheet(
+                  enableEditing: !absorbing,
                   cubit: cubit,
                   formKey: formKey,
                   nameController: nameController,

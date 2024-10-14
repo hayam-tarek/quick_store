@@ -12,6 +12,7 @@ class AddressSheet extends StatelessWidget {
     this.regionController,
     this.detailsController,
     this.notesController,
+    this.enableEditing,
   });
   final LocationServicesCubit cubit;
   final GlobalKey<FormState> formKey;
@@ -20,6 +21,7 @@ class AddressSheet extends StatelessWidget {
   final TextEditingController? regionController;
   final TextEditingController? detailsController;
   final TextEditingController? notesController;
+  final bool? enableEditing;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class AddressSheet extends StatelessWidget {
             height: 50,
           ),
           CustomTextFormField(
+            isEnabled: false,
             controller: nameController,
             labelText: 'Name',
             validatorText: "Field empty",
@@ -40,6 +43,7 @@ class AddressSheet extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomTextFormField(
+                  isEnabled: false,
                   controller: cityController,
                   labelText: 'City',
                   validatorText: "Field empty",
@@ -50,6 +54,7 @@ class AddressSheet extends StatelessWidget {
               ),
               Expanded(
                 child: CustomTextFormField(
+                  isEnabled: false,
                   controller: regionController,
                   labelText: 'Region',
                   validatorText: "Field empty",
@@ -59,6 +64,7 @@ class AddressSheet extends StatelessWidget {
           ),
           SizedBox(height: 20),
           CustomTextFormField(
+            isEnabled: enableEditing,
             controller: detailsController,
             labelText: 'Details',
             validatorText: "Field empty",
