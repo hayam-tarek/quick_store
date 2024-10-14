@@ -25,3 +25,15 @@ final class GetOrdersFailure extends OrdersState {
   final String message;
   GetOrdersFailure({required this.message});
 }
+
+final class CancelOrderLoading extends OrdersState {}
+
+final class CancelOrderSuccess extends OrdersState {
+  final String message;
+  CancelOrderSuccess({required this.message});
+}
+
+final class CancelOrderFailure extends OrdersState {
+  final String message;
+  CancelOrderFailure({required this.message});
+}

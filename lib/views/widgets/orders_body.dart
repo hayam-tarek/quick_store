@@ -11,7 +11,7 @@ class OrdersBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    return SliverList.separated(
       separatorBuilder: (context, index) => SizedBox(height: 10),
       itemCount: orders.length,
       itemBuilder: (context, index) {
@@ -35,7 +35,11 @@ class OrdersBody extends StatelessWidget {
                 )
               ],
             ),
-            trailing: CancelOrderButton(),
+            trailing: orders[index].status == ApiKey.newOrder
+                ? CancelOrderButton(
+                    orderId: orders[index].id,
+                  )
+                : null,
             leading: orders[index].status == ApiKey.newOrder
                 ? CircleAvatar(
                     backgroundColor: Colors.green.withOpacity(.2),

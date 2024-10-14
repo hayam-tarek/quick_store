@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/view_models/orders_cubit/orders_cubit.dart';
 import 'package:quick_store/views/widgets/alert_dialog_icon.dart';
 
 class CancelOrderButton extends StatelessWidget {
   const CancelOrderButton({
     super.key,
+    required this.orderId,
   });
+  final num orderId;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,8 @@ class CancelOrderButton extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () {
-                    //TODO
+                    BlocProvider.of<OrdersCubit>(context)
+                        .cancelOrder(orderId: orderId);
                     Navigator.pop(context);
                   },
                   child: Text(

@@ -79,4 +79,31 @@ class OrdersCubit extends Cubit<OrdersState> {
       );
     }
   }
+
+  void cancelOrder({required num orderId}) async {
+    emit(CancelOrderLoading());
+    try {
+      var json = await API().get(
+        url: EndPoints.cancelOrder(id: orderId),
+        headers: {
+          ApiKey.lang: ApiKey.english,
+          ApiKey.authorization: kToken!,
+        },
+      );
+      if (json[ApiKey.status] == true) {
+        emit(CancelOrderSuccess(message: json[ApiKey.message]));
+        getOrders();
+      } else {
+        throw Exception(json[ApiKey.message]);
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      String message = e.toString().replaceFirst('Exception: ', '');
+      emit(
+        CancelOrderFailure(
+          message: message,
+        ),
+      );
+    }
+  }
 }

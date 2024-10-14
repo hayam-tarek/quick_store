@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
@@ -18,39 +17,63 @@ class OrdersScreen extends StatelessWidget {
       appBar: customSimpleAppBar(context: context, title: "Orders"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: BlocBuilder<OrdersCubit, OrdersState>(
+        child: BlocConsumer<OrdersCubit, OrdersState>(
+          listener: (context, state) {
+            if (state is CancelOrderSuccess) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            }
+            if (state is CancelOrderFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message),
+                  backgroundColor: Colors.red[600],
+                ),
+              );
+            }
+          },
           builder: (context, state) {
             List<OrderModel> orders =
                 BlocProvider.of<OrdersCubit>(context).orders;
-            if (state is GetOrdersLoading) {
-              return Center(
-                child: CupertinoActivityIndicator(
-                  color: kSecondaryColor,
-                ),
-              );
-            } else if (state is GetOrdersFailure || orders.isEmpty) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: double.infinity),
-                  Image.asset(
-                    kOrdersPath,
-                    scale: 5,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    "No Orders Yet",
-                    style: TextStyle(
-                      color: Colors.grey,
+            return CustomScrollView(
+              slivers: [
+                if (state is GetOrdersLoading)
+                  SliverToBoxAdapter(
+                    child: LinearProgressIndicator(
+                      color: kSecondaryColor,
+                      backgroundColor: kSecondaryColor.withOpacity(.2),
                     ),
                   ),
-                ],
-              );
-            } else {
-              return OrdersBody(
-                orders: orders,
-              );
-            }
+                if (state is GetOrdersFailure || orders.isEmpty)
+                  SliverFillRemaining(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(width: double.infinity),
+                        Image.asset(
+                          kOrdersPath,
+                          scale: 5,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "No Orders Yet",
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                else
+                  OrdersBody(
+                    orders: orders,
+                  )
+              ],
+            );
           },
         ),
       ),
