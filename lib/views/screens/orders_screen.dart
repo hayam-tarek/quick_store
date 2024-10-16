@@ -11,7 +11,6 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<OrdersCubit>(context).getOrders();
     return Scaffold(
       appBar: customSimpleAppBar(context: context, title: "My Orders"),
       body: Padding(

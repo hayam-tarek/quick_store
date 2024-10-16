@@ -8,24 +8,10 @@ import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_simple_app_bar.dart';
 
 class OrderStatusScreen extends StatelessWidget {
-  const OrderStatusScreen({
-    super.key,
-    required this.paymentMethod,
-    required this.usePoints,
-    required this.chosenLocation,
-  });
-  final num paymentMethod;
-  final bool usePoints;
-  final String chosenLocation;
+  const OrderStatusScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<OrdersCubit>(context).addOrder(
-      addressId: kLastAddressIdValue!,
-      paymentMethod: paymentMethod.toString(),
-      usePoints: usePoints.toString(),
-    );
-
     return Scaffold(
       appBar: customSimpleAppBar(context: context, title: "Order Status"),
       body: Padding(

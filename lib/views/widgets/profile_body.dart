@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/user_data_model.dart';
 import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
+import 'package:quick_store/view_models/orders_cubit/orders_cubit.dart';
 import 'package:quick_store/views/screens/location_screen.dart';
 import 'package:quick_store/views/screens/orders_screen.dart';
 import 'package:quick_store/views/screens/update_profile_screen.dart';
@@ -102,6 +103,7 @@ class ProfileBody extends StatelessWidget {
             title: 'Orders',
             iconData: Icons.shopping_basket_rounded,
             onTap: () {
+              BlocProvider.of<OrdersCubit>(context).getOrders();
               Navigator.push(
                 context,
                 MaterialPageRoute(

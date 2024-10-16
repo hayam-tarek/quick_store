@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/view_models/orders_cubit/orders_cubit.dart';
 import 'package:quick_store/views/screens/location_screen.dart';
 import 'package:quick_store/views/screens/order_status_screen.dart';
 
@@ -37,15 +39,16 @@ void handleOrderSubmitButton({
     }
   }
   if (context.mounted) {
+    BlocProvider.of<OrdersCubit>(context).addOrder(
+      addressId: kLastAddressIdValue!,
+      paymentMethod: paymentMethod.toString(),
+      usePoints: usePoints.toString(),
+    );
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) {
-          return OrderStatusScreen(
-            paymentMethod: paymentMethod,
-            usePoints: usePoints,
-            chosenLocation: chosenLocation,
-          );
+          return OrderStatusScreen();
         },
       ),
     );
