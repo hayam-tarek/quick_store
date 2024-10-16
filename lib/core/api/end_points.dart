@@ -30,6 +30,10 @@ class EndPoints {
   static String cancelOrder({required num id}) {
     return '$baseUrl/orders/$id/cancel';
   }
+
+  static String orderDetails({required num id}) {
+    return '$baseUrl/orders/$id';
+  }
 }
 
 class ApiKey {

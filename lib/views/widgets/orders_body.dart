@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quick_store/core/api/end_points.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/order_model.dart';
+import 'package:quick_store/views/screens/order_details_screen.dart';
 import 'package:quick_store/views/widgets/cancel_order_button.dart';
 import 'package:quick_store/views/widgets/custom_card.dart';
 
@@ -18,7 +19,13 @@ class OrdersBody extends StatelessWidget {
         return CustomCard(
           child: ListTile(
             onTap: () {
-              //TODO
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return OrderDetailsScreen(
+                    orderModel: orders[index],
+                  );
+                },
+              ));
             },
             title: Text(orders[index].date),
             subtitle: Column(

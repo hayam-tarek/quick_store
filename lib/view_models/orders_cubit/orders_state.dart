@@ -37,3 +37,12 @@ final class CancelOrderFailure extends OrdersState {
   final String message;
   CancelOrderFailure({required this.message});
 }
+
+final class GetOrderDetailsLoading extends OrdersState {}
+
+final class GetOrderDetailsSuccess extends OrdersState {}
+
+final class GetOrderDetailsFailure extends OrdersState {
+  final String message;
+  GetOrderDetailsFailure({required this.message});
+}

@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:quick_store/core/api/api.dart';
 import 'package:quick_store/core/api/end_points.dart';
 import 'package:quick_store/core/utils/constant.dart';
+import 'package:quick_store/models/order_details_model.dart';
 import 'package:quick_store/models/order_model.dart';
 
 part 'orders_state.dart';
@@ -101,6 +102,34 @@ class OrdersCubit extends Cubit<OrdersState> {
       String message = e.toString().replaceFirst('Exception: ', '');
       emit(
         CancelOrderFailure(
+          message: message,
+        ),
+      );
+    }
+  }
+
+  OrderDetailsModel? orderDetailsModel;
+  void getOrderDetails({required num orderID}) async {
+    emit(GetOrderDetailsLoading());
+    try {
+      var json = await API().get(
+        url: EndPoints.orderDetails(id: orderID),
+        headers: {
+          ApiKey.lang: ApiKey.english,
+          ApiKey.authorization: kToken!,
+        },
+      );
+      if (json[ApiKey.status] == true) {
+        orderDetailsModel = OrderDetailsModel.fromJson(json[ApiKey.data]);
+        emit(GetOrderDetailsSuccess());
+      } else {
+        throw Exception(json[ApiKey.message]);
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      String message = e.toString().replaceFirst('Exception: ', '');
+      emit(
+        GetOrderDetailsFailure(
           message: message,
         ),
       );
