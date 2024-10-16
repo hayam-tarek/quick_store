@@ -46,7 +46,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       appBar: customAppBar(),
       endDrawer: Drawer(),
       bottomNavigationBar: Padding(

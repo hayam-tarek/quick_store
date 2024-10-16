@@ -35,7 +35,6 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     return BlocProvider(
       create: (context) => AddressesCubit(),
       child: Scaffold(
-        backgroundColor: kBackgroundColor,
         appBar: customSimpleAppBar(context: context, title: "Add new address"),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

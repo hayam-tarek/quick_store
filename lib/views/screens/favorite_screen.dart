@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/views/widgets/favorites_body.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -19,7 +18,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: FavoritesBody(),

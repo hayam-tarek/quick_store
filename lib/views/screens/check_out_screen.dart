@@ -27,7 +27,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       appBar: customSimpleAppBar(context: context, title: "Payment Details"),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

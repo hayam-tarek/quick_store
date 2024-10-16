@@ -60,8 +60,9 @@ class ECommerceApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-            // fontFamily: kSecondaryFont,
-            ),
+          fontFamily: kSecondaryFont,
+          scaffoldBackgroundColor: kBackgroundColor,
+        ),
         title: 'E Commerce App',
         debugShowCheckedModeBanner: false,
         home: const SplashScreen(),

@@ -12,7 +12,6 @@ class LocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       appBar: customSimpleAppBar(context: context, title: "Location"),
       body: BlocConsumer<LocationServicesCubit, LocationServicesState>(
         listener: (context, state) {

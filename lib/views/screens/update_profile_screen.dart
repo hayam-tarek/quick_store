@@ -33,7 +33,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customSimpleAppBar(context: context, title: "Update profile"),
-      backgroundColor: kBackgroundColor,
       body: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {
           if (state is UpdateProfileSuccess) {

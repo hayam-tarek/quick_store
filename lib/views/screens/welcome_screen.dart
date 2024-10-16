@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/views/screens/login_screen.dart';
 import 'package:quick_store/views/screens/register_screen.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
-import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -16,7 +16,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

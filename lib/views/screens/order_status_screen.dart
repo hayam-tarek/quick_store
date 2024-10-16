@@ -27,7 +27,6 @@ class OrderStatusScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       appBar: customSimpleAppBar(context: context, title: "Order Status"),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

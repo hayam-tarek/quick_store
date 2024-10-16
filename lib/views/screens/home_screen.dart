@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/products_cubit/products_cubit.dart';
 import 'package:quick_store/views/widgets/banners_builder.dart';
 import 'package:quick_store/views/widgets/categories_list_view.dart';
@@ -22,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     ProductsCubit productsCubit = BlocProvider.of<ProductsCubit>(context);
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: CustomScrollView(

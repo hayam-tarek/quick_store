@@ -30,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/user_data_model.dart';
 import 'package:quick_store/view_models/profile_cubit/profile_cubit.dart';
 import 'package:quick_store/views/widgets/profile_body.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -12,7 +12,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       body: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {},
         builder: (context, state) {

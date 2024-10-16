@@ -13,8 +13,7 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<OrdersCubit>(context).getOrders();
     return Scaffold(
-      backgroundColor: kBackgroundColor,
-      appBar: customSimpleAppBar(context: context, title: "Orders"),
+      appBar: customSimpleAppBar(context: context, title: "My Orders"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: BlocConsumer<OrdersCubit, OrdersState>(

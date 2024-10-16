@@ -21,7 +21,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       appBar: customSimpleAppBar(context: context, title: 'Product Details'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
