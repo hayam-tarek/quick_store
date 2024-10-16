@@ -8,8 +8,10 @@ class CancelOrderButton extends StatelessWidget {
   const CancelOrderButton({
     super.key,
     required this.orderId,
+    this.popWhenPressed = false,
   });
   final num orderId;
+  final bool popWhenPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,9 @@ class CancelOrderButton extends StatelessWidget {
                     BlocProvider.of<OrdersCubit>(context)
                         .cancelOrder(orderId: orderId);
                     Navigator.pop(context);
+                    if (popWhenPressed) {
+                      Navigator.pop(context);
+                    }
                   },
                   child: Text(
                     "Yes",

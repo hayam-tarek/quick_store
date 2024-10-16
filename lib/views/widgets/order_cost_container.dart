@@ -3,8 +3,8 @@ import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/views/widgets/title_text.dart';
 
-class OrderDetailsContainer extends StatelessWidget {
-  const OrderDetailsContainer({
+class OrderCostContainer extends StatelessWidget {
+  const OrderCostContainer({
     super.key,
     required this.cartCubit,
   });

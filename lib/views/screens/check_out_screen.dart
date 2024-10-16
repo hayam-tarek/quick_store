@@ -9,7 +9,7 @@ import 'package:quick_store/views/widgets/choose_location_with_radio.dart';
 import 'package:quick_store/views/widgets/custom_check_box.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
 import 'package:quick_store/views/widgets/custom_simple_app_bar.dart';
-import 'package:quick_store/views/widgets/order_details_container.dart';
+import 'package:quick_store/views/widgets/order_cost_container.dart';
 import 'package:quick_store/views/widgets/payment_methods_list.dart';
 import 'package:quick_store/views/widgets/title_text.dart';
 
@@ -59,7 +59,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 },
               ),
               SizedBox(height: 10),
-              OrderDetailsContainer(
+              OrderCostContainer(
                 cartCubit: BlocProvider.of<CartCubit>(context),
               ),
               SizedBox(height: 10),
