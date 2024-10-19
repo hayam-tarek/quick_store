@@ -47,7 +47,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         },
         builder: (context, state) {
           return Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Form(
               key: formKey,
               child: ListView(

@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
             );
           } else {
             return Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ProfileBody(
                 userDataModel: userDataModel!,
               ),

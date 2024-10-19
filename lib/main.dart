@@ -62,6 +62,14 @@ class ECommerceApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: kSecondaryFont,
           scaffoldBackgroundColor: kBackgroundColor,
+          primaryColor: kPrimaryColor,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: kSecondaryColor,
+            primary: kPrimaryColor,
+            secondary: kSecondaryColor,
+            tertiary: kForegroundColor,
+          ),
+          // useMaterial3: false,
         ),
         title: 'E Commerce App',
         debugShowCheckedModeBanner: false,

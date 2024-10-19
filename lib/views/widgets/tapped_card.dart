@@ -1,5 +1,5 @@
-import 'package:quick_store/core/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_store/core/utils/constant.dart';
 
 class TappedCard extends StatelessWidget {
   const TappedCard({
@@ -15,16 +15,16 @@ class TappedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Card(
-        color: kPrimaryColor,
-        child: ListTile(
-          leading: Icon(
-            iconData,
-            color: kForegroundColor,
-          ),
-          title: Text(
-            title,
-            style: const TextStyle(color: kForegroundColor),
+      child: ListTile(
+        leading: Icon(
+          iconData,
+          color: kPrimaryColor,
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: kPrimaryColor,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
