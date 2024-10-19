@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/user_data_model.dart';
+import 'package:quick_store/view_models/addresses_cubit/addresses_cubit.dart';
 import 'package:quick_store/view_models/orders_cubit/orders_cubit.dart';
 import 'package:quick_store/views/screens/location_screen.dart';
 import 'package:quick_store/views/screens/orders_screen.dart';
+import 'package:quick_store/views/screens/saved_addresses_screen.dart';
 import 'package:quick_store/views/screens/update_profile_screen.dart';
 import 'package:quick_store/views/widgets/log_out_button.dart';
 import 'package:quick_store/views/widgets/password_dialog.dart';
@@ -57,7 +59,7 @@ class ProfileBody extends StatelessWidget {
             },
           ),
           TappedCard(
-            title: 'Location',
+            title: 'Save my location',
             iconData: Icons.my_location,
             onTap: () {
               Navigator.push(
@@ -65,6 +67,21 @@ class ProfileBody extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) {
                     return LocationScreen();
+                  },
+                ),
+              );
+            },
+          ),
+          TappedCard(
+            title: 'Addresses history',
+            iconData: Icons.location_history,
+            onTap: () {
+              BlocProvider.of<AddressesCubit>(context).getAddresses();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SavedAddressesScreen();
                   },
                 ),
               );

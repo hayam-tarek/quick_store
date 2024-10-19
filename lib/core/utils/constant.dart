@@ -18,6 +18,7 @@ const String kOnlinePaymentPath = 'assets/images/online-payment.png';
 const String kLocationPath = 'assets/images/location.png';
 const String kDeliveryPath = 'assets/images/Delivery.png';
 const String kOrdersPath = 'assets/images/shopping-box.png';
+const String kSavedLocationPath = 'assets/images/save-location.png';
 
 const String kCardPath = 'assets/images/card.png';
 const String kCashPath = 'assets/images/cash.png';

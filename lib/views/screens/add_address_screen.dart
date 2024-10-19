@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/core/utils/constant.dart';
-import 'package:quick_store/view_models/addresses_cubit/addresses_cubit.dart';
 import 'package:quick_store/view_models/location_services_cubit/location_services_cubit.dart';
 import 'package:quick_store/views/widgets/add_address_button.dart';
 import 'package:quick_store/views/widgets/address_sheet.dart';
@@ -32,63 +31,60 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     TextEditingController detailsController =
         TextEditingController(text: cubit.details);
     TextEditingController notesController = TextEditingController();
-    return BlocProvider(
-      create: (context) => AddressesCubit(),
-      child: Scaffold(
-        appBar:
-            customSimpleAppBar(context: context, title: "Complete the details"),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: ListView(
-            children: [
-              AbsorbPointer(
-                absorbing: absorbing,
-                child: AddressSheet(
-                  enableEditing: !absorbing,
-                  cubit: cubit,
-                  formKey: formKey,
-                  nameController: nameController,
-                  cityController: cityController,
-                  regionController: regionController,
-                  detailsController: detailsController,
-                  notesController: notesController,
-                ),
+    return Scaffold(
+      appBar:
+          customSimpleAppBar(context: context, title: "Complete the details"),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: ListView(
+          children: [
+            AbsorbPointer(
+              absorbing: absorbing,
+              child: AddressSheet(
+                enableEditing: !absorbing,
+                cubit: cubit,
+                formKey: formKey,
+                nameController: nameController,
+                cityController: cityController,
+                regionController: regionController,
+                detailsController: detailsController,
+                notesController: notesController,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomMaterialButton(
-                      color: kPrimaryColor,
-                      text: "Edit",
-                      onPressed: () {
-                        setState(() {
-                          absorbing = false;
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          customSnackBar(text: "You can edit now"),
-                        );
-                      },
-                    ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomMaterialButton(
+                    color: kPrimaryColor,
+                    text: "Edit",
+                    onPressed: () {
+                      setState(() {
+                        absorbing = false;
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        customSnackBar(text: "You can edit now"),
+                      );
+                    },
                   ),
-                  const SizedBox(
-                    width: 16,
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: AddAddressButton(
+                    formKey: formKey,
+                    nameController: nameController,
+                    cityController: cityController,
+                    regionController: regionController,
+                    detailsController: detailsController,
+                    notesController: notesController,
+                    latitude: cubit.latitude!,
+                    longitude: cubit.longitude!,
                   ),
-                  Expanded(
-                    child: AddAddressButton(
-                      formKey: formKey,
-                      nameController: nameController,
-                      cityController: cityController,
-                      regionController: regionController,
-                      detailsController: detailsController,
-                      notesController: notesController,
-                      latitude: cubit.latitude!,
-                      longitude: cubit.longitude!,
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:quick_store/core/services/local_storage.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/core/utils/simple_bloc_observer.dart';
+import 'package:quick_store/view_models/addresses_cubit/addresses_cubit.dart';
 import 'package:quick_store/view_models/auth_cubit/auth_cubit.dart';
 import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/view_models/categories_cubit/categories_cubit.dart';
@@ -56,6 +57,9 @@ class ECommerceApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => OrdersCubit(),
+        ),
+        BlocProvider(
+          create: (context) => AddressesCubit(),
         ),
       ],
       child: MaterialApp(

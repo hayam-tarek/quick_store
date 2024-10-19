@@ -18,3 +18,13 @@ final class AddAddressSuccess extends AddressesState {
 
   AddAddressSuccess({required this.message});
 }
+
+final class GetAddressesLoading extends AddressesState {}
+
+final class GetAddressesFailure extends AddressesState {
+  final String message;
+
+  GetAddressesFailure({required this.message});
+}
+
+final class GetAddressesSuccess extends AddressesState {}
