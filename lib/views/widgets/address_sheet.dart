@@ -33,7 +33,7 @@ class AddressSheet extends StatelessWidget {
             height: 50,
           ),
           CustomTextFormField(
-            isEnabled: false,
+            isEnabled: enableEditing,
             controller: nameController,
             labelText: 'Name',
             validatorText: "Field empty",

@@ -20,3 +20,13 @@ final class LocationServicesException extends LocationServicesState {
 
   LocationServicesException({required this.message});
 }
+
+final class DetermineDetailsOfLatLngLoading extends LocationServicesState {}
+
+final class DetermineDetailsOfLatLngSuccess extends LocationServicesState {}
+
+final class DetermineDetailsOfLatLngFailure extends LocationServicesState {
+  final String message;
+
+  DetermineDetailsOfLatLngFailure({required this.message});
+}

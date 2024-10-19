@@ -2,12 +2,12 @@ import 'package:quick_store/models/address_model.dart';
 
 class OrderDetailsModel {
   int id;
-  int cost;
-  int discount;
-  double points;
-  double vat;
-  double total;
-  int pointsCommission;
+  num cost;
+  num discount;
+  num points;
+  num vat;
+  num total;
+  num pointsCommission;
   String promoCode;
   String paymentMethod;
   String date;
@@ -54,7 +54,7 @@ class OrderDetailsModel {
 class OrderProductModel {
   int id;
   int quantity;
-  int price;
+  num price;
   String name;
   String image;
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/addresses_cubit/addresses_cubit.dart';
 import 'package:quick_store/views/widgets/custom_material_button.dart';
@@ -15,7 +14,8 @@ class AddAddressButton extends StatelessWidget {
     required this.regionController,
     required this.detailsController,
     required this.notesController,
-    required this.currentPosition,
+    required this.latitude,
+    required this.longitude,
   });
 
   final GlobalKey<FormState> formKey;
@@ -24,7 +24,8 @@ class AddAddressButton extends StatelessWidget {
   final TextEditingController regionController;
   final TextEditingController detailsController;
   final TextEditingController notesController;
-  final Position currentPosition;
+  final double latitude;
+  final double longitude;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +54,8 @@ class AddAddressButton extends StatelessWidget {
                   region: regionController.text,
                   details: detailsController.text,
                   notes: notesController.text,
-                  lat: "${currentPosition.altitude}",
-                  lng: "${currentPosition.longitude}");
+                  lat: latitude.toString(),
+                  lng: longitude.toString());
               //Navigator.pop(context);
             }
           },

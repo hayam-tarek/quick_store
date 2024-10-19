@@ -19,28 +19,25 @@ class ChooseLocationWithRadio extends StatelessWidget {
           fontSize: 20,
         ),
         SizedBox(height: 10),
-        Row(
-          children: [
-            Expanded(
-              child: RadioListTile(
-                  title: Text("Current Location"),
-                  value: kCurrentLocation,
-                  activeColor: kSecondaryColor,
-                  groupValue: value,
-                  onChanged: onChanged),
-            ),
-            if (kLastAddressIdValue != null)
-              Expanded(
-                child: RadioListTile(
-                    title: Text("Last Location"),
-                    value: kLastLocation,
-                    groupValue: value,
-                    activeColor: kSecondaryColor,
-                    onChanged: onChanged),
-              ),
-            //TODO i want to make the user choose from other choices like from the previous locations or pick from map
-          ],
-        ),
+        RadioListTile(
+            title: Text("Current Location"),
+            value: kCurrentLocation,
+            activeColor: kSecondaryColor,
+            groupValue: value,
+            onChanged: onChanged),
+        RadioListTile(
+            title: Text("Pick a Location"),
+            value: kPikedLocation,
+            activeColor: kSecondaryColor,
+            groupValue: value,
+            onChanged: onChanged),
+        if (kLastAddressIdValue != null)
+          RadioListTile(
+              title: Text("Last Location"),
+              value: kLastLocation,
+              groupValue: value,
+              activeColor: kSecondaryColor,
+              onChanged: onChanged),
       ],
     );
   }

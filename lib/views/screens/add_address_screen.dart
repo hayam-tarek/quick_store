@@ -35,7 +35,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     return BlocProvider(
       create: (context) => AddressesCubit(),
       child: Scaffold(
-        appBar: customSimpleAppBar(context: context, title: "Add new address"),
+        appBar:
+            customSimpleAppBar(context: context, title: "Complete the details"),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView(
@@ -80,7 +81,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       regionController: regionController,
                       detailsController: detailsController,
                       notesController: notesController,
-                      currentPosition: cubit.currentPosition!,
+                      latitude: cubit.latitude!,
+                      longitude: cubit.longitude!,
                     ),
                   ),
                 ],
