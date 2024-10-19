@@ -32,6 +32,7 @@ const String kSecondaryFont = 'Arimo';
  */
 const String kCurrentLocation = 'current location';
 const String kLastLocation = 'last location';
+const String kPikedLocation = 'piked location';
 const String kLastAddressId = 'lastAddressId';
 String? kToken;
 String? kLastAddressIdValue;

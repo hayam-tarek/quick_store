@@ -17,28 +17,33 @@ class OrderAddressDetails extends StatelessWidget {
           Divider(indent: 25, endIndent: 25),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Icon(Icons.location_city, color: kSecondaryColor),
-                    Text(addressModel.city),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Icon(Icons.location_on, color: kSecondaryColor),
-                    Text(addressModel.name),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Icon(Icons.map, color: kSecondaryColor),
-                    Text(addressModel.region),
-                  ],
-                ),
-              ],
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Icon(Icons.location_city, color: kSecondaryColor),
+                      Text(addressModel.city),
+                    ],
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    children: [
+                      Icon(Icons.location_on, color: kSecondaryColor),
+                      Text(addressModel.name),
+                    ],
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    children: [
+                      Icon(Icons.map, color: kSecondaryColor),
+                      Text(addressModel.region),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

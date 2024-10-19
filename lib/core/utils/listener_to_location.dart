@@ -5,6 +5,7 @@ import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/view_models/location_services_cubit/location_services_cubit.dart';
 import 'package:quick_store/views/screens/add_address_screen.dart';
 import 'package:quick_store/views/widgets/alert_dialog_icon.dart';
+import 'package:quick_store/views/widgets/custom_snake_bar.dart';
 
 void locationServicesListener(
     LocationServicesState state, BuildContext context) async {
@@ -90,5 +91,26 @@ void locationServicesListener(
   }
   if (state is LocationServicesException) {
     log(state.message);
+  }
+
+  if (state is DetermineDetailsOfLatLngSuccess) {
+    bool? addressSaved;
+    if (context.mounted) {
+      addressSaved = await Navigator.push(context, MaterialPageRoute(
+        builder: (context) {
+          return AddAddressScreen();
+        },
+      ));
+    }
+    if (context.mounted) {
+      Navigator.pop(context, addressSaved);
+    }
+  }
+  if (state is DetermineDetailsOfLatLngFailure) {
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+          text: state.message, backgroundColor: Colors.red[600]!));
+      Navigator.pop(context);
+    }
   }
 }

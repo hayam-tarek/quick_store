@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:meta/meta.dart';
 
 part 'location_services_state.dart';
@@ -12,6 +13,9 @@ class LocationServicesCubit extends Cubit<LocationServicesState> {
   String? city;
   String? region;
   String? details;
+  double? longitude;
+  double? latitude;
+
   determinePosition() async {
     try {
       bool serviceEnabled;
@@ -53,6 +57,8 @@ class LocationServicesCubit extends Cubit<LocationServicesState> {
         city = placemarks[0].administrativeArea;
         region = placemarks[0].subAdministrativeArea;
         details = placemarks[0].street;
+        latitude = currentPosition!.latitude;
+        longitude = currentPosition!.longitude;
 
         emit(LocationServicesAreEnabled());
       }
@@ -63,5 +69,24 @@ class LocationServicesCubit extends Cubit<LocationServicesState> {
     //Last known location
     // Position? lastPosition = await Geolocator.getLastKnownPosition();
     // return lastPosition;
+  }
+
+  determineDetailsOfLatLng({required LatLng latLng}) async {
+    emit(DetermineDetailsOfLatLngLoading());
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        latLng.latitude,
+        latLng.longitude,
+      );
+      name = placemarks[0].name;
+      city = placemarks[0].administrativeArea;
+      region = placemarks[0].subAdministrativeArea;
+      details = placemarks[0].street;
+      latitude = latLng.latitude;
+      longitude = latLng.longitude;
+      emit(DetermineDetailsOfLatLngSuccess());
+    } on Exception catch (e) {
+      emit(DetermineDetailsOfLatLngFailure(message: e.toString()));
+    }
   }
 }
