@@ -11,6 +11,7 @@ import 'package:quick_store/views/screens/favorite_screen.dart';
 import 'package:quick_store/views/screens/home_screen.dart';
 import 'package:quick_store/views/screens/profile_screen.dart';
 import 'package:quick_store/views/widgets/custom_app_bar.dart';
+import 'package:quick_store/views/widgets/drawer_body.dart';
 
 import '../widgets/custom_bottom_nav_bar.dart';
 
@@ -46,7 +47,9 @@ class _LayoutScreenState extends State<LayoutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(),
-      endDrawer: Drawer(),
+      endDrawer: Drawer(
+        child: DrawerBody(),
+      ),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: currentIndex,
         onTap: (index) {
