@@ -65,4 +65,24 @@ class API {
       throw Exception('Failed to load data ${response.statusCode}');
     }
   }
+
+  Future<Map<String, dynamic>> delete({
+    required String url,
+    @required dynamic body,
+    @required Map<String, String>? headers,
+  }) async {
+    // log('url = $url body = $body headers = $headers');
+    Response response = await http.delete(
+      Uri.parse(url),
+      body: body,
+      headers: headers,
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      // log('response: $json');
+      return json;
+    } else {
+      throw Exception('Failed to load data ${response.statusCode}');
+    }
+  }
 }

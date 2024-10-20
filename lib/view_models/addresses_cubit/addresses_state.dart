@@ -28,3 +28,17 @@ final class GetAddressesFailure extends AddressesState {
 }
 
 final class GetAddressesSuccess extends AddressesState {}
+
+final class DeleteAddressFailure extends AddressesState {
+  final String message;
+
+  DeleteAddressFailure({required this.message});
+}
+
+final class DeleteAddressSuccess extends AddressesState {
+  final String message;
+
+  DeleteAddressSuccess({required this.message});
+}
+
+final class DeleteAddressLoading extends AddressesState {}

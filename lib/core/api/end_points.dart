@@ -34,6 +34,10 @@ class EndPoints {
   static String orderDetails({required num id}) {
     return '$baseUrl/orders/$id';
   }
+
+  static String deleteAddress({required num id}) {
+    return '$baseUrl/addresses/$id';
+  }
 }
 
 class ApiKey {

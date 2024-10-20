@@ -89,4 +89,32 @@ class AddressesCubit extends Cubit<AddressesState> {
       );
     }
   }
+
+  void deleteAddress({required num id}) async {
+    emit(DeleteAddressLoading());
+    try {
+      var json = await API().delete(
+        url: EndPoints.deleteAddress(id: id),
+        headers: {
+          ApiKey.lang: ApiKey.english,
+          ApiKey.authorization: kToken!,
+        },
+        body: null,
+      );
+      if (json[ApiKey.status] == true) {
+        emit(DeleteAddressSuccess(message: json[ApiKey.message]));
+        getAddresses();
+      } else {
+        throw Exception(json[ApiKey.message]);
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      String message = e.toString().replaceFirst('Exception: ', '');
+      emit(
+        DeleteAddressFailure(
+          message: message,
+        ),
+      );
+    }
+  }
 }

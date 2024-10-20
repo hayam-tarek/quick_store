@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quick_store/models/address_model.dart';
+import 'package:quick_store/view_models/addresses_cubit/addresses_cubit.dart';
+import 'package:quick_store/views/widgets/address_details_card.dart';
+import 'package:quick_store/views/widgets/custom_snake_bar.dart';
+import 'package:quick_store/views/widgets/delete_address_dialog.dart';
+import 'package:quick_store/views/widgets/dismissible_to_delete_item.dart';
 
 class SavedAddressesBody extends StatelessWidget {
   const SavedAddressesBody({
@@ -11,48 +17,34 @@ class SavedAddressesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList.builder(
-      itemCount: addresses.length,
-      itemBuilder: (context, index) {
-        return Dismissible(
-          key: Key(addresses[index].id.toString()),
-          // onDismissed: (direction) {
-          //   BlocProvider.of<AddressesCubit>(context)
-          //       .deleteAddress(addresses[index].id!);
-          // },
-          child: Card(
-            child: ExpansionTile(
-              leading: const Icon(Icons.my_location),
-              title: Text(addresses[index].name),
-              children: [
-                ListTile(
-                  leading: Icon(Icons.location_city),
-                  title: Text(
-                    addresses[index].city,
-                  ),
-                ),
-                ListTile(
-                  leading: Icon(Icons.map),
-                  title: Text(
-                    addresses[index].region,
-                  ),
-                ),
-                ListTile(
-                  leading: Icon(Icons.details),
-                  title: Text(
-                    addresses[index].details,
-                  ),
-                ),
-                if (addresses[index].notes != null)
-                  ListTile(
-                    leading: Icon(Icons.notes),
-                    title: Text(
-                      '${addresses[index].notes}',
-                    ),
-                  ),
-              ],
-            ),
-          ),
+    return BlocConsumer<AddressesCubit, AddressesState>(
+      listener: (context, state) {
+        if (state is DeleteAddressFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+              text: state.message, backgroundColor: Colors.red[600]!));
+        }
+        if (state is DeleteAddressSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+              text: state.message, backgroundColor: Colors.green));
+        }
+      },
+      builder: (context, state) {
+        return SliverList.builder(
+          itemCount: addresses.length,
+          itemBuilder: (context, index) {
+            return DismissibleToDeleteItem(
+              uniqueKeyValue: addresses[index].id.toString(),
+              confirmDismiss: (direction) async {
+                return await deleteAddressDialog(context);
+              },
+              onDismissed: (direction) {
+                BlocProvider.of<AddressesCubit>(context)
+                    .deleteAddress(id: addresses[index].id);
+                addresses.removeAt(index);
+              },
+              child: AddressDetailsCard(address: addresses[index]),
+            );
+          },
         );
       },
     );
