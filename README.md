@@ -1,3 +1,56 @@
+# Quick Store
+
+**Quick Store** is a Flutter-based e-commerce application that provides a seamless shopping experience. With a user-friendly interface and robust features, users can easily browse products, manage their accounts, and make purchases based on their location.
+
+## Features
+
+- **User Authentication:**
+  - Login and Registration
+  - Logout
+  - Profile Management (View, Update, Change Password, Reset Password)
+
+- **Product Management:**
+  - Display Categories and Category Products
+  - View Product Details
+  - Add or Remove Products from Favorites
+  - View All Favorite Products
+
+- **Cart Management:**
+  - View All Cart Items
+  - Add or Remove Items from Cart
+  - Update Item Quantity
+
+- **Product Search:**
+  - Search for Products by Name
+
+- **Order Management:**
+  - Place Orders based on Current Location or Selected Location from Map
+  - View All Orders and Order Details
+  - Cancel Orders
+
+- **Location Management:**
+  - View All Saved Locations
+  - Delete Any Saved Location
+
+## Technologies Used
+
+This project utilizes the following packages:
+
+- `cupertino_icons`
+- `flutter_bloc`
+- `bloc`
+- `http`
+- `shared_preferences`
+- `meta`
+- `smooth_page_indicator`
+- `image_picker`
+- `geolocator`
+- `geocoding`
+- `flutter_dotenv`
+- `flutter_map`
+- `latlong2`
+
+## Screenshots:
 <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
   <img src="https://github.com/user-attachments/assets/20fd6110-bede-4874-93db-e8bd81afd8f7" alt="صورة 6" width="150">
   <img src="https://github.com/user-attachments/assets/af88dea8-1e44-485b-8905-d6ed76fdca56" alt="صورة 7" width="150">
@@ -30,6 +83,7 @@
   <img src="https://github.com/user-attachments/assets/07c190f2-fdd9-4b68-b65f-bbadb8b4007a" alt="صورة 25" width="150">
 </div>
 
+## Demo Video:
 
 
 
