@@ -31,7 +31,7 @@ class CheckOutSheet extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\$$totalPrice',
+                  '\$${totalPrice.toStringAsFixed(2)}',
                   style: const TextStyle(
                     color: kSecondaryColor,
                     fontSize: 20,

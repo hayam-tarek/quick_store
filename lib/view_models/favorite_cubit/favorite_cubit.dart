@@ -14,6 +14,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   Future<void> addOrDeleteFavorite({required int productId}) async {
     if (favoritesID.contains(productId)) {
       favoritesID.remove(productId);
+      favorites.removeWhere((product) => product.id == productId);
     } else {
       favoritesID.add(productId);
     }
@@ -31,7 +32,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       );
       if (json[ApiKey.status] == true) {
         emit(AddOrDeleteFavoriteSuccess(message: json[ApiKey.message]));
-        getFavorite();
+        //getFavorite();
       } else {
         if (favoritesID.contains(productId)) {
           favoritesID.remove(productId);

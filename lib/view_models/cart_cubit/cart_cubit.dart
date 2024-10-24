@@ -6,6 +6,7 @@ import 'package:quick_store/core/api/api.dart';
 import 'package:quick_store/core/api/end_points.dart';
 import 'package:quick_store/core/utils/constant.dart';
 import 'package:quick_store/models/cart_model.dart';
+import 'package:quick_store/models/product_model.dart';
 
 part 'cart_state.dart';
 
@@ -20,8 +21,10 @@ class CartCubit extends Cubit<CartState> {
     int targetQuantity = cartItemModel.quantity;
     if (quantity > 0) {
       total += cartItemModel.productModel.price;
+      subTotal += cartItemModel.productModel.price;
     } else {
       total -= cartItemModel.productModel.price;
+      subTotal -= cartItemModel.productModel.price;
     }
     emit(UpdateCartLoading());
     try {
@@ -37,7 +40,7 @@ class CartCubit extends Cubit<CartState> {
       );
       if (json[ApiKey.status] == true) {
         emit(UpdateCartSuccess(message: json[ApiKey.message]));
-        getCart();
+        // getCart();
       } else {
         cartItemModel.quantity -= quantity;
         if (quantity > 0) {
@@ -58,11 +61,20 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  Future<void> addOrDeleteFromCart({required int productId}) async {
+  Future<void> addOrDeleteFromCart({
+    required int productId,
+    required ProductModel productModel,
+  }) async {
     if (cartItemsID.contains(productId)) {
       cartItemsID.remove(productId);
+      cart.removeWhere(
+          (cartItemModel) => cartItemModel.productModel.id == productId);
+      total -= productModel.price;
+      subTotal -= productModel.price;
     } else {
       cartItemsID.add(productId);
+      total += productModel.price;
+      subTotal += productModel.price;
     }
     emit(AddOrDeleteFromCartLoading());
     try {
@@ -78,7 +90,7 @@ class CartCubit extends Cubit<CartState> {
       );
       if (json[ApiKey.status] == true) {
         emit(AddOrDeleteFromCartSuccess(message: json[ApiKey.message]));
-        getCart();
+        // getCart();
       } else {
         if (cartItemsID.contains(productId)) {
           cartItemsID.remove(productId);

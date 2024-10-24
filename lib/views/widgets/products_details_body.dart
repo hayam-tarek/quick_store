@@ -63,7 +63,9 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                       : 'Add to Cart',
                   onPressed: () async {
                     BlocProvider.of<CartCubit>(context).addOrDeleteFromCart(
-                        productId: widget.productModel.id.toInt());
+                      productId: widget.productModel.id.toInt(),
+                      productModel: widget.productModel,
+                    );
                     // if (context.mounted) {
                     //   BlocProvider.of<CartCubit>(context).getCart();
                     // }

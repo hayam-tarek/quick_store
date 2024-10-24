@@ -19,8 +19,10 @@ class CartButton extends StatelessWidget {
 
     return IconButton(
       onPressed: () async {
-        BlocProvider.of<CartCubit>(context)
-            .addOrDeleteFromCart(productId: productModel.id.toInt());
+        BlocProvider.of<CartCubit>(context).addOrDeleteFromCart(
+          productId: productModel.id.toInt(),
+          productModel: productModel,
+        );
         // if (context.mounted) {
         //   BlocProvider.of<CartCubit>(context).getCart();
         // }

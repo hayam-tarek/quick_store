@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quick_store/view_models/cart_cubit/cart_cubit.dart';
 import 'package:quick_store/views/widgets/cart_body.dart';
 
 class CartScreen extends StatefulWidget {
@@ -11,8 +13,14 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
-    // BlocProvider.of<CartCubit>(context).getCart();
+    BlocProvider.of<CartCubit>(context).getCart();
     super.initState();
+  }
+
+  @override
+  void deactivate() {
+    BlocProvider.of<CartCubit>(context).getCart();
+    super.deactivate();
   }
 
   @override
