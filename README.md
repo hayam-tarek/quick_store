@@ -93,6 +93,7 @@ This project utilizes the following packages:
 </div>
 
 ## Demo Video:
+[Watch the video](https://drive.google.com/file/d/1PeC50WZrqnGHQJJrFqqm96a5qnHNfoT6/view)
 
 
 
