@@ -68,9 +68,14 @@ class CartCubit extends Cubit<CartState> {
     if (cartItemsID.contains(productId)) {
       cartItemsID.remove(productId);
       cart.removeWhere(
-          (cartItemModel) => cartItemModel.productModel.id == productId);
-      total -= productModel.price;
-      subTotal -= productModel.price;
+        (cartItemModel) => cartItemModel.productModel.id == productId,
+      );
+      total = 0;
+      subTotal = 0;
+      for (int i = 0; i < cart.length; i++) {
+        total += cart[i].productModel.price * cart[i].quantity;
+        subTotal += cart[i].productModel.price * cart[i].quantity;
+      }
     } else {
       cartItemsID.add(productId);
       total += productModel.price;
