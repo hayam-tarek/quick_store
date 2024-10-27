@@ -76,19 +76,28 @@ class _SimpleProductCardState extends State<SimpleProductCard> {
                     ),
                     Row(
                       children: [
-                        ShowPrice(
-                            productModel: widget.productModel, fontSize: 13),
-                        const Spacer(),
-                        if (widget.showShoppingCart)
-                          CartButton(
-                            context: context,
-                            productModel: widget.productModel,
+                        Expanded(
+                          child: ShowPrice(
+                              productModel: widget.productModel, fontSize: 13),
+                        ),
+                        // const Spacer(),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              if (widget.showShoppingCart)
+                                CartButton(
+                                  context: context,
+                                  productModel: widget.productModel,
+                                ),
+                              if (widget.showFavorite)
+                                FavoriteButton(
+                                  context: context,
+                                  productModel: widget.productModel,
+                                ),
+                            ],
                           ),
-                        if (widget.showFavorite)
-                          FavoriteButton(
-                            context: context,
-                            productModel: widget.productModel,
-                          ),
+                        ),
                       ],
                     ),
                   ],

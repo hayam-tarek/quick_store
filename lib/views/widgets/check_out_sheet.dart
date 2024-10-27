@@ -15,33 +15,31 @@ class CheckOutSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
-          flex: 1,
-          child: IntrinsicHeight(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Total',
-                  style: TextStyle(
-                    color: kPrimaryColor.withOpacity(.5),
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                  ),
+        IntrinsicHeight(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Total',
+                style: TextStyle(
+                  color: kPrimaryColor.withOpacity(.5),
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
                 ),
-                Text(
-                  '\$${totalPrice.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    color: kSecondaryColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              Text(
+                '\$${totalPrice.toStringAsFixed(2)}',
+                style: const TextStyle(
+                  color: kSecondaryColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+        const SizedBox(width: 10),
         Expanded(
           flex: 2,
           child: CustomMaterialButton(

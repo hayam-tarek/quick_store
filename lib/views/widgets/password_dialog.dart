@@ -86,20 +86,22 @@ class PasswordDialog extends StatelessWidget {
         const SizedBox(height: 10),
       ],
       content: IntrinsicHeight(
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              CustomPasswordTextFormField(
-                labelText: 'Old password',
-                passwordController: oldPasswordController,
-              ),
-              const SizedBox(height: 10),
-              CustomPasswordTextFormField(
-                labelText: 'New password',
-                passwordController: newPasswordController,
-              ),
-            ],
+        child: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                CustomPasswordTextFormField(
+                  labelText: 'Old password',
+                  passwordController: oldPasswordController,
+                ),
+                const SizedBox(height: 10),
+                CustomPasswordTextFormField(
+                  labelText: 'New password',
+                  passwordController: newPasswordController,
+                ),
+              ],
+            ),
           ),
         ),
       ),
